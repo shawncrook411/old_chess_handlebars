@@ -5,6 +5,10 @@
     --board-grid-color: gray;
 }
 
+*{
+    text-color: gray;
+}
+
 header{
     height: 80px;
 }
