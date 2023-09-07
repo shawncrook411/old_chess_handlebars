@@ -1,8 +1,8 @@
 :root{
     --border-size: 3px;
-    --primary-board-color: black;
-    --secondary-board-color: rgb(255, 255, 255);
-    --board-grid-color: gray;
+    --primary-board-color: rgb(179, 122, 1);
+    --secondary-board-color: rgb(255, 226, 99);
+    --board-grid-color: rgb(58, 58, 58);
 }
 
 *{
@@ -17,8 +17,9 @@ header{
     width: 80px;
     height: 80px;
     border: var(--board-grid-color) solid var(--border-size);
-    display:block;
-    padding: 5px;    
+    position: relative;
+    
+       
 }
 
 #board_border{
@@ -32,7 +33,7 @@ header{
 }
 
 #board{  
-    border: rgb(250, 0, 0) solid 10px;   
+    border: rgb(0, 0, 0) solid 10px;   
     border-radius: 10px; 
 }
 
@@ -42,30 +43,33 @@ main{
     align-items: center;
 }
 
-.primary_square::after{
-    position:relative;
-    top: -7px;
-    left: -3px;
+.primary_square::after{   
+    position: absolute;
+    top: -3px;
+    left: 0px;
     content: attr(id);
     font-size: 20px;
     color: var(--secondary-board-color);
 }
 
 .secondary_square::after{
-    position:relative;
-    top: -7px;
-    left: -3px;
+    position: absolute;
+    top: -3px;
+    left: 0px;
     content: attr(id);
-    font-size: 24px;
+    font-size: 20px;
     color: var(--primary-board-color);
+    
+   
 }
 
 .primary_square{
-    background: var(--primary-board-color);    
+    background: var(--primary-board-color);     
 }
 
 .secondary_square{
     background: var(--secondary-board-color);
+    
 }
 
 .clock_card{
@@ -101,13 +105,13 @@ main{
 }
 
 a{
-    display:flex;
-
+    height: 80px;
+    width: 80px;
 }
 
 img{
-    height: 70px;
-    width: 70px;
-    background: none;
+    height: 80px;
+    width: 80px;
+    
     
 }

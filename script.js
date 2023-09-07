@@ -171,27 +171,24 @@ let checkObstruction = function (a, b, c, g, y) {
 var displayBoard = function (){
 
     for(let i = 0; i<16; i++)
-    {   let id;
-        if (player2[i].piece_type == "rook"){
-            id = "./assets/images/black_rook.png"
-        }
-        if (player2[i].piece_type == "pawn"){
-            id = "./assets/images/black_pawn.png"
-        }
-        if (player2[i].piece_type == "bishop"){
-            id = "./assets/images/black_bishop.png"
-        }
-        if (player2[i].piece_type == "queen"){
-            id = "./assets/images/black_queen.png"
-        }
-        if (player2[i].piece_type == "king"){
-            id = "./assets/images/black_king.png"
-        }
-        if (player2[i].piece_type == "knight"){
-            id = "./assets/images/black_knight.png"
-        }
+    {   
+
+        let id = "./assets/images/black_" + player2[i].piece_type +".png"        
+     
         var x = document.createElement("a");
         var y = document.getElementById(player2[i].position_column + player2[i].position_row)
+        y.appendChild(x)
+        var z = document.createElement("img");
+        z.setAttribute("src", id)
+        x.appendChild(z);
+    }
+
+    for(let i = 0; i<16; i++)
+    {
+        id = "./assets/images/white_" + player1[i].piece_type +".png"        
+     
+        var x = document.createElement("a");
+        var y = document.getElementById(player1[i].position_column + player1[i].position_row)
         y.appendChild(x)
         var z = document.createElement("img");
         z.setAttribute("src", id)
