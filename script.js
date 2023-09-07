@@ -196,24 +196,11 @@ var displayBoard = function (){
     }
 }
 
-// //if (a == 2) // Horizontal
-
-// //if (a == 3) // NE / SW Diagonal
-
-// if (a == 4) // NW / SE Diagonal
-// return;
-
-
-
 createBoard(8);
 let player1 = setPieces (1, 0);
 let player2 = setPieces (-1, 0);
-//printPosition(player1, player2);
-//printPieceByID(player1[0]);
-//printPieceByPosition("a", 7);
-//printPieceByArray(player1[3]);
-//console.log(checkObstruction(1, 0, "a", 2));
-
+printPosition(player1, player2);
+printPieceByArray(player1[3]);
 console.log(checkObstruction(-1, -1, -1, "d", 8));
 displayBoard();
 
