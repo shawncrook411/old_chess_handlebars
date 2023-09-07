@@ -22,18 +22,23 @@ var createBoard = function (board_size){
                 for (let j = 0; j < board_size; j++)
                 {
                     var y = document.createElement("div");
-                    y.setAttribute("class", "square");
-
                     if (i > 7)
                     {
-                        y.setAttribute("id", (i+1) + ":" + (j+1));
-                        x.appendChild(y);
+                        y.setAttribute("id", (i+1) + ":" + (j+1));                        
+                        
                     }
                     else
                     {
                         y.setAttribute("id", columnArray[i] + (j+1))
-                        x.appendChild(y);
+                          
+                    }                    
+                    if ((j + i) % 2 == 0 ){
+                        y.setAttribute("class", " square primary_square")
                     }
+                    else{
+                        y.setAttribute("class", "square secondary_square")
+                    }
+                    x.appendChild(y);
                 }
             boardState.appendChild(x);
     }

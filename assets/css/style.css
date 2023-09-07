@@ -54,11 +54,11 @@ main{
     color: var(--board-grid-color);
 }
 
-.black_square{
+.primary_square{
     background: var(--primary-board-color);
     
 }
 
-.white_square{
+.secondary_square{
     background: var(--secondary-board-color);
 }
