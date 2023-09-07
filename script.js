@@ -52,7 +52,7 @@ var setPieces = function(color, type){
         {
             var x = 
             {
-                id: i * color,
+                id: (i + 1) * color,
                 piece_type: i,
                 color: color,
                 column: columnArray[i],
@@ -65,7 +65,7 @@ var setPieces = function(color, type){
         {
             var x =
             {
-                id: (i+5) * color,
+                id: (i+6) * color,
                 piece_type: 2 - i,
                 color: color,
                 column: columnArray[i+5],
@@ -78,7 +78,7 @@ var setPieces = function(color, type){
         {
             var x =
             {
-                id: (i+8) * color,
+                id: (i+9) * color,
                 piece_type: 5,
                 color: color,
                 column: columnArray[i],
@@ -90,11 +90,19 @@ var setPieces = function(color, type){
     }
 }
 
+
+
+
 createBoard(8);
 
 let player1 = setPieces (1, 0);
 let player2 = setPieces (-1, 0);
 
-console.log(player1);
-console.log(player2);
+
+for(i = 0; i < player1.length; i++){
+    console.log(player1[i]);
+}
+for(i = 0; i < player2.length; i++){
+    console.log(player2[i]);
+}
 
