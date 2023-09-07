@@ -1,20 +1,24 @@
 :root{
     --border-size: 3px;
     --primary-board-color: black;
-    --secondary-board-color: white;
+    --secondary-board-color: red;
     --board-grid-color: gray;
+}
+
+*{
+    text-color: gray;
 }
 
 header{
     height: 80px;
 }
+
 .square{
     width: 80px;
     height: 80px;
     border: var(--board-grid-color) solid var(--border-size);
     display:block;
-    padding: 5px;
-    
+    padding: 5px;    
 }
 
 #board_border{
@@ -27,10 +31,8 @@ header{
     flex-direction: column-reverse;
 }
 
-#board{
-  
-    border: blue solid 10px;
-    
+#board{  
+    border: blue solid 10px;    
 }
 
 main{
@@ -55,8 +57,7 @@ main{
 }
 
 .primary_square{
-    background: var(--primary-board-color);
-    
+    background: var(--primary-board-color);    
 }
 
 .secondary_square{
