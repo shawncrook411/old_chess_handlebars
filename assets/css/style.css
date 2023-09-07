@@ -1,8 +1,12 @@
 :root{
     --border-size: 3px;
     --primary-board-color: black;
-    --secondary-board-color: white;
+    --secondary-board-color: red;
     --board-grid-color: gray;
+}
+
+*{
+    text-color: gray;
 }
 
 header{
@@ -54,11 +58,11 @@ main{
     color: var(--board-grid-color);
 }
 
-.black_square{
+.color1{
     background: var(--primary-board-color);
     
 }
 
-.white_square{
+.color2{
     background: var(--secondary-board-color);
 }
