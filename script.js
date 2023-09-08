@@ -3,7 +3,9 @@ var createSquare = document.createElement("div");
 var boardState = document.getElementById("board_border");
 var board_size;
 var columnArray = ["a", "b", "c", "d", "e", "f", "g", "h"];
-var pieceType = ["rook", "knight", "bishop", "queen", "king", "pawn"]
+var pieceType = ["rook", "knight", "bishop", "queen", "king", "pawn"];
+var moves = [""];
+var move_count = 1;
 
 var createBoard = function (board_size){
     for (let i = 0; i < board_size; i++)
@@ -196,11 +198,21 @@ var displayBoard = function (){
     }
 }
 
+
+// var updateMoves();
+// {
+//     var list = document.getElementById(moveslist);
+//     list.push(moves[move_count])
+// }
+
 createBoard(8);
 let player1 = setPieces (1, 0);
 let player2 = setPieces (-1, 0);
 printPosition(player1, player2);
 printPieceByArray(player1[3]);
-console.log(checkObstruction(-1, -1, -1, "d", 8));
+console.log(checkObstruction(1, 0, 1, "b", 2));
 displayBoard();
+
+
+
 
