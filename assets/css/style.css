@@ -1,8 +1,14 @@
 :root{
     --border-size: 3px;
-    --primary-board-color: rgb(179, 122, 1);
+    --primary-board-color: rgb(117, 80, 0);
     --secondary-board-color: rgb(255, 226, 99);
     --board-grid-color: rgb(58, 58, 58);
+    
+    --primary-board-color: #ff7839 ;
+    --secondary-board-color: #ffed48;
+    --primary-board-color: #1750AC ;
+    --secondary-board-color: #73B9EE;
+
 }
 
 *{
@@ -105,14 +111,30 @@ label{
     margin: 10px;
     flex: 1;
     border-radius: 10px;
-}
-#player1clock{
-    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: black;
+    font-size: 90px;
+    font-family: 'Nabla';
+    text-shadow:
+		-1px -1px 0 #000,
+		1px -1px 0 #000,
+		-1px 1px 0 #000,
+		1px 1px 0 #000;
 }
 
-#player2clock{
-    color: white;
+#player1Clock{
+    
+    background-color: var(--secondary-board-color)
 }
+ 
+#player2Clock{
+        
+    background-color: var(--primary-board-color)
+}
+
+
 
 .cage{
     height: auto;

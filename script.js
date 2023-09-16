@@ -3,9 +3,11 @@ var createSquare = document.createElement("div");
 var boardState = document.getElementById("board_border");
 var board_size;
 var columnArray = ["a", "b", "c", "d", "e", "f", "g", "h"];
-var pieceType = ["rook", "knight", "bishop", "queen", "king", "pawn"];
+var pieceType = ["R", "N", "B", "Q", "K", "P"];
 var moves = [""];
 var move_count = 1;
+var gameTime = 3100;
+var playerMove = 1;
 
 var createBoard = function (board_size){
     for (let i = 0; i < board_size; i++)
@@ -93,8 +95,6 @@ var printPosition = function (x, y) {
     }
 }
 
-var printPice
-
 var printPieceByArray = function (x) {   
     let z = "Blank";
     if (x.color == 1)
@@ -174,8 +174,7 @@ var displayBoard = function (){
 
     for(let i = 0; i<16; i++)
     {   
-
-        let id = "./assets/images/black_" + player2[i].piece_type +".png"        
+        let id = "https://raw.githubusercontent.com/lichess-org/lila/cf1ad792dafa8b7bebad8cc262826d9e0a165491/public/piece/pixel/b" + player2[i].piece_type +".svg"        
      
         var x = document.createElement("a");
         var y = document.getElementById(player2[i].position_column + player2[i].position_row)
@@ -185,9 +184,11 @@ var displayBoard = function (){
         x.appendChild(z);
     }
 
+
+
     for(let i = 0; i<16; i++)
     {
-        id = "./assets/images/white_" + player1[i].piece_type +".png"        
+        id = "https://raw.githubusercontent.com/lichess-org/lila/cf1ad792dafa8b7bebad8cc262826d9e0a165491/public/piece/pixel/w" + player1[i].piece_type +".svg"        
      
         var x = document.createElement("a");
         var y = document.getElementById(player1[i].position_column + player1[i].position_row)
@@ -199,6 +200,71 @@ var displayBoard = function (){
 }
 
 
+
+
+
+
+var changePlayerMove = function () {
+    playerMove = playerMove * -1;
+    console.log("click recorded " + playerMove)    
+  
+}
+
+let boardListener = document.querySelector("#board");   
+let whiteClock = document.querySelector("#player1Clock");
+let blackClock = document.querySelector("#player2Clock");
+
+boardListener.addEventListener("click", function(event) {
+    if (event = true)
+    {changePlayerMove()}
+});
+
+var timerConvert = function (x) {
+
+    minutes = x/600
+    minutes = Math.floor(minutes)    
+
+    seconds = (x%600)/10
+    seconds = Math.floor(seconds)
+
+    if (seconds < 10){
+        seconds = "0" + seconds;
+    }
+
+    deciSeconds = x%10
+    return (minutes + ":" + seconds + "." + deciSeconds);
+}
+
+var startTimer = function setTime(gameTime) {
+    let whiteSecondsLeft = gameTime;
+    let blackSecondsLeft = gameTime;
+
+    var Timer = setInterval(function() {
+
+
+        if (playerMove === 1){
+            whiteSecondsLeft--;
+        }
+        else{
+            blackSecondsLeft--;
+        }
+
+        let w = timerConvert(whiteSecondsLeft);
+        let b = timerConvert(blackSecondsLeft);
+
+        whiteClock.textContent = w;
+        blackClock.textContent = b; 
+
+        
+    
+        if(whiteSecondsLeft === 0 || blackSecondsLeft === 0) {
+        clearInterval(whiteTimer);
+        clearInterval(blackTimer);
+        gameTimeOut();
+        }
+    }, 100);
+}
+
 // var updateMoves();
 // {
 //     var list = document.getElementById(moveslist);
@@ -208,10 +274,11 @@ var displayBoard = function (){
 createBoard(8);
 let player1 = setPieces (1, 0);
 let player2 = setPieces (-1, 0);
-printPosition(player1, player2);
-printPieceByArray(player1[3]);
-console.log(checkObstruction(1, 0, 1, "b", 2));
+// printPosition(player1, player2);
+// printPieceByArray(player1[3]);
+// console.log(checkObstruction(1, 0, 1, "b", 2));
 displayBoard();
+startTimer(gameTime);
 
 
 
