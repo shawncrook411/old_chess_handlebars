@@ -158,33 +158,86 @@ var checkOccupied = function (x , y) {
     return z;
 }
 
-let checkObstruction = function (a, b, c, g, y) {
+//1 = North
+//2 = NE
+//3 = East
+//4 = SE
+//5 = South
+//6 = SW
+//7 = West
+//8 = NW
+
+let checkObstruction = function (a, b, c, columnChar, y) {
     let x;
     let furthest_square;
     let z = 0;
+    let PM = [];
 
+    //Converts Column Array into a number
     for (let i = 0; i < 8; i ++)
     {
-        if (columnArray[i] == g) {
+        if (columnArray[i] == columnChar) {
         x = i;
         }
-    }
+    }   
 
-    for(let i = 0; i < 8; i++)
+    for(let i = 0; i < board_size; i++)
     {
-        z = checkOccupied(columnArray[x + (b*(i + 1))] , (y + (a*(i + 1)))) // y + i  == 6
+        let testSquareX = columnArray[x + (a*(i + 1))]
+        let testSquareXarray = [x + (a*(i + 1))]
+        let testSquareY = (y + (b*(i + 1)))
         let h = 0;
-        if (z == c*-1) {
-            h = 1;
-        }            
-        if (z != 0)
+
+        if (testSquareXarray > board_size -1 || testSquareY > board_size || testSquareY <= 0 || testSquareXarray <= -1)
         {
-        furthest_square = [columnArray[x + (b*(i + h))], (y + (a*(i + h)))]
-        return furthest_square;
+           
         }
+        else
+        {
+            z = checkOccupied(testSquareX, testSquareY) // y + i  == 6   
+
+            if (z === 0)
+            {
+                testSquare = testSquareX + testSquareY;
+                PM.push(testSquare);
+            }            
+
+            if (z === c*-1) { // h == different color variable
+                h = 1;           
+                furthest_square = columnArray[x + (a*(i + h))] + (y + (b*(i + h)))
+                
+                if (h === 1)
+                {
+                PM.push(furthest_square);
+                }
+                
+                return PM;
+            }
+        }
+        
     }        
-    return z;
+    // return z;
+    return PM;
 }
+
+// var calculatePossibleMoves = function (piece){
+
+//     currentColor = piece.color
+
+//     if (piece.piece_type = "R")
+//     {
+//         for(let i = 0; i < board_size; i++)
+//         {
+//             checkObstruction(1, 0, currentColor, piece.column, piece.row)
+//         }
+//         1 0
+//         -1 0
+//         0 1
+//         0 -1
+//     }
+
+
+
 
 
 var displayBoard = function (){ 
@@ -294,6 +347,46 @@ var startTimer = function setTime(gameTime) {
     }, 100);
 }
 
+var calculatePossibleMoves = function (piece){
+
+    let possibleMoves = [];    
+    let N = checkObstruction(  0,  1, piece.color, piece.position_column, piece.position_row)
+    let NE = checkObstruction( 1,  1, piece.color, piece.position_column, piece.position_row)
+    let E = checkObstruction(  1,  0, piece.color, piece.position_column, piece.position_row)
+    let SE = checkObstruction( 1, -1, piece.color, piece.position_column, piece.position_row)
+    let S = checkObstruction(  0, -1, piece.color, piece.position_column, piece.position_row)
+    let SW = checkObstruction(-1, -1, piece.color, piece.position_column, piece.position_row)
+    let W = checkObstruction( -1,  0, piece.color, piece.position_column, piece.position_row)
+    let NW = checkObstruction(-1,  1, piece.color, piece.position_column, piece.position_row)    
+
+    if (piece.piece_type = "R")
+    {
+        for(let i = 0; i < N.length; i++)
+        {possibleMoves.push(N[i])}
+
+        for(let i = 0; i < S.length; i++)
+        {possibleMoves.push(S[i])}
+
+        for(let i = 0; i < W.length; i++)
+        {possibleMoves.push(W[i])}
+
+        for(let i = 0; i < E.length; i++)
+        {possibleMoves.push(E[i])}
+    }
+
+    // if (piece.piece_type = "N")
+
+    // if (piece.piece_type = "B")
+
+    // if (piece.piece_type = "Q")
+
+    // if (piece.piece_type = "K")
+
+    // if (piece.piece_type = "P")
+    console.log(possibleMoves);    
+    return possibleMoves;
+}
+
 // var updateMoves();
 // {
 //     var list = document.getElementById(moveslist);
@@ -303,11 +396,23 @@ var startTimer = function setTime(gameTime) {
 createBoard(preferences[1]);
 let player1 = setPieces (1, 0);
 let player2 = setPieces (-1, 0);
-printPosition(player1, player2);
-printPieceByArray(player1[3]);
-// console.log(checkObstruction(1, 0, 1, "b", 2));
+// printPosition(player1, player2);
+// printPieceByArray(player1[3]);
+// console.log(checkObstruction(1, 0, 1, "a", 3));
 displayBoard();
 startTimer(gameTime);
+
+
+let testPiece =
+            {
+                id: 100,
+                piece_type: "R",
+                color: -1,
+                position_column: "e",
+                position_row: 4                
+            }  
+
+calculatePossibleMoves(testPiece);
 
 
 
