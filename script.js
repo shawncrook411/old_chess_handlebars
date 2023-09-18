@@ -216,25 +216,8 @@ let checkObstruction = function (a, b, c, columnChar, y) {
         }
         
     }        
-    // return z;
     return PM;
 }
-
-// var calculatePossibleMoves = function (piece){
-
-//     currentColor = piece.color
-
-//     if (piece.piece_type = "R")
-//     {
-//         for(let i = 0; i < board_size; i++)
-//         {
-//             checkObstruction(1, 0, currentColor, piece.column, piece.row)
-//         }
-//         1 0
-//         -1 0
-//         0 1
-//         0 -1
-//     }
 
 
 
@@ -419,25 +402,49 @@ var calculatePossibleMoves = function (piece){
         {possibleMoves.push(NW[0])}      
     }
 
+    for (i = 0; i < board_size; i++)
+    {
+        if(piece.position_column === columnArray[i])
+        {
+            convertE = columnArray[i+1]
+            convertW = columnArray[i-1]
+        }        
+    }
+
     if (piece.piece_type = "P" && piece.color === 1)
     {
-        if(N.length != 0)
+        if(checkOccupied(piece.position_column, piece.position_row + 1) === 0) // if Square above it is unoccupied, may move forward
         {possibleMoves.push(N[0])
 
-            if (piece.position_row === 2) // Allows White Pawns to move two squares up if on second rank
+            if (piece.position_row === 2 && checkOccupied(piece.position_column, piece.position_row + 2) === 0) // Allows White Pawns to move two squares up if on second rank
             {possibleMoves.push(N[1])}
-        }
+        }      
+
+        if(checkOccupied(convertW, piece.position_row + 1) === -1)// Allows Black pawns to capture NW
+        {possibleMoves.push(NW[0])}
+
+
+        if(checkOccupied(convertE, piece.position_row + 1) === -1)// Allows Black pawns to capture NE
+        {possibleMoves.push(NE[0])}
+
 
     }
 
     if (piece.piece_type = "P" && piece.color === -1)
     {
-        if(S.length != 0)
+        if(checkOccupied(piece.position_column, piece.position_row - 1) === 0) // if Square below it is unoccupied, may move forward
         {possibleMoves.push(S[0]) 
 
-            if (piece.position_row === board_size - 1) // Allows Black Pawns to move two squares up if on second rank
+            if (piece.position_row === board_size - 1 && checkOccupied(piece.position_column, piece.position_row - 2) === 0) // Allows Black Pawns to move two squares up if on second rank && both squares are unoccupied
             {possibleMoves.push(S[1])}
-        }
+        }    
+
+        if(checkOccupied(convertW, (piece.position_row - 1)) === 1) // Allows Black pawns to capture SW
+        {possibleMoves.push(SW[0])}
+
+
+        if(checkOccupied(convertE, (piece.position_row - 1)) === 1) // Allows Black pawns to capture SE
+        {possibleMoves.push(SE[0])}
 
     }
 
@@ -462,15 +469,16 @@ startTimer(gameTime);
 
 
 let testPiece =
-            {
-                id: 100,
-                piece_type: "P",
-                color: -1,
-                position_column: "e",
-                position_row: 2                
-            }  
+    {
+        id: 100,
+        piece_type: "P",
+        color: 1,
+        position_column: "d",
+        position_row: 5                
+    }  
 
 calculatePossibleMoves(testPiece);
+
 
 
 
