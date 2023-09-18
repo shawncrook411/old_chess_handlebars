@@ -2,12 +2,25 @@ var createColumn = document.createElement("div");
 var createSquare = document.createElement("div");
 var boardState = document.getElementById("board_border");
 var board_size;
-var columnArray = ["a", "b", "c", "d", "e", "f", "g", "h"];
+var columnArray = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
 var pieceType = ["R", "N", "B", "Q", "K", "P"];
 var moves = [""];
 var move_count = 1;
 var gameTime = 3100;
 var playerMove = 1;
+
+
+
+//Creates Array of preferences for customization
+var preferences = [];
+var preferencePiecesOptions = ["pixel", "cburnett", "merida", "alpha", "pirouetti", "chessnut", "reillycraig", "companion", "riohacha", "kosal", "leipzig", "fantasy", "spatial", "celtic", "california", "caliente", "pixel", "maestro", "fresca", "cardinal", "gioco", "tatiana", "staunty", "governor", "dubrovny", "icpieces", "mpchess", "kiwen-suwi", "horsey", "anarcandy", "shapes", "letter", "disguised"];
+
+preferences[0] = preferencePiecesOptions[Math.floor(Math.random() * 33)];
+// preferences[0] = preferencePiecesOptions[0]; // Piece Type
+preferences[1] = 25; // Board Size
+
+board_size = preferences[1];
+
 
 var createBoard = function (board_size){
     for (let i = 0; i < board_size; i++)
@@ -18,9 +31,9 @@ var createBoard = function (board_size){
                 for (let j = 0; j < board_size; j++)
                 {
                     var y = document.createElement("div");
-                    if (i > 7)
+                    if (i > 26)
                     {
-                        y.setAttribute("id", (i+1) + ":" + (j+1));                        
+                        y.setAttribute("id", "a" + (i+1) + (j+1));                        
                         
                     }
                     else
@@ -40,11 +53,12 @@ var createBoard = function (board_size){
     }
 }
 var setPieces = function(color, type){
-    let y = [];    
+    let y = [];      
+    magicNumbers = (board_size + 1) / 2       
 
     if (type === 0)
     {       
-        for(let i = 0; i < 5; i++)
+        for(let i = 0; i < 5; i++) // Creates one of each piece, in order, on the back rank per color
         {
             var x = 
             {
@@ -52,25 +66,28 @@ var setPieces = function(color, type){
                 piece_type: pieceType[i],
                 color: color,
                 position_column: columnArray[i],
-                position_row: 4.5 - (color * 3.5)
+                position_row: magicNumbers - (color * (magicNumbers-1)) // Magic Numbers to force the pieces onto row 1 and 8 repsectively based on color 4.5 + 3.5 = 8 & 4.5 - 3.5 = 1
+
+                
             }            
             y.push(x);
         }      
 
-        for (let i = 0; i < 3; i++)
-        {
+        for (let i = 0; i < 3; i++) // Creates an identical array of pieces descending. Creates the 2nd Bishop, Knight and Rook on the kingside
+        {   
+            let temporaryColumn = board_size - 3;
             var x =
             {
                 id: (i+6) * color,
                 piece_type: pieceType[2 - i],
                 color: color,
-                position_column: columnArray[i+5],
-                position_row: 4.5 - (color * 3.5)
+                position_column: columnArray[i+temporaryColumn],
+                position_row: magicNumbers - (color * (magicNumbers-1))
             }
             y.push(x);
         }
 
-        for (let i = 0; i < 8; i++)
+        for (let i = 0; i < board_size; i++) // Creates Black and White Pawns
         {
             var x =
             {
@@ -78,7 +95,7 @@ var setPieces = function(color, type){
                 piece_type: pieceType[5],
                 color: color,
                 position_column: columnArray[i],
-                position_row: 4.5 - (color * 2.5)
+                position_row: magicNumbers - (color * (magicNumbers-2)  ) // Magic Numbers to force the pieces onto row 2 and 7 repsectively based on color 4.5 + 2.5 = 7 & 4.5 - 2.5 = 2
             }
             y.push(x);
         }
@@ -170,11 +187,25 @@ let checkObstruction = function (a, b, c, g, y) {
 }
 
 
-var displayBoard = function (){
+var displayBoard = function (){ 
 
-    for(let i = 0; i<16; i++)
-    {   
-        let id = "https://raw.githubusercontent.com/lichess-org/lila/cf1ad792dafa8b7bebad8cc262826d9e0a165491/public/piece/pixel/b" + player2[i].piece_type +".svg"        
+    // if (preferences[0] ==  "disguised")
+    
+    for(let i = 0; i< player1.length; i++)
+    {
+        id = "https://raw.githubusercontent.com/lichess-org/lila/cf1ad792dafa8b7bebad8cc262826d9e0a165491/public/piece/" + preferences[0] + "/w" + player1[i].piece_type +".svg"        
+        
+        var x = document.createElement("a");
+        var y = document.getElementById(player1[i].position_column + player1[i].position_row)
+        y.appendChild(x)
+        var z = document.createElement("img");
+        z.setAttribute("src", id)
+        x.appendChild(z);
+    }
+    
+    for(let i = 0; i < player2.length; i++)
+    {         
+        let id = "https://raw.githubusercontent.com/lichess-org/lila/cf1ad792dafa8b7bebad8cc262826d9e0a165491/public/piece/" + preferences[0] + "/b" + player2[i].piece_type + ".svg"        
      
         var x = document.createElement("a");
         var y = document.getElementById(player2[i].position_column + player2[i].position_row)
@@ -183,26 +214,7 @@ var displayBoard = function (){
         z.setAttribute("src", id)
         x.appendChild(z);
     }
-
-
-
-    for(let i = 0; i<16; i++)
-    {
-        id = "https://raw.githubusercontent.com/lichess-org/lila/cf1ad792dafa8b7bebad8cc262826d9e0a165491/public/piece/pixel/w" + player1[i].piece_type +".svg"        
-     
-        var x = document.createElement("a");
-        var y = document.getElementById(player1[i].position_column + player1[i].position_row)
-        y.appendChild(x)
-        var z = document.createElement("img");
-        z.setAttribute("src", id)
-        x.appendChild(z);
-    }
 }
-
-
-
-
-
 
 var changePlayerMove = function () {
     playerMove = playerMove * -1;
@@ -271,11 +283,11 @@ var startTimer = function setTime(gameTime) {
 //     list.push(moves[move_count])
 // }
 
-createBoard(8);
+createBoard(preferences[1]);
 let player1 = setPieces (1, 0);
 let player2 = setPieces (-1, 0);
-// printPosition(player1, player2);
-// printPieceByArray(player1[3]);
+printPosition(player1, player2);
+printPieceByArray(player1[3]);
 // console.log(checkObstruction(1, 0, 1, "b", 2));
 displayBoard();
 startTimer(gameTime);
