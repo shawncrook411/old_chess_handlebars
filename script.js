@@ -359,30 +359,88 @@ var calculatePossibleMoves = function (piece){
     let W = checkObstruction( -1,  0, piece.color, piece.position_column, piece.position_row)
     let NW = checkObstruction(-1,  1, piece.color, piece.position_column, piece.position_row)    
 
-    if (piece.piece_type = "R")
+    if (piece.piece_type === "R" || piece.piece_type === "Q")
     {
         for(let i = 0; i < N.length; i++)
         {possibleMoves.push(N[i])}
+        
+        for(let i = 0; i < E.length; i++)
+        {possibleMoves.push(E[i])}
 
         for(let i = 0; i < S.length; i++)
         {possibleMoves.push(S[i])}
 
         for(let i = 0; i < W.length; i++)
         {possibleMoves.push(W[i])}
-
-        for(let i = 0; i < E.length; i++)
-        {possibleMoves.push(E[i])}
     }
 
     // if (piece.piece_type = "N")
 
-    // if (piece.piece_type = "B")
+     if (piece.piece_type === "B" || piece.piece_type === "Q")
+    {
+        for(let i = 0; i < NE.length; i++)
+        {possibleMoves.push(NE[i])}
+        
+        for(let i = 0; i < SE.length; i++)
+        {possibleMoves.push(SE[i])}
+        
+        for(let i = 0; i < SW.length; i++)
+        {possibleMoves.push(SW[i])}
+            
+        for(let i = 0; i < NW.length; i++)
+        {possibleMoves.push(NW[i])}
+    }
 
-    // if (piece.piece_type = "Q")
+    if (piece.piece_type === "K")
+    {        
+        
+        if(N.length != 0)
+        {possibleMoves.push(N[0])}
 
-    // if (piece.piece_type = "K")
+        if( NE.length != 0)
+        {possibleMoves.push(NE[0])} 
 
-    // if (piece.piece_type = "P")
+        if( E.length != 0)
+        {possibleMoves.push(E[0])} 
+
+        if( SE.length != 0)
+        {possibleMoves.push(SE[0])} 
+
+        if( S.length != 0)
+        {possibleMoves.push(S[0])} 
+
+        if( S.length != 0)
+        {possibleMoves.push(SW[0])}
+
+        if( W.length != 0)
+        {possibleMoves.push(W[0])}
+
+        if(NW.length != 0)
+        {possibleMoves.push(NW[0])}      
+    }
+
+    if (piece.piece_type = "P" && piece.color === 1)
+    {
+        if(N.length != 0)
+        {possibleMoves.push(N[0])
+
+            if (piece.position_row === 2) // Allows White Pawns to move two squares up if on second rank
+            {possibleMoves.push(N[1])}
+        }
+
+    }
+
+    if (piece.piece_type = "P" && piece.color === -1)
+    {
+        if(S.length != 0)
+        {possibleMoves.push(S[0]) 
+
+            if (piece.position_row === board_size - 1) // Allows Black Pawns to move two squares up if on second rank
+            {possibleMoves.push(S[1])}
+        }
+
+    }
+
     console.log(possibleMoves);    
     return possibleMoves;
 }
@@ -406,10 +464,10 @@ startTimer(gameTime);
 let testPiece =
             {
                 id: 100,
-                piece_type: "R",
+                piece_type: "P",
                 color: -1,
                 position_column: "e",
-                position_row: 4                
+                position_row: 2                
             }  
 
 calculatePossibleMoves(testPiece);
