@@ -8,6 +8,9 @@ var moves = [""];
 var move_count = 1;
 var gameTime = 3100;
 var playerMove = 1;
+var whiteStartMove = 0;
+var blackStartMove = 0;
+var storagePiece; 
 
 
 
@@ -47,6 +50,12 @@ var createBoard = function (board_size){
                     else{
                         y.setAttribute("class", "square secondary_square")
                     }
+
+                    y.addEventListener("click", function (event){
+                        
+                        completeMove(event.target);
+                    })
+
                     x.appendChild(y);
                 }
             boardState.appendChild(x);
@@ -144,6 +153,7 @@ var printPieceByPosition = function (x, y) {
 
 var checkOccupied = function (x , y) {
     let z = 0;
+
     for (let i = 0; i < 16; i++) {
         
         if (player1[i].position_column == x && player1[i].position_row == y) {         
@@ -200,7 +210,11 @@ let checkObstruction = function (a, b, c, columnChar, y) {
             {
                 testSquare = testSquareX + testSquareY;
                 PM.push(testSquare);
-            }            
+            }
+            
+            if (z === c) {
+                return PM;
+            }
 
             if (z === c*-1) { // h == different color variable
                 h = 1;           
@@ -219,16 +233,139 @@ let checkObstruction = function (a, b, c, columnChar, y) {
     return PM;
 }
 
+var whiteMove = function (piece, event){
+   
+    event.stopPropagation()
+    
+    console.log("White Start Move")
+    
+    blackStartMove = 0
+    whiteStartMove = 1;
+    storagePiece = piece 
+    
+}
+
+var blackMove = function (piece, event){
+   
+    event.stopPropagation()
+    
+    console.log("Black Start Move")
+
+    whiteStartMove = 0;
+    
+    blackStartMove = 1;
+    storagePiece = piece
+    
+    
+}
 
 
-
-
-var displayBoard = function (){ 
-    let colorVariable;
-    if (preferences[0] ==  "disguised")
+var completeMove = function (target) {
+if (whiteStartMove != 0 || blackStartMove != 0)
     {
-        
+        if ((playerMove === 1 && whiteStartMove === 1) || (playerMove === -1 && blackStartMove ===1) )
+        {
+            id = target.id
+            x = storagePiece.position_column
+            y = storagePiece.position_row
+
+            let newID = [];
+            newID = id.split("");       
+
+            possible = calculatePossibleMoves(storagePiece)
+
+            console.log(possible)
+            
+
+            for (i = 0; i < possible.length; i++)
+            {
+                if(possible[i] === id)
+                {
+                
+                    previousSquare = document.getElementById(x + y)
+                
+                
+                    piece = previousSquare.children[0]
+                    piece.remove()
+
+                    storagePiece.position_column = newID[0]
+                    storagePiece.position_row = parseInt(newID[1])
+                    
+                    console.log(player1)
+
+                    console.log(storagePiece)
+                    displayPiece(storagePiece);
+                    storagePiece = '';    
+                    
+                    if (whiteStartMove === 1)
+                        {playerMove = -1}
+                    if (blackStartMove === 1)
+                        {playerMove = 1}
+                    
+                    return;
+                }
+            }
+        }
+        whiteStartMove = 0
+        blackStartMove = 0        
     }
+
+    // if whiteStartMove = 0
+    // {
+    //     storagePiece
+    // }
+    // if blackStartMove = 0
+    // {
+
+    // }
+}
+
+var displayPiece = function (storagePiece){
+    if (storagePiece.color === 1)
+    {
+        if (preferences[0] ==  "disguised")
+            {
+                id = "https://raw.githubusercontent.com/lichess-org/lila/cf1ad792dafa8b7bebad8cc262826d9e0a165491/public/piece/" + preferences[0] + "/w.svg" 
+            }
+            else
+            {
+                id = "https://raw.githubusercontent.com/lichess-org/lila/cf1ad792dafa8b7bebad8cc262826d9e0a165491/public/piece/" + preferences[0] + "/w" + storagePiece.piece_type +".svg" 
+            }             
+            
+            var x = document.createElement("a");
+            var y = document.getElementById(storagePiece.position_column + storagePiece.position_row)
+            y.appendChild(x)
+            var z = document.createElement("img");
+            z.setAttribute("src", id)
+            y.addEventListener("click", function (event){
+                whiteMove(storagePiece, event);
+            })
+        
+            x.appendChild(z);
+    }
+    if (storagePiece.color === -1)
+    {      
+        if (preferences[0] ==  "disguised")
+        {
+            id = "https://raw.githubusercontent.com/lichess-org/lila/cf1ad792dafa8b7bebad8cc262826d9e0a165491/public/piece/" + preferences[0] + "/b.svg" 
+        }
+        else{
+            id = "https://raw.githubusercontent.com/lichess-org/lila/cf1ad792dafa8b7bebad8cc262826d9e0a165491/public/piece/" + preferences[0] + "/b" + storagePiece.piece_type +".svg" 
+        }      
+        var x = document.createElement("a");
+        var y = document.getElementById(storagePiece.position_column + storagePiece.position_row)
+        y.appendChild(x)
+        var z = document.createElement("img");
+        z.setAttribute("src", id)
+        y.addEventListener("click", function (event){
+            blackMove(storagePiece, event);
+        })
+        x.appendChild(z);
+    }
+
+}
+
+var displayBoard = function (){     
     
     for(let i = 0; i< player1.length; i++)
     {
@@ -247,6 +384,10 @@ var displayBoard = function (){
         y.appendChild(x)
         var z = document.createElement("img");
         z.setAttribute("src", id)
+        y.addEventListener("click", function (event){
+            whiteMove(player1[i], event);
+        })
+    
         x.appendChild(z);
     }
     
@@ -265,24 +406,17 @@ var displayBoard = function (){
         y.appendChild(x)
         var z = document.createElement("img");
         z.setAttribute("src", id)
+        y.addEventListener("click", function (event){
+            blackMove(player2[i], event);
+        })
+    
         x.appendChild(z);
     }
-}
-
-var changePlayerMove = function () {
-    playerMove = playerMove * -1;
-    console.log("click recorded " + playerMove)    
-  
 }
 
 let boardListener = document.querySelector("#board");   
 let whiteClock = document.querySelector("#player1Clock");
 let blackClock = document.querySelector("#player2Clock");
-
-boardListener.addEventListener("click", function(event) {
-    if (event = true)
-    {changePlayerMove()}
-});
 
 var timerConvert = function (x) {
 
@@ -357,7 +491,92 @@ var calculatePossibleMoves = function (piece){
         {possibleMoves.push(W[i])}
     }
 
-    // if (piece.piece_type = "N")
+    if (piece.piece_type === "N")
+    {
+        for (i = 0; i < board_size; i++)
+        {
+            if(piece.position_column === columnArray[i])
+            {
+                convertE = columnArray[i+1]
+                convertW = columnArray[i-1]
+                convert2E = columnArray[i+2]
+                convert2W = columnArray[i-2]
+            } 
+        }      
+
+        if (piece.color != (checkOccupied(convertE, piece.position_row + 2)))
+        {
+            if (piece.position_column != "h" && piece.position_row + 2 <= board_size)
+            {
+                addSquare = (convertE + (piece.position_row + 2))
+                possibleMoves.push(addSquare);
+            }
+        }
+
+        if (piece.color != (checkOccupied(convert2E, piece.position_row + 1)))
+        {
+            if (piece.position_column != "h" && piece.position_column != "g" && piece.position_row + 1 <= board_size)
+            {  
+             
+                addSquare = (convert2E + (piece.position_row + 1))
+                possibleMoves.push(addSquare);
+            }
+        }
+
+        if (piece.color != (checkOccupied(convert2E, piece.position_row - 1)))
+        {
+            if (piece.position_column != "h" && piece.position_column != "g" && piece.position_row - 1 > 0)
+            {
+                addSquare = (convert2E + (piece.position_row -1))
+                possibleMoves.push(addSquare);
+            }
+        }
+        if (piece.color != (checkOccupied(convertE, piece.position_row - 2)))
+        {
+            if (piece.posiion_column != "h" && piece.position_row - 2 > 0)
+            {
+                addSquare = (convertE + (piece.position_row -2))
+                possibleMoves.push(addSquare);
+            }
+        }
+        
+        if (piece.color != (checkOccupied(convertW, piece.position_row - 2)))
+        {
+            if (piece.position_column != "a" && piece.position_row - 2 > 0)
+            {
+                addSquare = (convertW + (piece.position_row - 2))
+                possibleMoves.push(addSquare);
+            }
+        }
+
+        if (piece.color != (checkOccupied(convert2W, piece.position_row - 1)))
+        {
+            if (piece.position_column != "a" && piece.position_column != "b" && piece.position_row -1 > 0)
+            {
+                addSquare = (convert2W + (piece.position_row -1))
+                possibleMoves.push(addSquare);
+            }
+        }
+
+        if (piece.color != (checkOccupied(convert2W, piece.position_row + 1)))
+        {
+            if (piece.position_column != "a" && piece.position_column != "b" && piece.position_row + 1 <= board_size)
+            {
+                addSquare = (convert2W + (piece.position_row + 1))
+                possibleMoves.push(addSquare);
+            }
+        }
+
+        if (piece.color != (checkOccupied(convertW, piece.position_row + 2)))
+        {
+            if (piece.position_column != "a" && piece.position_row + 2 <= board_size)
+            {
+                addSquare = (convertW + (piece.position_row + 2))
+                possibleMoves.push(addSquare);
+            }
+        }        
+          
+    }
 
      if (piece.piece_type === "B" || piece.piece_type === "Q")
     {
@@ -375,8 +594,7 @@ var calculatePossibleMoves = function (piece){
     }
 
     if (piece.piece_type === "K")
-    {        
-        
+    {                
         if(N.length != 0)
         {possibleMoves.push(N[0])}
 
@@ -392,7 +610,7 @@ var calculatePossibleMoves = function (piece){
         if( S.length != 0)
         {possibleMoves.push(S[0])} 
 
-        if( S.length != 0)
+        if( SW.length != 0)
         {possibleMoves.push(SW[0])}
 
         if( W.length != 0)
@@ -411,7 +629,7 @@ var calculatePossibleMoves = function (piece){
         }        
     }
 
-    if (piece.piece_type = "P" && piece.color === 1)
+    if (piece.piece_type === "P" && piece.color === 1)
     {
         if(checkOccupied(piece.position_column, piece.position_row + 1) === 0) // if Square above it is unoccupied, may move forward
         {possibleMoves.push(N[0])
@@ -430,7 +648,7 @@ var calculatePossibleMoves = function (piece){
 
     }
 
-    if (piece.piece_type = "P" && piece.color === -1)
+    if (piece.piece_type === "P" && piece.color === -1)
     {
         if(checkOccupied(piece.position_column, piece.position_row - 1) === 0) // if Square below it is unoccupied, may move forward
         {possibleMoves.push(S[0]) 
@@ -447,8 +665,7 @@ var calculatePossibleMoves = function (piece){
         {possibleMoves.push(SE[0])}
 
     }
-
-    console.log(possibleMoves);    
+         
     return possibleMoves;
 }
 
@@ -471,15 +688,13 @@ startTimer(gameTime);
 let testPiece =
     {
         id: 100,
-        piece_type: "P",
+        piece_type: "B",
         color: 1,
-        position_column: "d",
-        position_row: 5                
+        position_column: "f",
+        position_row: 1                
     }  
 
 calculatePossibleMoves(testPiece);
-
-
 
 
 
