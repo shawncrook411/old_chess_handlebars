@@ -16,8 +16,8 @@ var preferences = [];
 var preferencePiecesOptions = ["pixel", "cburnett", "merida", "alpha", "pirouetti", "chessnut", "reillycraig", "companion", "riohacha", "kosal", "leipzig", "fantasy", "spatial", "celtic", "california", "caliente", "pixel", "maestro", "fresca", "cardinal", "gioco", "tatiana", "staunty", "governor", "dubrovny", "icpieces", "mpchess", "kiwen-suwi", "horsey", "anarcandy", "shapes", "letter", "disguised"];
 
 preferences[0] = preferencePiecesOptions[Math.floor(Math.random() * 33)];
-// preferences[0] = preferencePiecesOptions[0]; // Piece Type
-preferences[1] = 25; // Board Size
+preferences[0] = preferencePiecesOptions[0]; // Piece Type
+preferences[1] = 8; // Board Size
 
 board_size = preferences[1];
 
@@ -188,12 +188,23 @@ let checkObstruction = function (a, b, c, g, y) {
 
 
 var displayBoard = function (){ 
-
-    // if (preferences[0] ==  "disguised")
+    let colorVariable;
+    if (preferences[0] ==  "disguised")
+    {
+        
+    }
     
     for(let i = 0; i< player1.length; i++)
     {
-        id = "https://raw.githubusercontent.com/lichess-org/lila/cf1ad792dafa8b7bebad8cc262826d9e0a165491/public/piece/" + preferences[0] + "/w" + player1[i].piece_type +".svg"        
+
+        if (preferences[0] ==  "disguised")
+        {
+            id = "https://raw.githubusercontent.com/lichess-org/lila/cf1ad792dafa8b7bebad8cc262826d9e0a165491/public/piece/" + preferences[0] + "/w.svg" 
+        }
+        else
+        {
+            id = "https://raw.githubusercontent.com/lichess-org/lila/cf1ad792dafa8b7bebad8cc262826d9e0a165491/public/piece/" + preferences[0] + "/w" + player1[i].piece_type +".svg" 
+        }             
         
         var x = document.createElement("a");
         var y = document.getElementById(player1[i].position_column + player1[i].position_row)
@@ -205,8 +216,14 @@ var displayBoard = function (){
     
     for(let i = 0; i < player2.length; i++)
     {         
-        let id = "https://raw.githubusercontent.com/lichess-org/lila/cf1ad792dafa8b7bebad8cc262826d9e0a165491/public/piece/" + preferences[0] + "/b" + player2[i].piece_type + ".svg"        
-     
+       
+        if (preferences[0] ==  "disguised")
+        {
+            id = "https://raw.githubusercontent.com/lichess-org/lila/cf1ad792dafa8b7bebad8cc262826d9e0a165491/public/piece/" + preferences[0] + "/b.svg" 
+        }
+        else{
+            id = "https://raw.githubusercontent.com/lichess-org/lila/cf1ad792dafa8b7bebad8cc262826d9e0a165491/public/piece/" + preferences[0] + "/b" + player2[i].piece_type +".svg" 
+        }      
         var x = document.createElement("a");
         var y = document.getElementById(player2[i].position_column + player2[i].position_row)
         y.appendChild(x)
