@@ -6,7 +6,7 @@ var columnArray = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "
 var pieceType = ["R", "N", "B", "Q", "K", "P"];
 var moves = [""];
 var move_count = 1;
-var gameTime = 3100;
+var gameTime = 10; //In tenths of a second
 var playerMove = 1;
 var whiteStartMove = 0;
 var blackStartMove = 0;
@@ -418,6 +418,9 @@ let boardListener = document.querySelector("#board");
 let whiteClock = document.querySelector("#player1Clock");
 let blackClock = document.querySelector("#player2Clock");
 
+whiteClock.textContent = "00:00"
+blackClock.textContent = "00:00"
+
 var timerConvert = function (x) {
 
     minutes = x/600
@@ -456,12 +459,46 @@ var startTimer = function setTime(gameTime) {
 
         
     
-        if(whiteSecondsLeft === 0 || blackSecondsLeft === 0) {
-        clearInterval(whiteTimer);
-        clearInterval(blackTimer);
-        gameTimeOut();
+        if(whiteSecondsLeft <= 0) 
+        {   
+            whiteClock.textContent = "00:00.0";
+            clearInterval(Timer) 
+            gameTimeOut(-1);
         }
+
+        if(blackSecondsLeft <= 0) 
+        {   
+            blackClock.textContent = "00:00.0";
+            clearInterval(Timer)  
+            gameTimeOut(1);
+        }        
+
     }, 100);
+}
+
+var gameTimeOut = function(result) {
+
+    whiteClock.textContent = "00:00";
+    blackClock.textContent = "00:00"; 
+
+    if (result === 1)
+    {
+        blackClock.textContent = "00:00.0";
+        
+        window.alert("White has won");
+    }
+
+    if (result === -1)
+    {  
+        whiteClock.textContent = "00:00.0";
+
+        window.alert("Black has won");
+    }
+
+    if (result === 0)
+    {
+        window.alert("Game is drawn");
+    }
 }
 
 var calculatePossibleMoves = function (piece){
@@ -675,6 +712,14 @@ var calculatePossibleMoves = function (piece){
 //     list.push(moves[move_count])
 // }
 
+startButton = document.getElementById("start-game")
+
+startButton.addEventListener("click", function(event) {
+    event.preventDefault();
+    console.log("start game")
+    startTimer(gameTime)}
+);
+
 createBoard(preferences[1]);
 let player1 = setPieces (1, 0);
 let player2 = setPieces (-1, 0);
@@ -682,7 +727,8 @@ let player2 = setPieces (-1, 0);
 // printPieceByArray(player1[3]);
 // console.log(checkObstruction(1, 0, 1, "a", 3));
 displayBoard();
-startTimer(gameTime);
+
+
 
 
 let testPiece =
