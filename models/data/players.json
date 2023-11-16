@@ -1,0 +1,148 @@
+[
+  {
+    "color": "White",
+    "set": [
+      {
+        "moves": [],
+        "color": "White",
+        "square": {
+          "column": "a",
+          "row": "1"
+        }
+      },
+      {
+        "moves": [],
+        "color": "White",
+        "square": {
+          "column": "a",
+          "row": "1"
+        }
+      },
+      {
+        "moves": [],
+        "color": "White",
+        "square": {
+          "column": "a",
+          "row": "1"
+        }
+      },
+      {
+        "moves": [],
+        "color": "White",
+        "square": {
+          "column": "a",
+          "row": "1"
+        }
+      },
+      {
+        "moves": [],
+        "color": "White",
+        "square": {
+          "column": "a",
+          "row": "1"
+        }
+      },
+      {
+        "moves": [],
+        "color": "White",
+        "square": {
+          "column": "a",
+          "row": "1"
+        }
+      },
+      {
+        "moves": [],
+        "color": "White",
+        "square": {
+          "column": "a",
+          "row": "1"
+        }
+      },
+      {
+        "moves": [],
+        "color": "White",
+        "square": {
+          "column": "a",
+          "row": "1"
+        }
+      }
+    ],
+    "pieces": [],
+    "time": 5,
+    "increment": 3,
+    "turn": 1
+  },
+  {
+    "color": "Black",
+    "set": [
+      {
+        "moves": [],
+        "color": "Black",
+        "square": {
+          "column": "a",
+          "row": "1"
+        }
+      },
+      {
+        "moves": [],
+        "color": "Black",
+        "square": {
+          "column": "a",
+          "row": "1"
+        }
+      },
+      {
+        "moves": [],
+        "color": "Black",
+        "square": {
+          "column": "a",
+          "row": "1"
+        }
+      },
+      {
+        "moves": [],
+        "color": "Black",
+        "square": {
+          "column": "a",
+          "row": "1"
+        }
+      },
+      {
+        "moves": [],
+        "color": "Black",
+        "square": {
+          "column": "a",
+          "row": "1"
+        }
+      },
+      {
+        "moves": [],
+        "color": "Black",
+        "square": {
+          "column": "a",
+          "row": "1"
+        }
+      },
+      {
+        "moves": [],
+        "color": "Black",
+        "square": {
+          "column": "a",
+          "row": "1"
+        }
+      },
+      {
+        "moves": [],
+        "color": "Black",
+        "square": {
+          "column": "a",
+          "row": "1"
+        }
+      }
+    ],
+    "pieces": [],
+    "time": 5,
+    "increment": 3,
+    "turn": 0
+  }
+]

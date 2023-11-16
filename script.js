@@ -1,3 +1,5 @@
+
+
 var createColumn = document.createElement("div");
 var createSquare = document.createElement("div");
 var boardState = document.getElementById("board_border");
@@ -11,6 +13,7 @@ var playerMove = 1;
 var whiteStartMove = 0;
 var blackStartMove = 0;
 var storagePiece; 
+
 
 
 
@@ -45,7 +48,7 @@ var createBoard = function (board_size){
                           
                     }                    
                     if ((j + i) % 2 == 0 ){
-                        y.setAttribute("class", " square primary_square")
+                        y.setAttribute("class", "square primary_square")
                     }
                     else{
                         y.setAttribute("class", "square secondary_square")
@@ -127,10 +130,10 @@ var printPieceByArray = function (x) {
         {z = "White"}
     if (x.color == -1)
         {z = "Black"}
-    console.log("Array: " + x);
-    console.log("ID: " + x.id);
-    console.log("Position: " + x.position_column+x.position_row);
-    console.log("Type: " + z + " " + x.piece_type);
+    console.log(`Array: ${x}`);
+    console.log(`ID: ${x.id}`);
+    console.log(`Position: ${(x.position_column+x.position_row)}`)
+    console.log(`Type: ${z} ${x.piece_type}`);
 }
 
 var printPieceByPosition = function (x, y) {
@@ -241,8 +244,7 @@ var whiteMove = function (piece, event){
     
     blackStartMove = 0
     whiteStartMove = 1;
-    storagePiece = piece 
-    
+    storagePiece = piece     
 }
 
 var blackMove = function (piece, event){
@@ -254,11 +256,8 @@ var blackMove = function (piece, event){
     whiteStartMove = 0;
     
     blackStartMove = 1;
-    storagePiece = piece
-    
-    
+    storagePiece = piece   
 }
-
 
 var completeMove = function (target) {
 if (whiteStartMove != 0 || blackStartMove != 0)
@@ -325,11 +324,11 @@ var displayPiece = function (storagePiece){
     {
         if (preferences[0] ==  "disguised")
             {
-                id = "https://raw.githubusercontent.com/lichess-org/lila/cf1ad792dafa8b7bebad8cc262826d9e0a165491/public/piece/" + preferences[0] + "/w.svg" 
+                id = `https://raw.githubusercontent.com/lichess-org/lila/cf1ad792dafa8b7bebad8cc262826d9e0a165491/public/piece/${preferences[0]}/w.svg` 
             }
             else
             {
-                id = "https://raw.githubusercontent.com/lichess-org/lila/cf1ad792dafa8b7bebad8cc262826d9e0a165491/public/piece/" + preferences[0] + "/w" + storagePiece.piece_type +".svg" 
+                id = `https://raw.githubusercontent.com/lichess-org/lila/cf1ad792dafa8b7bebad8cc262826d9e0a165491/public/piece/${preferences[0]}/w${storagePiece.piece_type}.svg` 
             }             
             
             var x = document.createElement("a");
