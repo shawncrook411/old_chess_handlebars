@@ -1,61 +1,74 @@
-const { Player, Piece, King, Queen, Rook, Bishop, Knight, Pawn } = require('./pieces.js')
-const { Square , Board, options } = require('./board.js')
+const { King, Queen, Rook, Bishop, Knight, Pawn } = require('./pieces.js')
 
-var initialize = (color, order, options, board) => {   
-    let pieces = []
+var initialize = (squares, options, position) => {   
+   
+    let pieces = [];
+   
 
-
-
-    for (let i = 0; i < order.length && i < options.sizeX; i++)
+    for (let i = 0; i < position.placement.length; i++)
     {
-        switch (order[i]){
-            case 'k':
-                pieces.push(new King(color, square))
-            break
+        for(let j = 0; j < position.placement[i].length; j++)
+        { 
 
-            case 'q':
-                pieces.push(new Queen(color, square))
-            break
+            let color = 'White';
+            if(position.placement[i][j].toLowerCase() != position.placement[i][j])
+            {
+                color = 'Black'
+            }       
 
-            case 'r':
-                pieces.push(new Rook(color, square))
-            break
+            switch (position.placement[i][j].toLowerCase()){
+                case 'k':
+                    pieces.push(new King(color))
+                break
 
-            case 'b':
-                pieces.push(new Bishop(color, square))
-            break
+                case 'q':
+                    pieces.push(new Queen(color))
+                break
 
-            case 'n':
-                pieces.push(new Knight(color, square))
-            break
+                case 'r':
+                    pieces.push(new Rook(color))
+                break
 
-            case 'p':
-                pieces.push(new Pawn(color, square))
-            break        
+                case 'b':
+                    pieces.push(new Bishop(color))
+                break
+
+                case 'n':
+                    pieces.push(new Knight(color))
+                break
+
+                case 'p':
+                    pieces.push(new Pawn(color))
+                break
+                
+                default :
+                    pieces.push('0')
+                break
+            }        
         }
     }
 
 
-
-    player = new Player(color, pieces, options.time, options.increment)
-    return player
+    for(let i = 0 ; i < squares.length; i++)
+    {
+        squares[i].piece = pieces[i]
+    }
+    return squares
 }
 
-var create = (color, options, board) => {
-    classicOrder = [['r', 'n', 'b', 'q', 'k', 'b', 'n', 'r']
+var create = (squares, options, position) => {   
     
-    //TODO CREATE SQUARE PLACEMENT ORDER
-    
-    ]
     chess960 = []
-
-
     switch (options.variant){
         case '960': 
-            return initialize(color, 960, options, board)
+            return initialize(color, options, position)
 
         default:
-            return initialize(color, classicOrder, options, board)
+            if(!options.FEN)
+            {
+                options.FEN = 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1'
+            }
+            return initialize(squares, options, position)
     }
 }
 

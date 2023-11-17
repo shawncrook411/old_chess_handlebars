@@ -15,11 +15,12 @@ class Player {
 }
 
 class Piece {
-    constructor(color, square)
+    constructor(color)
     {
         this.color = color
-        this.square = square
+        this.square = ''
     }
+
     moves = []
 
     transform(square){
@@ -49,6 +50,7 @@ class King extends Piece {
     constructor(color, square)
     {
         super(color, square)
+        this.type = "King"
     }
     castle(){
 
@@ -60,6 +62,8 @@ class Queen extends Piece {
     constructor(color, square)
     {
         super(color, square)
+        this.type = "Queen"
+
     }
 
 }
@@ -68,6 +72,7 @@ class Rook extends Piece {
     constructor(color, square)
     {
         super(color, square)
+        this.type = "Rook"
     }
 
 }
@@ -76,6 +81,7 @@ class Bishop extends Piece {
     constructor(color, square)
     {
         super(color, square)
+        this.type = "Bishop"
     }
 
 }
@@ -84,6 +90,7 @@ class Knight extends Piece {
     constructor(color, square)
     {
         super(color, square)
+        this.type = "Knight"
     }
 
 }
@@ -93,6 +100,7 @@ class Pawn extends Piece {
     {
         super(color, square)
         this.moved = 0
+        this.type = "Pawn"
     }
     promote() {
 
