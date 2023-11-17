@@ -1,9 +1,12 @@
 const { Game, options } = require('./game.js')
 const fs = require('fs')
 
+options.FEN = 'r1bk3r/p2pBpNp/n4n2/1p1NP2P/6P1/3P4/P1P1K3/q5b1'
+
 game = new Game(options)
 
 game.writeFEN()
+
 
 console.log(game.options.FEN)
 

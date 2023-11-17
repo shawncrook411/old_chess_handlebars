@@ -3,7 +3,7 @@ const uuid = require('./uuid.js')
 const dayjs = require('dayjs')
 
 
-const options =  
+var options =  
 {        
     players : [],
     playersNumber : 2,
@@ -15,7 +15,7 @@ const options =
     boardColors : ['#1750AC', '#73B9EE'],
     sizeX : 8,
     sizeY : 8,
-    FEN : '8/8/8/4p1K1/2k1P3/8/8/8 b - - 0 1',
+    FEN : '',
     DefaultFEN: 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1' 
 
 }
@@ -79,6 +79,8 @@ class Game {
                     break
                     case "Pawn":
                         char += "P"
+                    break
+                    default :
                     break                        
                 }                    
                 if (board[i].piece.color === "White")
