@@ -18,32 +18,10 @@ class Piece {
     constructor(color)
     {
         this.color = color
-        this.square = ''
     }
 
     moves = []
-
-    transform(square){
-        this.square = square
-    }
-
-    capture(square){
-        search(board)
-        {
-            for (squares in board.squares)
-            {
-                if (board.squares.x && board.squares.y === square)
-                {
-
-                }
-            }
-        }
-        this.transform(square)
-    }
-
-    render(){
-
-    }
+   
 }
 
 class King extends Piece {
@@ -52,8 +30,14 @@ class King extends Piece {
         super(color, square)
         this.type = "King"
     }
-    castle(){
+    castleK(){
 
+    }
+    castleQ(){
+
+    }
+    calculate(){
+        
     }
 
 }

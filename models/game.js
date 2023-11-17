@@ -98,9 +98,7 @@ class Game {
             FEN += `${digit}`
         }
         let object = this.board.position 
-        FEN += ` ${object.turn} ${object.castling} ${object.enPassant} ${object.draw50} ${object.moveCount}` 
-     
-        
+        FEN += ` ${object.turn} ${object.castling} ${object.enPassant} ${object.draw50} ${object.moveCount}`        
         this.options.FEN = FEN
     }
     // move(piece, position){
