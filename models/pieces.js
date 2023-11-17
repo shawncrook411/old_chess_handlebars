@@ -63,9 +63,7 @@ class Queen extends Piece {
     {
         super(color, square)
         this.type = "Queen"
-
     }
-
 }
 
 class Rook extends Piece {

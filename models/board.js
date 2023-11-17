@@ -5,7 +5,7 @@ class Square {
     {       
         let column = String.fromCharCode(x + 65)
 
-        this.positon = 
+        this.position = 
         {
             //+1 so that they are 1-indexed
             coordinates : [x+1, y+1],
@@ -15,6 +15,8 @@ class Square {
         this.piece = []
     }
 }
+
+// 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1' 
 
 class Position {
     constructor(FEN)
@@ -61,13 +63,13 @@ class Board {
         let squares = []
         
         let position = new Position(options.FEN)
-        this.postion = position
+        this.position = position
         
         for (let i = 0; i < options.sizeY; i++)
         {
             for (let j = 0; j < options.sizeX; j++)
             {   
-                let object = new Square(i, j)               
+                let object = new Square(j, i)               
                 squares.push(object)
             }
         }
@@ -75,9 +77,6 @@ class Board {
 
         let newSquares = create(squares, options, position)
         this.squares = newSquares
-        this.position;
-
-
     }
 }
 
