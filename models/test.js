@@ -15,28 +15,11 @@ for(let i = 0; i < game.board.squares.length; i++)
 
 //En Passant target FEN
 
-//Consolidate KNIIGHt SEARCH
-
+//Consolidate searches to SEARCH SQUARES BY INDEX... can then fix knight moves order
 
 //Castling MOVES
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+//Promotion...?
 
 
 

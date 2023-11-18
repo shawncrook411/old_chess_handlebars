@@ -84,8 +84,13 @@ class Board {
     SEARCH(start){
         let occupant = start.piece
 
-        if (occupant === '0' || occupant.type === "Knight")
-        { return []}
+        if (occupant === '0')
+        { return [] }
+        if (occupant.type === "Knight")
+        { 
+            this.SEARCH_KNIGHT(start)
+            return
+        }
 
         let moves = []
         
@@ -180,45 +185,65 @@ class Board {
                 }
             }
         }
-        return moves
+        occupant.moves = moves
     }
 
+    SEARCH_KNIGHT(start){
 
-    SEARCH_KNIGHT(occupant, start, up, down, left, right){
+        let occupant = start.piece;
 
-        let moves = []
-
-        let master = [
-            [1, 2],
-            [2]
-
+        let distance = [
+            this.sizeY - start.y,            
+            this.sizeX - start.x,            
+            start.y - 1,            
+            start.x - 1,            
         ]
 
+        let edge = [
+            distance[0],
+            Math.min(distance[0], distance[1]),
+            distance[1],
+            Math.min(distance[1], distance[2]),
+            distance[2],
+            Math.min(distance[2], distance[3]),
+            distance[3],
+            Math.min(distance[3], distance[0]),            
+        ]
+        
+        let master = [
+            [1, 2],
+            [2, 1],
+            [2, -1],
+            [1, -2],
+            [-1, -2],
+            [-2, -1],
+            [-2, 1],
+            [-1, 2]
+        ]
+        
+        let moves = []
         for (let j = 0; j < this.squares.length; j++)
         {
-
-
             let test = this.squares[j]
-            //1 right 2 up 
-            if (right >= 1 && up >= 2 &&  test.x === start.x + 1 && test.y === start.y + 2)
-            {            
-               
+            
+            if (edge[2] >= 1 &&edge[0]>= 2 &&  test.x === start.x + master[0][0] && test.y === start.y + master[0][1])
+            {          
                 if(test.piece.color != occupant.color)
                 {
                     moves.push([test.x, test.y])
                 }                
             }
             
-            //2 right 1 up
-            if (right >= 2 && up >= 1 && test.x === start.x + 2 && test.y === start.y + 1)
+            //2 edge[2] 1 up
+            if (edge[2] >= 2 &&edge[0]>= 1 && test.x === start.x + master[1][0] && test.y === start.y + master[1][1])
             {
                 if(test.piece.color != occupant.color)
                 {
                     moves.push([test.x, test.y])
                 }                
             } 
-            //2 right 1 down
-            if (right >= 2 && down >= 1 && test.x === start.x + 2 && test.y === start.y - 1)
+            //2 edge[2] 1 edge[4]
+            if (edge[2] >= 2 && edge[4] >= 1 && test.x === start.x + master[2][0] && test.y === start.y + master[2][1])
             {
                 if(test.piece.color != occupant.color)
                 {
@@ -226,8 +251,8 @@ class Board {
                 }                
             }
             
-            //1 right 2 down
-            if (right >= 1 && down >= 2 && test.x === start.x + 1 && test.y === start.y - 2)
+            //1 edge[2] 2 edge[4]
+            if (edge[2] >= 1 && edge[4] >= 2 && test.x === start.x + master[3][0] && test.y === start.y + master[3][1])
             {
                 if(test.piece.color != occupant.color)
                 {
@@ -235,8 +260,8 @@ class Board {
                 }                
             }
 
-            //1 left 2 down
-            if (left >= 1 && down >= 2 && test.x === start.x - 1 && test.y === start.y - 2)
+            //1 edge[6] 2 edge[4]
+            if (edge[6] >= 1 && edge[4] >= 2 && test.x === start.x + master[4][0] && test.y === start.y + master[4][1])
             {
                 if(test.piece.color != occupant.color)
                 {
@@ -244,8 +269,8 @@ class Board {
                 }                
             }
 
-            //2 left 1 down
-            if (left >= 2 && down >= 1 && test.x === start.x - 2 && test.y === start.y - 1)
+            //2 edge[6] 1 edge[4]
+            if (edge[6] >= 2 && edge[4] >= 1 && test.x === start.x + master[5][0] && test.y === start.y + master[5][1])
             {
                 if(test.piece.color != occupant.color)
                 {
@@ -253,8 +278,8 @@ class Board {
                 }                
             }
 
-            //2 left 1 up
-            if (left >= 2 && up >= 1 && test.x === start.x - 2 && test.y === start.y + 1)
+            //2 edge[6] 1 up
+            if (edge[6] >= 2 &&edge[0]>= 1 && test.x === start.x + master[6][0] && test.y === start.y + master[6][1])
             {
                 if(test.piece.color != occupant.color)
                 {
@@ -262,8 +287,8 @@ class Board {
                 }                
             }
 
-            //1 left 2 up
-            if (left >= 1 && up >= 2 && test.x === start.x - 1 && test.y === start.y + 2)
+            //1 edge[6] 2 up
+            if (edge[6] >= 1 &&edge[0]>= 2 && test.x === start.x + master[7][0] && test.y === start.y + master[7][1])
             {
                 if(test.piece.color != occupant.color)
                 {
@@ -281,23 +306,8 @@ class Board {
             }
         
         }
-        return newmoves
-    }
-
-    
-
-        
-
-
-        
-        
-
-
-//for each square in board
-            //check if square shares a column, row, or diagnol, or knight L
-            //if valid, check every square in between if occupied
-            
-    
+        occupant.moves = newmoves
+    }    
 
     MOVE(start, end){ // if occupied capture, then move
     }

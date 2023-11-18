@@ -12,17 +12,7 @@ class Player {
             this.turn = 1
         }
     }
-}
-
- //King / Queen
-
- //Bishop
- 
-
- //Bishop
- 
-
- 
+} 
 
 class Piece {
     constructor(color)
