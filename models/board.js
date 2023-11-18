@@ -1,4 +1,5 @@
 const { create } = require('./variants')
+const { Player } = require('./pieces')
 
 class Square {
     constructor(x, y)
@@ -53,6 +54,7 @@ class Position {
         this.enPassant = array[3]
         this.draw50 = array[4]
         this.moveCount = array[5]
+        this.legal 
     }
 }
 
@@ -89,6 +91,7 @@ class Board {
     }
 
     SEARCH(start){
+
         let occupant = start.piece
 
         if (occupant === '0')

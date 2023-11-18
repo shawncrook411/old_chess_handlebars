@@ -1,12 +1,12 @@
 class Player {
-    constructor(color, set, time, increment)
+    constructor(id, color, time, increment)
     {
+        this.id = id
         this.color = color
-        this.set = set
-        this.pieces = []
-        this.time = time
+        this.elo = 1200
+        this.time = time * 60
         this.increment = increment
-        this.turn = 0
+        this.turn = 0 
 
         if (this.color === "White") {
             this.turn = 1

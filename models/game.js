@@ -1,4 +1,5 @@
 const { Board , Position } = require('./board.js')
+const { Player } = require('./pieces.js')
 const uuid = require('./uuid.js')
 const dayjs = require('dayjs')
 
@@ -20,10 +21,11 @@ var options =
 }
 
 class Response {
-    constructor(options, position)
+    constructor(options, position, players)
     {
         this.options = options
         this.position = position
+        this.players = players
     }
 }
 
@@ -36,13 +38,17 @@ class Game {
         this.date = dayjs()
         
         this.board = new Board(options)
-        this.moves = []         
-        this.players = options.players
+        this.moves = []   
+
+        this.players = []
+        for (let i = 0; i < options.playersNumber; i++)
+        { this.players.push(new Player(uuid(), options.playerColors[i], options.time, options.increment))}
+    
         this.board.SEARCH_ALL()    
     }
 
     respond(){
-        return new Response(this.options, this.board.position)
+        return new Response(this.options, this.board.position, this.players)
     }
 
     writeFEN(){
@@ -118,4 +124,4 @@ class Game {
 }
    
 
-module.exports = { Game, Display, options }
+module.exports = { Game, Response, options }

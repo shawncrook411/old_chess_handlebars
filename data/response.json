@@ -1,0 +1,57 @@
+{
+  "options": {
+    "players": [],
+    "playersNumber": 2,
+    "time": 5,
+    "increment": 3,
+    "variant": "classic",
+    "style": "pixel",
+    "playerColors": [
+      "White",
+      "Black"
+    ],
+    "boardColors": [
+      "#1750AC",
+      "#73B9EE"
+    ],
+    "sizeX": 8,
+    "sizeY": 8,
+    "FEN": "4R3/PkPBpnrr/1q3NRP/2P1b1Q1/PpKp1Pp1/PpPnN1p1/3Bpp2/5b2 w - - 0 1",
+    "DefaultFEN": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"
+  },
+  "position": {
+    "placement": [
+      "----R---",
+      "PkPBpnrr",
+      "-q---NRP",
+      "--P-b-Q-",
+      "PpKp-Pp-",
+      "PpPnN-p-",
+      "---Bpp--",
+      "-----b--"
+    ],
+    "turn": "w",
+    "castling": "-",
+    "enPassant": "-",
+    "draw50": "0",
+    "moveCount": "1"
+  },
+  "players": [
+    {
+      "id": "f0d1",
+      "color": "White",
+      "elo": 1200,
+      "time": 300,
+      "increment": 3,
+      "turn": 1
+    },
+    {
+      "id": "3b75",
+      "color": "Black",
+      "elo": 1200,
+      "time": 300,
+      "increment": 3,
+      "turn": 0
+    }
+  ]
+}

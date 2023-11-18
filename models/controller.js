@@ -1,12 +1,18 @@
+
 const { Game, options } = require('./game.js')
 const fs = require('fs')
 
-options.FEN = '6Q1/P1pP4/2PP2p1/1q4nP/1N4r1/K2p3r/8/k7 w - - 0 1'
+write = function(FEN)
+{
+    options.FEN = FEN
+    game = new Game(options)
+    response = game.respond()
 
-game = new Game(options)
-response = game.respond()
-
-console.log(response)
+    data = JSON.stringify(game, null, 2)
+    response = JSON.stringify(response, null, 2)
+    fs.writeFile(`./data/game.json`, data, (err) => err ? console.error(err) : {})
+    fs.writeFile('./data/response.json', response, (err) => err ? console.error(err) : {})
+}
 
 //En Passant target FEN
 
@@ -16,9 +22,4 @@ console.log(response)
 
 //Promotion...?
 
-
-data = JSON.stringify(game, null, 2)
-fs.writeFile(`./models/data/game.json`, data, (err) => err ? console.error(err) : {})
-
-
-module.exports = {response}
+module.exports = { write }
