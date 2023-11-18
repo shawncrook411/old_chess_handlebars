@@ -16,8 +16,15 @@ var options =
     sizeX : 8,
     sizeY : 8,
     FEN : '',
-    DefaultFEN: 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1' 
+    DefaultFEN: 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1'
+}
 
+class Response {
+    constructor(options, position)
+    {
+        this.options = options
+        this.position = position
+    }
 }
 
 class Game {
@@ -30,7 +37,12 @@ class Game {
         
         this.board = new Board(options)
         this.moves = []         
-        this.players = options.players    
+        this.players = options.players
+        this.board.SEARCH_ALL()    
+    }
+
+    respond(){
+        return new Response(this.options, this.board.position)
     }
 
     writeFEN(){
@@ -56,8 +68,7 @@ class Game {
                 let char = '';
                 if (digit)
                 {
-                    char += `${digit}`
-                    console.log(char)
+                    char += `${digit}`                    
                 }
                 digit = 0;
                 switch (board[i].piece.type)
@@ -107,4 +118,4 @@ class Game {
 }
    
 
-module.exports = { Game, options }
+module.exports = { Game, Display, options }

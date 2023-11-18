@@ -3,16 +3,12 @@ const { King, Queen, Rook, Bishop, Knight, Pawn } = require('./pieces.js')
 var initialize = (squares, options, position) => {   
    
     let pieces = [];
-    let row = [];
-   
-    console.log(position.placement)
 
     for (let i = 0; i < position.placement.length; i++)
     {
         let row = []
         for(let j = 0; j < position.placement[i].length; j++)
         {
-             
             let color = 'White';
             if(position.placement[i][j].toLowerCase() === position.placement[i][j])
             {
@@ -48,11 +44,9 @@ var initialize = (squares, options, position) => {
                     row.push('0')
                 break
             }
-
         }
         pieces = row.concat(pieces)
     }
-
 
     for(let i = 0 ; i < squares.length; i++)
     {

@@ -35,9 +35,9 @@ class Position {
             {
                 if((Number(placement[i][j])))
                 {
-                    let zero = '0'
-                    
-                    newstring += zero.repeat(Number(placement[i][j]))
+                    //Postion Array Spacer
+                    let spacer = '-'                    
+                    newstring += spacer.repeat(Number(placement[i][j]))
                 }
                 else
                 {
@@ -79,6 +79,13 @@ class Board {
 
         let newSquares = create(squares, options, position)
         this.squares = newSquares
+    }
+
+    SEARCH_ALL(){
+        for (let i = 0; i < this.squares.length; i++)
+        {
+            this.SEARCH(this.squares[i])
+        }
     }
 
     SEARCH(start){
@@ -172,10 +179,7 @@ class Board {
                         if(test.piece !== '0')
                         {
                             continue direction
-                        }
-
-                            
-                        
+                        }           
 
                         //Forces King and Pawns to only check once (unless the pawn checks again)
                         if(occupant.type === "King") {continue direction}
@@ -225,7 +229,7 @@ class Board {
         for (let j = 0; j < this.squares.length; j++)
         {
             let test = this.squares[j]
-            
+            //1 up 2 right
             if (edge[2] >= 1 &&edge[0]>= 2 &&  test.x === start.x + master[0][0] && test.y === start.y + master[0][1])
             {          
                 if(test.piece.color != occupant.color)
@@ -234,7 +238,7 @@ class Board {
                 }                
             }
             
-            //2 edge[2] 1 up
+            //2 right 1 up
             if (edge[2] >= 2 &&edge[0]>= 1 && test.x === start.x + master[1][0] && test.y === start.y + master[1][1])
             {
                 if(test.piece.color != occupant.color)
@@ -242,7 +246,7 @@ class Board {
                     moves.push([test.x, test.y])
                 }                
             } 
-            //2 edge[2] 1 edge[4]
+            //2 right 1 down
             if (edge[2] >= 2 && edge[4] >= 1 && test.x === start.x + master[2][0] && test.y === start.y + master[2][1])
             {
                 if(test.piece.color != occupant.color)
@@ -251,7 +255,7 @@ class Board {
                 }                
             }
             
-            //1 edge[2] 2 edge[4]
+            //1 right 2 down
             if (edge[2] >= 1 && edge[4] >= 2 && test.x === start.x + master[3][0] && test.y === start.y + master[3][1])
             {
                 if(test.piece.color != occupant.color)
@@ -260,7 +264,7 @@ class Board {
                 }                
             }
 
-            //1 edge[6] 2 edge[4]
+            //1 left 2 down
             if (edge[6] >= 1 && edge[4] >= 2 && test.x === start.x + master[4][0] && test.y === start.y + master[4][1])
             {
                 if(test.piece.color != occupant.color)
@@ -269,7 +273,7 @@ class Board {
                 }                
             }
 
-            //2 edge[6] 1 edge[4]
+            //2 left 1 down
             if (edge[6] >= 2 && edge[4] >= 1 && test.x === start.x + master[5][0] && test.y === start.y + master[5][1])
             {
                 if(test.piece.color != occupant.color)
@@ -278,7 +282,7 @@ class Board {
                 }                
             }
 
-            //2 edge[6] 1 up
+            //2 left 1 up
             if (edge[6] >= 2 &&edge[0]>= 1 && test.x === start.x + master[6][0] && test.y === start.y + master[6][1])
             {
                 if(test.piece.color != occupant.color)
@@ -287,7 +291,7 @@ class Board {
                 }                
             }
 
-            //1 edge[6] 2 up
+            //1 left 2 up
             if (edge[6] >= 1 &&edge[0]>= 2 && test.x === start.x + master[7][0] && test.y === start.y + master[7][1])
             {
                 if(test.piece.color != occupant.color)
