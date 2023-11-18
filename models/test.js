@@ -1,21 +1,15 @@
 const { Game, options } = require('./game.js')
 const fs = require('fs')
 
-options.FEN = '2b2k2/R4pp1/4q2p/8/1n2P3/1N3PK1/r2Q1B1P/8 b - - 1 26'
+options.FEN = '5B2/1PP1r3/P3k3/8/K4np1/2pp2R1/1q2PNp1/8 w - - 0 1'
 
 game = new Game(options)
 
-result = []
-
-
-
-for( let i = 0; i < game.board.squares.length; i++)
+let result = []
+for(let i = 0; i < game.board.squares.length; i++)
 {
-    search = game.board.squares[i]
-    piece = game.board.SEARCH(search)
-
-    search.result = piece
-    result = result.concat(search)
+    r = game.board.DEMO__(game.board.squares[i])
+    result.push(r)
 }
 
 

@@ -16,32 +16,32 @@
     ],
     "sizeX": 8,
     "sizeY": 8,
-    "FEN": "2b2k2/R4pp1/4q2p/8/1n2P3/1N3PK1/r2Q1B1P/8 b - - 1 26",
+    "FEN": "5B2/1PP1r3/P3k3/8/K4np1/2pp2R1/1q2PNp1/8 w - - 0 1",
     "DefaultFEN": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"
   },
-  "id": "5ca4",
+  "id": "cb31",
   "result": "In progress",
   "termination": "",
-  "date": "2023-11-17T10:16:13.627Z",
+  "date": "2023-11-18T06:51:29.171Z",
   "board": {
     "sizeX": 8,
     "sizeY": 8,
     "position": {
       "placement": [
-        "00b00k00",
-        "R0000pp0",
-        "0000q00p",
+        "00000B00",
+        "0PP0r000",
+        "P000k000",
         "00000000",
-        "0n00P000",
-        "0N000PK0",
-        "r00Q0B0P",
+        "K0000np0",
+        "00pp00R0",
+        "0q00PNp0",
         "00000000"
       ],
-      "turn": "b",
+      "turn": "w",
       "castling": "-",
       "enPassant": "-",
-      "draw50": "1",
-      "moveCount": "26"
+      "draw50": "0",
+      "moveCount": "1"
     },
     "squares": [
       {
@@ -51,8 +51,7 @@
           "column": "A",
           "row": 1
         },
-        "piece": "0",
-        "result": []
+        "piece": "0"
       },
       {
         "x": 2,
@@ -61,8 +60,7 @@
           "column": "B",
           "row": 1
         },
-        "piece": "0",
-        "result": []
+        "piece": "0"
       },
       {
         "x": 3,
@@ -71,8 +69,7 @@
           "column": "C",
           "row": 1
         },
-        "piece": "0",
-        "result": []
+        "piece": "0"
       },
       {
         "x": 4,
@@ -81,8 +78,7 @@
           "column": "D",
           "row": 1
         },
-        "piece": "0",
-        "result": []
+        "piece": "0"
       },
       {
         "x": 5,
@@ -91,8 +87,7 @@
           "column": "E",
           "row": 1
         },
-        "piece": "0",
-        "result": []
+        "piece": "0"
       },
       {
         "x": 6,
@@ -101,8 +96,7 @@
           "column": "F",
           "row": 1
         },
-        "piece": "0",
-        "result": []
+        "piece": "0"
       },
       {
         "x": 7,
@@ -111,8 +105,7 @@
           "column": "G",
           "row": 1
         },
-        "piece": "0",
-        "result": []
+        "piece": "0"
       },
       {
         "x": 8,
@@ -121,69 +114,39 @@
           "column": "H",
           "row": 1
         },
-        "piece": "0",
-        "result": []
+        "piece": "0"
       },
       {
         "x": 1,
         "y": 2,
         "position": {
           "column": "A",
+          "row": 2
+        },
+        "piece": "0"
+      },
+      {
+        "x": 2,
+        "y": 2,
+        "position": {
+          "column": "B",
           "row": 2
         },
         "piece": {
           "moves": [],
           "color": "Black",
-          "type": "Rook"
-        },
-        "result": [
-          [
+          "type": "Queen",
+          "matrix": [
             1,
-            3
-          ],
-          [
             1,
-            4
-          ],
-          [
             1,
-            5
-          ],
-          [
             1,
-            6
-          ],
-          [
             1,
-            7
-          ],
-          [
-            2,
-            2
-          ],
-          [
-            3,
-            2
-          ],
-          [
-            4,
-            2
-          ],
-          [
+            1,
             1,
             1
           ]
-        ]
-      },
-      {
-        "x": 2,
-        "y": 2,
-        "position": {
-          "column": "B",
-          "row": 2
-        },
-        "piece": "0",
-        "result": []
+        }
       },
       {
         "x": 3,
@@ -192,8 +155,7 @@
           "column": "C",
           "row": 2
         },
-        "piece": "0",
-        "result": []
+        "piece": "0"
       },
       {
         "x": 4,
@@ -202,89 +164,7 @@
           "column": "D",
           "row": 2
         },
-        "piece": {
-          "moves": [],
-          "color": "White",
-          "type": "Queen"
-        },
-        "result": [
-          [
-            4,
-            3
-          ],
-          [
-            4,
-            4
-          ],
-          [
-            4,
-            5
-          ],
-          [
-            4,
-            6
-          ],
-          [
-            4,
-            7
-          ],
-          [
-            4,
-            8
-          ],
-          [
-            5,
-            3
-          ],
-          [
-            6,
-            4
-          ],
-          [
-            7,
-            5
-          ],
-          [
-            8,
-            6
-          ],
-          [
-            5,
-            2
-          ],
-          [
-            5,
-            1
-          ],
-          [
-            4,
-            1
-          ],
-          [
-            3,
-            1
-          ],
-          [
-            3,
-            2
-          ],
-          [
-            2,
-            2
-          ],
-          [
-            1,
-            2
-          ],
-          [
-            3,
-            3
-          ],
-          [
-            2,
-            4
-          ]
-        ]
+        "piece": "0"
       },
       {
         "x": 5,
@@ -293,8 +173,22 @@
           "column": "E",
           "row": 2
         },
-        "piece": "0",
-        "result": []
+        "piece": {
+          "moves": [],
+          "color": "White",
+          "moved": 0,
+          "type": "Pawn",
+          "matrix": [
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ]
+        }
       },
       {
         "x": 6,
@@ -306,34 +200,8 @@
         "piece": {
           "moves": [],
           "color": "White",
-          "type": "Bishop"
-        },
-        "result": [
-          [
-            7,
-            1
-          ],
-          [
-            5,
-            1
-          ],
-          [
-            5,
-            3
-          ],
-          [
-            4,
-            4
-          ],
-          [
-            3,
-            5
-          ],
-          [
-            2,
-            6
-          ]
-        ]
+          "type": "Knight"
+        }
       },
       {
         "x": 7,
@@ -342,8 +210,22 @@
           "column": "G",
           "row": 2
         },
-        "piece": "0",
-        "result": []
+        "piece": {
+          "moves": [],
+          "color": "Black",
+          "moved": 0,
+          "type": "Pawn",
+          "matrix": [
+            0,
+            0,
+            0,
+            1,
+            1,
+            1,
+            0,
+            0
+          ]
+        }
       },
       {
         "x": 8,
@@ -352,18 +234,7 @@
           "column": "H",
           "row": 2
         },
-        "piece": {
-          "moves": [],
-          "color": "White",
-          "moved": 0,
-          "type": "Pawn"
-        },
-        "result": [
-          [
-            8,
-            3
-          ]
-        ]
+        "piece": "0"
       },
       {
         "x": 1,
@@ -372,8 +243,7 @@
           "column": "A",
           "row": 3
         },
-        "piece": "0",
-        "result": []
+        "piece": "0"
       },
       {
         "x": 2,
@@ -382,33 +252,7 @@
           "column": "B",
           "row": 3
         },
-        "piece": {
-          "moves": [],
-          "color": "White",
-          "type": "Knight"
-        },
-        "result": [
-          [
-            1,
-            1
-          ],
-          [
-            3,
-            1
-          ],
-          [
-            4,
-            4
-          ],
-          [
-            1,
-            5
-          ],
-          [
-            3,
-            5
-          ]
-        ]
+        "piece": "0"
       },
       {
         "x": 3,
@@ -417,8 +261,22 @@
           "column": "C",
           "row": 3
         },
-        "piece": "0",
-        "result": []
+        "piece": {
+          "moves": [],
+          "color": "Black",
+          "moved": 0,
+          "type": "Pawn",
+          "matrix": [
+            0,
+            0,
+            0,
+            1,
+            1,
+            1,
+            0,
+            0
+          ]
+        }
       },
       {
         "x": 4,
@@ -427,8 +285,22 @@
           "column": "D",
           "row": 3
         },
-        "piece": "0",
-        "result": []
+        "piece": {
+          "moves": [],
+          "color": "Black",
+          "moved": 0,
+          "type": "Pawn",
+          "matrix": [
+            0,
+            0,
+            0,
+            1,
+            1,
+            1,
+            0,
+            0
+          ]
+        }
       },
       {
         "x": 5,
@@ -437,8 +309,7 @@
           "column": "E",
           "row": 3
         },
-        "piece": "0",
-        "result": []
+        "piece": "0"
       },
       {
         "x": 6,
@@ -447,18 +318,7 @@
           "column": "F",
           "row": 3
         },
-        "piece": {
-          "moves": [],
-          "color": "White",
-          "moved": 0,
-          "type": "Pawn"
-        },
-        "result": [
-          [
-            6,
-            4
-          ]
-        ]
+        "piece": "0"
       },
       {
         "x": 7,
@@ -470,9 +330,18 @@
         "piece": {
           "moves": [],
           "color": "White",
-          "type": "King"
-        },
-        "result": []
+          "type": "Rook",
+          "matrix": [
+            1,
+            0,
+            1,
+            0,
+            1,
+            0,
+            1,
+            0
+          ]
+        }
       },
       {
         "x": 8,
@@ -481,8 +350,7 @@
           "column": "H",
           "row": 3
         },
-        "piece": "0",
-        "result": []
+        "piece": "0"
       },
       {
         "x": 1,
@@ -491,316 +359,249 @@
           "column": "A",
           "row": 4
         },
-        "piece": "0",
-        "result": []
+        "piece": {
+          "moves": [],
+          "color": "White",
+          "type": "King",
+          "matrix": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ]
+        }
       },
       {
         "x": 2,
         "y": 4,
         "position": {
           "column": "B",
+          "row": 4
+        },
+        "piece": "0"
+      },
+      {
+        "x": 3,
+        "y": 4,
+        "position": {
+          "column": "C",
+          "row": 4
+        },
+        "piece": "0"
+      },
+      {
+        "x": 4,
+        "y": 4,
+        "position": {
+          "column": "D",
+          "row": 4
+        },
+        "piece": "0"
+      },
+      {
+        "x": 5,
+        "y": 4,
+        "position": {
+          "column": "E",
+          "row": 4
+        },
+        "piece": "0"
+      },
+      {
+        "x": 6,
+        "y": 4,
+        "position": {
+          "column": "F",
           "row": 4
         },
         "piece": {
           "moves": [],
           "color": "Black",
           "type": "Knight"
+        }
+      },
+      {
+        "x": 7,
+        "y": 4,
+        "position": {
+          "column": "G",
+          "row": 4
         },
-        "result": [
-          [
-            3,
-            2
-          ],
-          [
-            4,
-            3
-          ],
-          [
-            4,
-            5
-          ],
-          [
+        "piece": {
+          "moves": [],
+          "color": "Black",
+          "moved": 0,
+          "type": "Pawn",
+          "matrix": [
+            0,
+            0,
+            0,
             1,
-            6
-          ],
-          [
-            3,
-            6
+            1,
+            1,
+            0,
+            0
           ]
-        ]
+        }
+      },
+      {
+        "x": 8,
+        "y": 4,
+        "position": {
+          "column": "H",
+          "row": 4
+        },
+        "piece": "0"
+      },
+      {
+        "x": 1,
+        "y": 5,
+        "position": {
+          "column": "A",
+          "row": 5
+        },
+        "piece": "0"
+      },
+      {
+        "x": 2,
+        "y": 5,
+        "position": {
+          "column": "B",
+          "row": 5
+        },
+        "piece": "0"
       },
       {
         "x": 3,
-        "y": 4,
+        "y": 5,
         "position": {
           "column": "C",
-          "row": 4
+          "row": 5
         },
-        "piece": "0",
-        "result": []
+        "piece": "0"
       },
       {
         "x": 4,
-        "y": 4,
+        "y": 5,
         "position": {
           "column": "D",
-          "row": 4
+          "row": 5
         },
-        "piece": "0",
-        "result": []
+        "piece": "0"
       },
       {
         "x": 5,
-        "y": 4,
+        "y": 5,
         "position": {
           "column": "E",
-          "row": 4
+          "row": 5
+        },
+        "piece": "0"
+      },
+      {
+        "x": 6,
+        "y": 5,
+        "position": {
+          "column": "F",
+          "row": 5
+        },
+        "piece": "0"
+      },
+      {
+        "x": 7,
+        "y": 5,
+        "position": {
+          "column": "G",
+          "row": 5
+        },
+        "piece": "0"
+      },
+      {
+        "x": 8,
+        "y": 5,
+        "position": {
+          "column": "H",
+          "row": 5
+        },
+        "piece": "0"
+      },
+      {
+        "x": 1,
+        "y": 6,
+        "position": {
+          "column": "A",
+          "row": 6
         },
         "piece": {
           "moves": [],
           "color": "White",
           "moved": 0,
-          "type": "Pawn"
-        },
-        "result": [
-          [
-            5,
-            5
-          ]
-        ]
-      },
-      {
-        "x": 6,
-        "y": 4,
-        "position": {
-          "column": "F",
-          "row": 4
-        },
-        "piece": "0",
-        "result": []
-      },
-      {
-        "x": 7,
-        "y": 4,
-        "position": {
-          "column": "G",
-          "row": 4
-        },
-        "piece": "0",
-        "result": []
-      },
-      {
-        "x": 8,
-        "y": 4,
-        "position": {
-          "column": "H",
-          "row": 4
-        },
-        "piece": "0",
-        "result": []
-      },
-      {
-        "x": 1,
-        "y": 5,
-        "position": {
-          "column": "A",
-          "row": 5
-        },
-        "piece": "0",
-        "result": []
-      },
-      {
-        "x": 2,
-        "y": 5,
-        "position": {
-          "column": "B",
-          "row": 5
-        },
-        "piece": "0",
-        "result": []
-      },
-      {
-        "x": 3,
-        "y": 5,
-        "position": {
-          "column": "C",
-          "row": 5
-        },
-        "piece": "0",
-        "result": []
-      },
-      {
-        "x": 4,
-        "y": 5,
-        "position": {
-          "column": "D",
-          "row": 5
-        },
-        "piece": "0",
-        "result": []
-      },
-      {
-        "x": 5,
-        "y": 5,
-        "position": {
-          "column": "E",
-          "row": 5
-        },
-        "piece": "0",
-        "result": []
-      },
-      {
-        "x": 6,
-        "y": 5,
-        "position": {
-          "column": "F",
-          "row": 5
-        },
-        "piece": "0",
-        "result": []
-      },
-      {
-        "x": 7,
-        "y": 5,
-        "position": {
-          "column": "G",
-          "row": 5
-        },
-        "piece": "0",
-        "result": []
-      },
-      {
-        "x": 8,
-        "y": 5,
-        "position": {
-          "column": "H",
-          "row": 5
-        },
-        "piece": "0",
-        "result": []
-      },
-      {
-        "x": 1,
-        "y": 6,
-        "position": {
-          "column": "A",
-          "row": 6
-        },
-        "piece": "0",
-        "result": []
-      },
-      {
-        "x": 2,
-        "y": 6,
-        "position": {
-          "column": "B",
-          "row": 6
-        },
-        "piece": "0",
-        "result": []
-      },
-      {
-        "x": 3,
-        "y": 6,
-        "position": {
-          "column": "C",
-          "row": 6
-        },
-        "piece": "0",
-        "result": []
-      },
-      {
-        "x": 4,
-        "y": 6,
-        "position": {
-          "column": "D",
-          "row": 6
-        },
-        "piece": "0",
-        "result": []
-      },
-      {
-        "x": 5,
-        "y": 6,
-        "position": {
-          "column": "E",
-          "row": 6
-        },
-        "piece": {
-          "moves": [],
-          "color": "Black",
-          "type": "Queen"
-        },
-        "result": [
-          [
-            5,
-            7
-          ],
-          [
-            5,
-            8
-          ],
-          [
-            6,
-            6
-          ],
-          [
-            7,
-            6
-          ],
-          [
-            6,
-            5
-          ],
-          [
-            7,
-            4
-          ],
-          [
-            8,
-            3
-          ],
-          [
-            5,
-            5
-          ],
-          [
-            5,
-            4
-          ],
-          [
-            4,
-            5
-          ],
-          [
-            3,
-            4
-          ],
-          [
-            2,
-            3
-          ],
-          [
-            4,
-            6
-          ],
-          [
-            3,
-            6
-          ],
-          [
-            2,
-            6
-          ],
-          [
+          "type": "Pawn",
+          "matrix": [
             1,
-            6
-          ],
-          [
-            4,
-            7
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
           ]
-        ]
+        }
+      },
+      {
+        "x": 2,
+        "y": 6,
+        "position": {
+          "column": "B",
+          "row": 6
+        },
+        "piece": "0"
+      },
+      {
+        "x": 3,
+        "y": 6,
+        "position": {
+          "column": "C",
+          "row": 6
+        },
+        "piece": "0"
+      },
+      {
+        "x": 4,
+        "y": 6,
+        "position": {
+          "column": "D",
+          "row": 6
+        },
+        "piece": "0"
+      },
+      {
+        "x": 5,
+        "y": 6,
+        "position": {
+          "column": "E",
+          "row": 6
+        },
+        "piece": {
+          "moves": [],
+          "color": "Black",
+          "type": "King",
+          "matrix": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ]
+        }
       },
       {
         "x": 6,
@@ -809,8 +610,7 @@
           "column": "F",
           "row": 6
         },
-        "piece": "0",
-        "result": []
+        "piece": "0"
       },
       {
         "x": 7,
@@ -819,8 +619,7 @@
           "column": "G",
           "row": 6
         },
-        "piece": "0",
-        "result": []
+        "piece": "0"
       },
       {
         "x": 8,
@@ -829,87 +628,40 @@
           "column": "H",
           "row": 6
         },
-        "piece": {
-          "moves": [],
-          "color": "Black",
-          "moved": 0,
-          "type": "Pawn"
-        },
-        "result": [
-          [
-            8,
-            5
-          ]
-        ]
+        "piece": "0"
       },
       {
         "x": 1,
         "y": 7,
         "position": {
           "column": "A",
+          "row": 7
+        },
+        "piece": "0"
+      },
+      {
+        "x": 2,
+        "y": 7,
+        "position": {
+          "column": "B",
           "row": 7
         },
         "piece": {
           "moves": [],
           "color": "White",
-          "type": "Rook"
-        },
-        "result": [
-          [
+          "moved": 0,
+          "type": "Pawn",
+          "matrix": [
             1,
-            8
-          ],
-          [
-            2,
-            7
-          ],
-          [
-            3,
-            7
-          ],
-          [
-            4,
-            7
-          ],
-          [
-            5,
-            7
-          ],
-          [
-            6,
-            7
-          ],
-          [
             1,
-            6
-          ],
-          [
-            1,
-            5
-          ],
-          [
-            1,
-            4
-          ],
-          [
-            1,
-            3
-          ],
-          [
-            1,
-            2
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
           ]
-        ]
-      },
-      {
-        "x": 2,
-        "y": 7,
-        "position": {
-          "column": "B",
-          "row": 7
-        },
-        "piece": "0",
-        "result": []
+        }
       },
       {
         "x": 3,
@@ -918,8 +670,22 @@
           "column": "C",
           "row": 7
         },
-        "piece": "0",
-        "result": []
+        "piece": {
+          "moves": [],
+          "color": "White",
+          "moved": 0,
+          "type": "Pawn",
+          "matrix": [
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ]
+        }
       },
       {
         "x": 4,
@@ -928,8 +694,7 @@
           "column": "D",
           "row": 7
         },
-        "piece": "0",
-        "result": []
+        "piece": "0"
       },
       {
         "x": 5,
@@ -938,8 +703,21 @@
           "column": "E",
           "row": 7
         },
-        "piece": "0",
-        "result": []
+        "piece": {
+          "moves": [],
+          "color": "Black",
+          "type": "Rook",
+          "matrix": [
+            1,
+            0,
+            1,
+            0,
+            1,
+            0,
+            1,
+            0
+          ]
+        }
       },
       {
         "x": 6,
@@ -948,18 +726,7 @@
           "column": "F",
           "row": 7
         },
-        "piece": {
-          "moves": [],
-          "color": "Black",
-          "moved": 0,
-          "type": "Pawn"
-        },
-        "result": [
-          [
-            6,
-            6
-          ]
-        ]
+        "piece": "0"
       },
       {
         "x": 7,
@@ -968,26 +735,7 @@
           "column": "G",
           "row": 7
         },
-        "piece": {
-          "moves": [],
-          "color": "Black",
-          "moved": 0,
-          "type": "Pawn"
-        },
-        "result": [
-          [
-            7,
-            6
-          ],
-          [
-            7,
-            5
-          ],
-          [
-            7,
-            4
-          ]
-        ]
+        "piece": "0"
       },
       {
         "x": 8,
@@ -996,8 +744,7 @@
           "column": "H",
           "row": 7
         },
-        "piece": "0",
-        "result": []
+        "piece": "0"
       },
       {
         "x": 1,
@@ -1006,8 +753,7 @@
           "column": "A",
           "row": 8
         },
-        "piece": "0",
-        "result": []
+        "piece": "0"
       },
       {
         "x": 2,
@@ -1016,8 +762,7 @@
           "column": "B",
           "row": 8
         },
-        "piece": "0",
-        "result": []
+        "piece": "0"
       },
       {
         "x": 3,
@@ -1026,25 +771,7 @@
           "column": "C",
           "row": 8
         },
-        "piece": {
-          "moves": [],
-          "color": "Black",
-          "type": "Bishop"
-        },
-        "result": [
-          [
-            4,
-            7
-          ],
-          [
-            2,
-            7
-          ],
-          [
-            1,
-            6
-          ]
-        ]
+        "piece": "0"
       },
       {
         "x": 4,
@@ -1053,8 +780,7 @@
           "column": "D",
           "row": 8
         },
-        "piece": "0",
-        "result": []
+        "piece": "0"
       },
       {
         "x": 5,
@@ -1063,8 +789,7 @@
           "column": "E",
           "row": 8
         },
-        "piece": "0",
-        "result": []
+        "piece": "0"
       },
       {
         "x": 6,
@@ -1075,10 +800,19 @@
         },
         "piece": {
           "moves": [],
-          "color": "Black",
-          "type": "King"
-        },
-        "result": []
+          "color": "White",
+          "type": "Bishop",
+          "matrix": [
+            0,
+            1,
+            0,
+            1,
+            0,
+            1,
+            0,
+            1
+          ]
+        }
       },
       {
         "x": 7,
@@ -1087,8 +821,7 @@
           "column": "G",
           "row": 8
         },
-        "piece": "0",
-        "result": []
+        "piece": "0"
       },
       {
         "x": 8,
@@ -1097,8 +830,7 @@
           "column": "H",
           "row": 8
         },
-        "piece": "0",
-        "result": []
+        "piece": "0"
       }
     ]
   },

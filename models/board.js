@@ -81,6 +81,108 @@ class Board {
         this.squares = newSquares
     }
 
+    DEMO__(start){
+        let occupant = start.piece
+
+        if (occupant === '0' || occupant.type === "Knight")
+        { return []}
+
+        let moves = []
+        
+        //Calculates distance to edge, based on thisBOARD's size based on the starting position of the search
+        let distance = [
+            this.sizeY - start.y,            
+            this.sizeX - start.x,            
+            start.y - 1,            
+            start.x - 1,            
+        ]
+        
+        //Calculates distance to edge, including the minimum for the diagnols
+        let edge = [
+            distance[0],
+            Math.min(distance[0], distance[1]),
+            distance[1],
+            Math.min(distance[1], distance[2]),
+            distance[2],
+            Math.min(distance[2], distance[3]),
+            distance[3],
+            Math.min(distance[3], distance[0]),            
+        ]
+
+        //Each row is the 8 cardinal directions
+        //Index 0 is for the change in X for that direction
+        //Index 1 is for the change in Y for that direction
+        //Index 2 is the maximum number of iterations until the edge is hit for that direction
+        let master = [
+            [0, 1],
+            [1, 1],
+            [1, 0],
+            [1, -1],
+            [0, -1],
+            [-1, -1],
+            [-1, 0],
+            [-1, 1]
+        ]
+
+        //8 hard coded for 8 cardinal directions
+        direction: for(let i = 0; i < 8; i++)
+        {
+            if (occupant.matrix[i] === 0) { continue direction }
+            
+            
+            to_edge: for(let k = 0; k < edge[i]; k++)
+            {
+                
+                check_all_squares: for (let j = 0; j < this.squares.length; j++)
+                {    
+                    let test = this.squares[j]
+                    if (test.x === start.x + (k+1)*master[i][0] && test.y === start.y + (k+1)*master[i][1])
+                    {
+                        if (occupant.type === 'Pawn')
+                        {
+                            if(i % 2 === 1 && test.piece !== '0' && test.piece.color !== occupant.color)
+                            {
+                                moves.push([test.x, test.y])
+                            }
+                            if(i % 2 === 0 && test.piece === '0')
+                            {
+                                moves.push([test.x, test.y])
+                            }
+
+                            //Allows for a second move to be calculated IF it's on the starting rank && you're facing the right direction
+                            if (occupant.color === "White" && start.y === 2 && k === 0 && i === 0) {continue to_edge}
+                            if (occupant.color === "Black" && start.y === (this.sizeY - 1) && k === 0 & i === 4) {continue to_edge}
+    
+                            continue direction
+                        }
+                        if (test.piece === '0')
+                        {
+                            moves.push([test.x, test.y])                            
+                        }                        
+                        if(test.piece !== '0' && test.piece.color != occupant.color)
+                        {    
+                            moves.push([test.x, test.y])
+                            continue direction
+                        }
+                        if(test.piece !== '0')
+                        {
+                            continue direction
+                        }
+
+                            
+                        
+
+                        //Forces King and Pawns to only check once (unless the pawn checks again)
+                        if(occupant.type === "King") {continue direction}
+                        
+                        continue to_edge
+                    } 
+                }
+            }
+        }
+        return moves
+    }
+
     //start is piece : distance is distance to edge exclusive
     SEARCH_UP(occupant, start, distance){
         distance = distance.up
@@ -347,8 +449,17 @@ class Board {
     SEARCH_KNIGHT(occupant, start, up, down, left, right){
 
         let moves = []
+
+        let master = [
+            [1, 2],
+            [2]
+
+        ]
+
         for (let j = 0; j < this.squares.length; j++)
         {
+
+
             let test = this.squares[j]
             //1 right 2 up 
             if (right >= 1 && up >= 2 &&  test.x === start.x + 1 && test.y === start.y + 2)
@@ -422,64 +533,7 @@ class Board {
                 }                
             }
         }
-        return moves
-    }
-
-    SEARCH(start){
-
-        let distance = {
-            up : this.sizeY - start.y,
-            right: this.sizeX - start.x,
-            down: start.y - 1,
-            left: start.x - 1,
-        }
-
-        let moves = [];
-        let occupant = start.piece
-
-        
-        switch(occupant.type)
-        {
-            case "King", "Queen":
-                moves = moves.concat(this.SEARCH_UP(occupant, start, distance))
-                moves = moves.concat(this.SEARCH_UP_RIGHT(occupant, start, distance))
-                moves = moves.concat(this.SEARCH_RIGHT(occupant, start, distance))
-                moves = moves.concat(this.SEARCH_DOWN_RIGHT(occupant, start, distance))
-                moves = moves.concat(this.SEARCH_DOWN(occupant, start, distance))
-                moves = moves.concat(this.SEARCH_DOWN_LEFT(occupant, start, distance))
-                moves = moves.concat(this.SEARCH_LEFT(occupant, start, distance))
-                moves = moves.concat(this.SEARCH_UP_LEFT(occupant, start, distance))
-            break
-
-            case "Rook":
-                moves = moves.concat(this.SEARCH_UP(occupant, start, distance))
-                moves = moves.concat(this.SEARCH_RIGHT(occupant, start, distance))
-                moves = moves.concat(this.SEARCH_DOWN(occupant, start, distance))
-                moves = moves.concat(this.SEARCH_LEFT(occupant, start, distance))
-            break
-
-            case "Bishop":
-                moves = moves.concat(this.SEARCH_UP_RIGHT(occupant, start, distance))
-                moves = moves.concat(this.SEARCH_DOWN_RIGHT(occupant, start, distance))
-                moves = moves.concat(this.SEARCH_DOWN_LEFT(occupant, start, distance))
-                moves = moves.concat(this.SEARCH_UP_LEFT(occupant, start, distance))
-            break
-
-            case "Knight":
-                moves = moves.concat(this.SEARCH_KNIGHT(occupant, start, distance.up, distance.down, distance.left, distance.right))
-            break
-
-            case "Pawn":
-                if (occupant.color === "White")
-                {
-                    moves = moves.concat(this.SEARCH_UP(occupant, start, distance))
-                }
-                else
-                {
-                    moves = moves.concat(this.SEARCH_DOWN(occupant, start, distance))
-                }
-            break            
-        }
+        //May be redundant not sure if 'null/undefined' is fixed. This eliminates them
         let newmoves = []
         for (let i = 0; i < moves.length; i++)
         {
@@ -489,8 +543,16 @@ class Board {
             }
         
         }
-        return newmoves      
+        return newmoves
     }
+
+    
+
+        
+
+
+        
+        
 
 
 //for each square in board

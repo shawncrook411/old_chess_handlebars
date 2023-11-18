@@ -14,6 +14,16 @@ class Player {
     }
 }
 
+ //King / Queen
+
+ //Bishop
+ 
+
+ //Bishop
+ 
+
+ 
+
 class Piece {
     constructor(color)
     {
@@ -29,6 +39,8 @@ class King extends Piece {
     {
         super(color, square)
         this.type = "King"
+        this.matrix = [1, 1, 1, 1, 1, 1 ,1 ,1]
+
     }
     castleK(){
 
@@ -47,6 +59,7 @@ class Queen extends Piece {
     {
         super(color, square)
         this.type = "Queen"
+        this.matrix = [1, 1, 1, 1, 1, 1 ,1 ,1]
     }
 }
 
@@ -55,6 +68,7 @@ class Rook extends Piece {
     {
         super(color, square)
         this.type = "Rook"
+        this.matrix = [1, 0, 1, 0, 1, 0, 1, 0]
     }
 
 }
@@ -64,6 +78,7 @@ class Bishop extends Piece {
     {
         super(color, square)
         this.type = "Bishop"
+        this.matrix = [0, 1, 0, 1, 0, 1, 0, 1]
     }
 
 }
@@ -83,6 +98,15 @@ class Pawn extends Piece {
         super(color, square)
         this.moved = 0
         this.type = "Pawn"
+
+        if (color === "White")
+        {
+            this.matrix = [1, 1, 0, 0, 0, 0, 0, 1]
+        }
+        else
+        {
+            this.matrix = [0, 0, 0, 1, 1, 1, 0, 0]
+        }       
     }
     promote() {
 
