@@ -8,18 +8,15 @@ game = new Game(options)
 let result = []
 for(let i = 0; i < game.board.squares.length; i++)
 {
-    r = game.board.DEMO__(game.board.squares[i])
+    r = game.board.SEARCH(game.board.squares[i])
     result.push(r)
 }
 
 
-//Pawns DOUBLE move doesn't work properly
-//Pawn capture
 //En Passant target FEN
 
-//Kings aren't loading at all
+//Consolidate KNIIGHt SEARCH
 
-//Combines SEARCH functions into SEARCH and SEARCH KNIGHT only
 
 //Castling MOVES
 
