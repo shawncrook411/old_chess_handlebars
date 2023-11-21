@@ -86,8 +86,13 @@ class Board {
         let legal = [];
         for (let i = 0; i < this.squares.length; i++)
         {
-            legal.concat(this.SEARCH(this.squares[i]))
+            let piecelist = this.SEARCH(this.squares[i])
+            for(let i = 0; i < piecelist.length; i++)
+            {
+                legal = legal.concat(piecelist[i])
+            }
         }
+        this.legal = legal
     }
 
     SEARCH(start){
@@ -312,16 +317,10 @@ class Board {
                 else if (test.piece.color != occupant.color)
                 {moves.push(`Nx${String.fromCharCode(test.x + 96)}${test.y}`)}               
             }
-        }
-
-        console.log(moves)
-
+        }      
         //May be redundant not sure if 'null/undefined' is fixed. This eliminates them
-        
-        
-        occupant.moves = moves
 
-        
+        occupant.moves = moves
         return moves
     }    
 

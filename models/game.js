@@ -21,11 +21,12 @@ var options =
 }
 
 class Response {
-    constructor(options, position, players)
+    constructor(options, position, players, legal)
     {
         this.options = options
         this.position = position
         this.players = players
+        this.legal = legal
     }
 }
 
@@ -38,7 +39,7 @@ class Game {
         this.date = dayjs()
         
         this.board = new Board(options)
-        this.moves = []   
+        this.legal = []   
 
         this.players = []
         for (let i = 0; i < options.playersNumber; i++)
@@ -47,8 +48,38 @@ class Game {
         this.board.SEARCH_ALL()    
     }
 
+    move(move){
+        verifyMoves: for(let i = 0; i < this.board.legal.length; i++)
+        {
+            if (move === this.board.legal[i])
+            {
+                checkSquares: for (let j = 0; j < this.board.squares.length; j++)
+                {
+                    if (this.board.squares[j].piece)
+                    {
+                        verifyMovePerPiece: for (let k = 0; k < this.board.squares[j].piece.moves[k])
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                    }
+                }
+            }
+        }
+    }
+
     respond(){
-        return new Response(this.options, this.board.position, this.players)
+        return new Response(this.options, this.board.position, this.players, this.board.legal)
     }
 
     writeFEN(){

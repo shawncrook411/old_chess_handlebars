@@ -1,5 +1,5 @@
 const DATA = {
-    piecelink: ['https://raw.githubusercontent.com/lichess-org/lila/cf1ad792dafa8b7bebad8cc262826d9e0a165491/public/piece/', '/w.svg']
+    piecelink: 'https://raw.githubusercontent.com/lichess-org/lila/cf1ad792dafa8b7bebad8cc262826d9e0a165491/public/piece/'
 }
 
 class Display{
@@ -60,16 +60,15 @@ class Display{
             newSquare: for (let j = 0; j < this.options.sizeX; j++)
             {
                 let square = document.createElement('div')
-                square.setAttribute('id',  `${String.fromCharCode(j+65).toUpperCase()}${9-i}`,  )
-            
+                square.setAttribute('id',  `${String.fromCharCode(j+65).toUpperCase()}${9-i}`,  )            
 
-            if( (j+i) % 2 == 0){ square.setAttribute('class', 'square primary_square') }
-            else { square.setAttribute('class', 'square secondary_square')}
+                if( (j+i) % 2 == 0){ square.setAttribute('class', 'square primary_square') }
+                else { square.setAttribute('class', 'square secondary_square')}
 
-            square.addEventListener('click', function(event){
-                //complete moves????? (event.target)
-            })
-            row.appendChild(square);
+                square.addEventListener('click', function(event){
+                    //complete moves????? (event.target)
+                })
+                row.appendChild(square);
             }
 
             let board = document.getElementById("board_border")
@@ -80,9 +79,6 @@ class Display{
         {
             displayPieces_checkSquare: for (let j = 0; j < this.position.placement[i].length; j++)
             {
-                console.log(i)
-                console.log(j)
-
                 let char = this.position.placement[7 - i][j]
                 if (char !== '-')
                 {
@@ -92,7 +88,7 @@ class Display{
                     if (this.options.style === 'disguised')
                     { char = ''}
                     
-                    let source = `${DATA.piecelink[0]}/${this.options.style}/${color}${char.toUpperCase()}.svg`
+                    let source = `${DATA.piecelink}/${this.options.style}/${color}${char.toUpperCase()}.svg`
 
                     let anchor = document.createElement('a')
                     let image = document.createElement('img')

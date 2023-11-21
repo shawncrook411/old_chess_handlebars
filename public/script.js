@@ -1,115 +1,8 @@
-
-
-const FEN = ""
-
-object = {fen : FEN}
-
-async function fetchResponse() {
-    const data = await fetch(`/response/`,
+fetchResponse().then(response => {
+    DISPLAY = new Display(response)
+})
     
-    {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(object),
-      }
-    
-    )   
-    const response = await data.json()
-    console.log(response)
-    return response
-}
-
-fetchResponse().then(response => { 
-    
-
-    DIS = new Display(response)
-
-    console.log(DIS)
- })
-
-
-    
-    
-
 var boardState = document.getElementById("board_border");
-
-
-var whiteMove = function (piece, event){
-   
-    event.stopPropagation()
-    
-    console.log("White Start Move")
-    
-    blackStartMove = 0
-    whiteStartMove = 1;
-    storagePiece = piece     
-}
-
-var blackMove = function (piece, event){
-   
-    event.stopPropagation()
-    
-    console.log("Black Start Move")
-
-    whiteStartMove = 0;
-    
-    blackStartMove = 1;
-    storagePiece = piece   
-}
-
-var completeMove = function (target) {
-if (whiteStartMove != 0 || blackStartMove != 0)
-    {
-        if ((playerMove === 1 && whiteStartMove === 1) || (playerMove === -1 && blackStartMove ===1) )
-        {
-            id = target.id
-            x = storagePiece.position_column
-            y = storagePiece.position_row
-
-            let newID = [];
-            newID = id.split("");       
-
-            possible = calculatePossibleMoves(storagePiece)
-
-            console.log(possible)
-            
-
-            for (i = 0; i < possible.length; i++)
-            {
-                if(possible[i] === id)
-                {
-                
-                    previousSquare = document.getElementById(x + y)
-                
-                
-                    piece = previousSquare.children[0]
-                    piece.remove()
-
-                    storagePiece.position_column = newID[0]
-                    storagePiece.position_row = parseInt(newID[1])
-                    
-                    console.log(player1)
-
-                    console.log(storagePiece)
-                    displayPiece(storagePiece);
-                    storagePiece = '';    
-                    
-                    if (whiteStartMove === 1)
-                        {playerMove = -1}
-                    if (blackStartMove === 1)
-                        {playerMove = 1}
-                    
-                    return;
-                }
-            }
-        }
-        whiteStartMove = 0
-        blackStartMove = 0        
-    }
-}
-
 
 var startTimer = function setTime(gameTime) {
     let whiteSecondsLeft = gameTime;
@@ -147,8 +40,6 @@ var startTimer = function setTime(gameTime) {
     }, 100);
 }
 
-
-
 startButton = document.getElementById("start-game")
 
 startButton.addEventListener("click", function(event) {
@@ -156,9 +47,3 @@ startButton.addEventListener("click", function(event) {
     console.log("start game")
     startTimer(gameTime)}
 );
-
-
-
-
-
-

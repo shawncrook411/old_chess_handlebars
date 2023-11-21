@@ -21,6 +21,11 @@ app.put('/response/', (req, res) => {
     res.json(game.respond())
 })
 
+app.put('/submitMove/:move', (req, res) => {
+    game.move(req.params.move)
+    res.json(game.respond())
+})
+
 app.listen(PORT, () =>
     console.log(`Server listening at localhost:${PORT}`))
 
