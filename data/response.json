@@ -16,19 +16,19 @@
     ],
     "sizeX": 8,
     "sizeY": 8,
-    "FEN": "4R3/PkPBpnrr/1q3NRP/2P1b1Q1/PpKp1Pp1/PpPnN1p1/3Bpp2/5b2 w - - 0 1",
+    "FEN": "8/2p1rN2/p3P3/1BNP4/6bQ/2k1b2r/5p2/1K4B1 w - - 0 1",
     "DefaultFEN": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"
   },
   "position": {
     "placement": [
-      "----R---",
-      "PkPBpnrr",
-      "-q---NRP",
-      "--P-b-Q-",
-      "PpKp-Pp-",
-      "PpPnN-p-",
-      "---Bpp--",
-      "-----b--"
+      "--------",
+      "--p-rN--",
+      "p---P---",
+      "-BNP----",
+      "------bQ",
+      "--k-b--r",
+      "-----p--",
+      "-K----B-"
     ],
     "turn": "w",
     "castling": "-",
@@ -38,7 +38,7 @@
   },
   "players": [
     {
-      "id": "f0d1",
+      "id": "b9bc",
       "color": "White",
       "elo": 1200,
       "time": 300,
@@ -46,7 +46,7 @@
       "turn": 1
     },
     {
-      "id": "3b75",
+      "id": "6c81",
       "color": "Black",
       "elo": 1200,
       "time": 300,

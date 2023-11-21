@@ -1,9 +1,11 @@
-const FEN = "4N3/3Pq2k/3pBP2/K7/5p2/5pnr/1p1p3p/n7&nbspw&nbsp-&nbsp-&nbsp0&nbsp1"
 
-object = {name: "test", fen: FEN, end: "end"}
+
+const FEN = ""
+
+object = {fen : FEN}
 
 async function fetchResponse() {
-    const data = await fetch(`/response/${FEN}`,
+    const data = await fetch(`/response/`,
     
     {
         method: 'PUT',
@@ -15,10 +17,12 @@ async function fetchResponse() {
     
     )   
     const response = await data.json()
+    console.log(response)
     return response
 }
 
 fetchResponse().then(response => { 
+    
 
     DIS = new Display(response)
 
