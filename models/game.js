@@ -26,7 +26,13 @@ class Response {
         this.options = options
         this.position = position
         this.players = players
-        this.legal = legal
+
+        let legalStrings = []
+        for(let i = 0; i < legal.length; i++)
+        {
+            newLegal.push(legal[i].string)
+        }
+        this.legal = legalStrings
     }
 }
 
