@@ -19,10 +19,10 @@
     "FEN": "8/2p1rN2/p3P3/1BNP4/6bQ/2k1b2r/5p2/1K4B1 w - - 0 1",
     "DefaultFEN": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"
   },
-  "id": "e474",
+  "id": "8920",
   "result": "In progress",
   "termination": "",
-  "date": "2023-11-21T22:38:47.649Z",
+  "date": "2023-11-22T03:54:59.249Z",
   "board": {
     "sizeX": 8,
     "sizeY": 8,
@@ -62,11 +62,61 @@
         },
         "piece": {
           "moves": [
-            "Kb2",
-            "Kc2",
-            "Kc1",
-            "Ka1",
-            "Ka2"
+            {
+              "string": "Kb2",
+              "start": [
+                2,
+                1
+              ],
+              "end": [
+                2,
+                2
+              ]
+            },
+            {
+              "string": "Kc2",
+              "start": [
+                2,
+                1
+              ],
+              "end": [
+                3,
+                2
+              ]
+            },
+            {
+              "string": "Kc1",
+              "start": [
+                2,
+                1
+              ],
+              "end": [
+                3,
+                1
+              ]
+            },
+            {
+              "string": "Ka1",
+              "start": [
+                2,
+                1
+              ],
+              "end": [
+                1,
+                1
+              ]
+            },
+            {
+              "string": "Ka2",
+              "start": [
+                2,
+                1
+              ],
+              "end": [
+                1,
+                2
+              ]
+            }
           ],
           "color": "White",
           "type": "King",
@@ -127,8 +177,28 @@
         },
         "piece": {
           "moves": [
-            "Bh2",
-            "Bxf2"
+            {
+              "string": "Bh2",
+              "start": [
+                7,
+                1
+              ],
+              "end": [
+                8,
+                2
+              ]
+            },
+            {
+              "string": "Bxf2",
+              "start": [
+                7,
+                1
+              ],
+              "end": [
+                6,
+                2
+              ]
+            }
           ],
           "color": "White",
           "type": "Bishop",
@@ -207,8 +277,28 @@
         },
         "piece": {
           "moves": [
-            "fxg1",
-            "f1"
+            {
+              "string": "fxg1",
+              "start": [
+                6,
+                2
+              ],
+              "end": [
+                7,
+                1
+              ]
+            },
+            {
+              "string": "f1",
+              "start": [
+                6,
+                2
+              ],
+              "end": [
+                6,
+                1
+              ]
+            }
           ],
           "color": "Black",
           "moved": 0,
@@ -270,14 +360,94 @@
         },
         "piece": {
           "moves": [
-            "Kc4",
-            "Kd4",
-            "Kd3",
-            "Kd2",
-            "Kc2",
-            "Kb2",
-            "Kb3",
-            "Kb4"
+            {
+              "string": "Kc4",
+              "start": [
+                3,
+                3
+              ],
+              "end": [
+                3,
+                4
+              ]
+            },
+            {
+              "string": "Kd4",
+              "start": [
+                3,
+                3
+              ],
+              "end": [
+                4,
+                4
+              ]
+            },
+            {
+              "string": "Kd3",
+              "start": [
+                3,
+                3
+              ],
+              "end": [
+                4,
+                3
+              ]
+            },
+            {
+              "string": "Kd2",
+              "start": [
+                3,
+                3
+              ],
+              "end": [
+                4,
+                2
+              ]
+            },
+            {
+              "string": "Kc2",
+              "start": [
+                3,
+                3
+              ],
+              "end": [
+                3,
+                2
+              ]
+            },
+            {
+              "string": "Kb2",
+              "start": [
+                3,
+                3
+              ],
+              "end": [
+                2,
+                2
+              ]
+            },
+            {
+              "string": "Kb3",
+              "start": [
+                3,
+                3
+              ],
+              "end": [
+                2,
+                3
+              ]
+            },
+            {
+              "string": "Kb4",
+              "start": [
+                3,
+                3
+              ],
+              "end": [
+                2,
+                4
+              ]
+            }
           ],
           "color": "Black",
           "type": "King",
@@ -311,13 +481,83 @@
         },
         "piece": {
           "moves": [
-            "Bf4",
-            "Bg5",
-            "Bh6",
-            "Bd2",
-            "Bc1",
-            "Bd4",
-            "Bxc5"
+            {
+              "string": "Bf4",
+              "start": [
+                5,
+                3
+              ],
+              "end": [
+                6,
+                4
+              ]
+            },
+            {
+              "string": "Bg5",
+              "start": [
+                5,
+                3
+              ],
+              "end": [
+                7,
+                5
+              ]
+            },
+            {
+              "string": "Bh6",
+              "start": [
+                5,
+                3
+              ],
+              "end": [
+                8,
+                6
+              ]
+            },
+            {
+              "string": "Bd2",
+              "start": [
+                5,
+                3
+              ],
+              "end": [
+                4,
+                2
+              ]
+            },
+            {
+              "string": "Bc1",
+              "start": [
+                5,
+                3
+              ],
+              "end": [
+                3,
+                1
+              ]
+            },
+            {
+              "string": "Bd4",
+              "start": [
+                5,
+                3
+              ],
+              "end": [
+                4,
+                4
+              ]
+            },
+            {
+              "string": "Bxc5",
+              "start": [
+                5,
+                3
+              ],
+              "end": [
+                3,
+                5
+              ]
+            }
           ],
           "color": "Black",
           "type": "Bishop",
@@ -360,11 +600,61 @@
         },
         "piece": {
           "moves": [
-            "Rxh4",
-            "Rh2",
-            "Rh1",
-            "Rg3",
-            "Rf3"
+            {
+              "string": "Rxh4",
+              "start": [
+                8,
+                3
+              ],
+              "end": [
+                8,
+                4
+              ]
+            },
+            {
+              "string": "Rh2",
+              "start": [
+                8,
+                3
+              ],
+              "end": [
+                8,
+                2
+              ]
+            },
+            {
+              "string": "Rh1",
+              "start": [
+                8,
+                3
+              ],
+              "end": [
+                8,
+                1
+              ]
+            },
+            {
+              "string": "Rg3",
+              "start": [
+                8,
+                3
+              ],
+              "end": [
+                7,
+                3
+              ]
+            },
+            {
+              "string": "Rf3",
+              "start": [
+                8,
+                3
+              ],
+              "end": [
+                6,
+                3
+              ]
+            }
           ],
           "color": "Black",
           "type": "Rook",
@@ -443,12 +733,72 @@
         },
         "piece": {
           "moves": [
-            "Bh5",
-            "Bf3",
-            "Be2",
-            "Bd1",
-            "Bf5",
-            "Bxe6"
+            {
+              "string": "Bh5",
+              "start": [
+                7,
+                4
+              ],
+              "end": [
+                8,
+                5
+              ]
+            },
+            {
+              "string": "Bf3",
+              "start": [
+                7,
+                4
+              ],
+              "end": [
+                6,
+                3
+              ]
+            },
+            {
+              "string": "Be2",
+              "start": [
+                7,
+                4
+              ],
+              "end": [
+                5,
+                2
+              ]
+            },
+            {
+              "string": "Bd1",
+              "start": [
+                7,
+                4
+              ],
+              "end": [
+                4,
+                1
+              ]
+            },
+            {
+              "string": "Bf5",
+              "start": [
+                7,
+                4
+              ],
+              "end": [
+                6,
+                5
+              ]
+            },
+            {
+              "string": "Bxe6",
+              "start": [
+                7,
+                4
+              ],
+              "end": [
+                5,
+                6
+              ]
+            }
           ],
           "color": "Black",
           "type": "Bishop",
@@ -473,17 +823,127 @@
         },
         "piece": {
           "moves": [
-            "Qh5",
-            "Qh6",
-            "Qh7",
-            "Qh8",
-            "Qxh3",
-            "Qg3",
-            "Qxf2",
-            "Qxg4",
-            "Qg5",
-            "Qf6",
-            "Qxe7"
+            {
+              "string": "Qh5",
+              "start": [
+                8,
+                4
+              ],
+              "end": [
+                8,
+                5
+              ]
+            },
+            {
+              "string": "Qh6",
+              "start": [
+                8,
+                4
+              ],
+              "end": [
+                8,
+                6
+              ]
+            },
+            {
+              "string": "Qh7",
+              "start": [
+                8,
+                4
+              ],
+              "end": [
+                8,
+                7
+              ]
+            },
+            {
+              "string": "Qh8",
+              "start": [
+                8,
+                4
+              ],
+              "end": [
+                8,
+                8
+              ]
+            },
+            {
+              "string": "Qxh3",
+              "start": [
+                8,
+                4
+              ],
+              "end": [
+                8,
+                3
+              ]
+            },
+            {
+              "string": "Qg3",
+              "start": [
+                8,
+                4
+              ],
+              "end": [
+                7,
+                3
+              ]
+            },
+            {
+              "string": "Qxf2",
+              "start": [
+                8,
+                4
+              ],
+              "end": [
+                6,
+                2
+              ]
+            },
+            {
+              "string": "Qxg4",
+              "start": [
+                8,
+                4
+              ],
+              "end": [
+                7,
+                4
+              ]
+            },
+            {
+              "string": "Qg5",
+              "start": [
+                8,
+                4
+              ],
+              "end": [
+                7,
+                5
+              ]
+            },
+            {
+              "string": "Qf6",
+              "start": [
+                8,
+                4
+              ],
+              "end": [
+                6,
+                6
+              ]
+            },
+            {
+              "string": "Qxe7",
+              "start": [
+                8,
+                4
+              ],
+              "end": [
+                5,
+                7
+              ]
+            }
           ],
           "color": "White",
           "type": "Queen",
@@ -517,15 +977,105 @@
         },
         "piece": {
           "moves": [
-            "Bc6",
-            "Bd7",
-            "Be8",
-            "Bc4",
-            "Bd3",
-            "Be2",
-            "Bf1",
-            "Ba4",
-            "Bxa6"
+            {
+              "string": "Bc6",
+              "start": [
+                2,
+                5
+              ],
+              "end": [
+                3,
+                6
+              ]
+            },
+            {
+              "string": "Bd7",
+              "start": [
+                2,
+                5
+              ],
+              "end": [
+                4,
+                7
+              ]
+            },
+            {
+              "string": "Be8",
+              "start": [
+                2,
+                5
+              ],
+              "end": [
+                5,
+                8
+              ]
+            },
+            {
+              "string": "Bc4",
+              "start": [
+                2,
+                5
+              ],
+              "end": [
+                3,
+                4
+              ]
+            },
+            {
+              "string": "Bd3",
+              "start": [
+                2,
+                5
+              ],
+              "end": [
+                4,
+                3
+              ]
+            },
+            {
+              "string": "Be2",
+              "start": [
+                2,
+                5
+              ],
+              "end": [
+                5,
+                2
+              ]
+            },
+            {
+              "string": "Bf1",
+              "start": [
+                2,
+                5
+              ],
+              "end": [
+                6,
+                1
+              ]
+            },
+            {
+              "string": "Ba4",
+              "start": [
+                2,
+                5
+              ],
+              "end": [
+                1,
+                4
+              ]
+            },
+            {
+              "string": "Bxa6",
+              "start": [
+                2,
+                5
+              ],
+              "end": [
+                1,
+                6
+              ]
+            }
           ],
           "color": "White",
           "type": "Bishop",
@@ -550,13 +1100,83 @@
         },
         "piece": {
           "moves": [
-            "Nb3",
-            "Nd3",
-            "Na4",
-            "Ne4",
-            "Nxa6",
-            "Nb7",
-            "Nd7"
+            {
+              "string": "Nb3",
+              "start": [
+                3,
+                5
+              ],
+              "end": [
+                2,
+                3
+              ]
+            },
+            {
+              "string": "Nd3",
+              "start": [
+                3,
+                5
+              ],
+              "end": [
+                4,
+                3
+              ]
+            },
+            {
+              "string": "Na4",
+              "start": [
+                3,
+                5
+              ],
+              "end": [
+                1,
+                4
+              ]
+            },
+            {
+              "string": "Ne4",
+              "start": [
+                3,
+                5
+              ],
+              "end": [
+                5,
+                4
+              ]
+            },
+            {
+              "string": "Nxa6",
+              "start": [
+                3,
+                5
+              ],
+              "end": [
+                1,
+                6
+              ]
+            },
+            {
+              "string": "Nb7",
+              "start": [
+                3,
+                5
+              ],
+              "end": [
+                2,
+                7
+              ]
+            },
+            {
+              "string": "Nd7",
+              "start": [
+                3,
+                5
+              ],
+              "end": [
+                4,
+                7
+              ]
+            }
           ],
           "color": "White",
           "type": "Knight"
@@ -571,7 +1191,17 @@
         },
         "piece": {
           "moves": [
-            "d6"
+            {
+              "string": "d6",
+              "start": [
+                4,
+                5
+              ],
+              "end": [
+                4,
+                6
+              ]
+            }
           ],
           "color": "White",
           "moved": 0,
@@ -633,8 +1263,28 @@
         },
         "piece": {
           "moves": [
-            "axb5",
-            "a5"
+            {
+              "string": "axb5",
+              "start": [
+                1,
+                6
+              ],
+              "end": [
+                2,
+                5
+              ]
+            },
+            {
+              "string": "a5",
+              "start": [
+                1,
+                6
+              ],
+              "end": [
+                1,
+                5
+              ]
+            }
           ],
           "color": "Black",
           "moved": 0,
@@ -756,7 +1406,17 @@
         },
         "piece": {
           "moves": [
-            "c6"
+            {
+              "string": "c6",
+              "start": [
+                3,
+                7
+              ],
+              "end": [
+                3,
+                6
+              ]
+            }
           ],
           "color": "Black",
           "moved": 0,
@@ -791,10 +1451,50 @@
         },
         "piece": {
           "moves": [
-            "Re8",
-            "Rxf7",
-            "Rxe6",
-            "Rd7"
+            {
+              "string": "Re8",
+              "start": [
+                5,
+                7
+              ],
+              "end": [
+                5,
+                8
+              ]
+            },
+            {
+              "string": "Rxf7",
+              "start": [
+                5,
+                7
+              ],
+              "end": [
+                6,
+                7
+              ]
+            },
+            {
+              "string": "Rxe6",
+              "start": [
+                5,
+                7
+              ],
+              "end": [
+                5,
+                6
+              ]
+            },
+            {
+              "string": "Rd7",
+              "start": [
+                5,
+                7
+              ],
+              "end": [
+                4,
+                7
+              ]
+            }
           ],
           "color": "Black",
           "type": "Rook",
@@ -819,12 +1519,72 @@
         },
         "piece": {
           "moves": [
-            "Ne5",
-            "Ng5",
-            "Nd6",
-            "Nh6",
-            "Nd8",
-            "Nh8"
+            {
+              "string": "Ne5",
+              "start": [
+                6,
+                7
+              ],
+              "end": [
+                5,
+                5
+              ]
+            },
+            {
+              "string": "Ng5",
+              "start": [
+                6,
+                7
+              ],
+              "end": [
+                7,
+                5
+              ]
+            },
+            {
+              "string": "Nd6",
+              "start": [
+                6,
+                7
+              ],
+              "end": [
+                4,
+                6
+              ]
+            },
+            {
+              "string": "Nh6",
+              "start": [
+                6,
+                7
+              ],
+              "end": [
+                8,
+                6
+              ]
+            },
+            {
+              "string": "Nd8",
+              "start": [
+                6,
+                7
+              ],
+              "end": [
+                4,
+                8
+              ]
+            },
+            {
+              "string": "Nh8",
+              "start": [
+                6,
+                7
+              ],
+              "end": [
+                8,
+                8
+              ]
+            }
           ],
           "color": "White",
           "type": "Knight"
@@ -922,88 +1682,848 @@
       }
     ],
     "legal": [
-      "Kb2",
-      "Kc2",
-      "Kc1",
-      "Ka1",
-      "Ka2",
-      "Bh2",
-      "Bxf2",
-      "fxg1",
-      "f1",
-      "Kc4",
-      "Kd4",
-      "Kd3",
-      "Kd2",
-      "Kc2",
-      "Kb2",
-      "Kb3",
-      "Kb4",
-      "Bf4",
-      "Bg5",
-      "Bh6",
-      "Bd2",
-      "Bc1",
-      "Bd4",
-      "Bxc5",
-      "Rxh4",
-      "Rh2",
-      "Rh1",
-      "Rg3",
-      "Rf3",
-      "Bh5",
-      "Bf3",
-      "Be2",
-      "Bd1",
-      "Bf5",
-      "Bxe6",
-      "Qh5",
-      "Qh6",
-      "Qh7",
-      "Qh8",
-      "Qxh3",
-      "Qg3",
-      "Qxf2",
-      "Qxg4",
-      "Qg5",
-      "Qf6",
-      "Qxe7",
-      "Bc6",
-      "Bd7",
-      "Be8",
-      "Bc4",
-      "Bd3",
-      "Be2",
-      "Bf1",
-      "Ba4",
-      "Bxa6",
-      "Nb3",
-      "Nd3",
-      "Na4",
-      "Ne4",
-      "Nxa6",
-      "Nb7",
-      "Nd7",
-      "d6",
-      "axb5",
-      "a5",
-      "c6",
-      "Re8",
-      "Rxf7",
-      "Rxe6",
-      "Rd7",
-      "Ne5",
-      "Ng5",
-      "Nd6",
-      "Nh6",
-      "Nd8",
-      "Nh8"
+      {
+        "string": "Kb2",
+        "start": [
+          2,
+          1
+        ],
+        "end": [
+          2,
+          2
+        ]
+      },
+      {
+        "string": "Kc2",
+        "start": [
+          2,
+          1
+        ],
+        "end": [
+          3,
+          2
+        ]
+      },
+      {
+        "string": "Kc1",
+        "start": [
+          2,
+          1
+        ],
+        "end": [
+          3,
+          1
+        ]
+      },
+      {
+        "string": "Ka1",
+        "start": [
+          2,
+          1
+        ],
+        "end": [
+          1,
+          1
+        ]
+      },
+      {
+        "string": "Ka2",
+        "start": [
+          2,
+          1
+        ],
+        "end": [
+          1,
+          2
+        ]
+      },
+      {
+        "string": "Bh2",
+        "start": [
+          7,
+          1
+        ],
+        "end": [
+          8,
+          2
+        ]
+      },
+      {
+        "string": "Bxf2",
+        "start": [
+          7,
+          1
+        ],
+        "end": [
+          6,
+          2
+        ]
+      },
+      {
+        "string": "fxg1",
+        "start": [
+          6,
+          2
+        ],
+        "end": [
+          7,
+          1
+        ]
+      },
+      {
+        "string": "f1",
+        "start": [
+          6,
+          2
+        ],
+        "end": [
+          6,
+          1
+        ]
+      },
+      {
+        "string": "Kc4",
+        "start": [
+          3,
+          3
+        ],
+        "end": [
+          3,
+          4
+        ]
+      },
+      {
+        "string": "Kd4",
+        "start": [
+          3,
+          3
+        ],
+        "end": [
+          4,
+          4
+        ]
+      },
+      {
+        "string": "Kd3",
+        "start": [
+          3,
+          3
+        ],
+        "end": [
+          4,
+          3
+        ]
+      },
+      {
+        "string": "Kd2",
+        "start": [
+          3,
+          3
+        ],
+        "end": [
+          4,
+          2
+        ]
+      },
+      {
+        "string": "Kc2",
+        "start": [
+          3,
+          3
+        ],
+        "end": [
+          3,
+          2
+        ]
+      },
+      {
+        "string": "Kb2",
+        "start": [
+          3,
+          3
+        ],
+        "end": [
+          2,
+          2
+        ]
+      },
+      {
+        "string": "Kb3",
+        "start": [
+          3,
+          3
+        ],
+        "end": [
+          2,
+          3
+        ]
+      },
+      {
+        "string": "Kb4",
+        "start": [
+          3,
+          3
+        ],
+        "end": [
+          2,
+          4
+        ]
+      },
+      {
+        "string": "Bf4",
+        "start": [
+          5,
+          3
+        ],
+        "end": [
+          6,
+          4
+        ]
+      },
+      {
+        "string": "Bg5",
+        "start": [
+          5,
+          3
+        ],
+        "end": [
+          7,
+          5
+        ]
+      },
+      {
+        "string": "Bh6",
+        "start": [
+          5,
+          3
+        ],
+        "end": [
+          8,
+          6
+        ]
+      },
+      {
+        "string": "Bd2",
+        "start": [
+          5,
+          3
+        ],
+        "end": [
+          4,
+          2
+        ]
+      },
+      {
+        "string": "Bc1",
+        "start": [
+          5,
+          3
+        ],
+        "end": [
+          3,
+          1
+        ]
+      },
+      {
+        "string": "Bd4",
+        "start": [
+          5,
+          3
+        ],
+        "end": [
+          4,
+          4
+        ]
+      },
+      {
+        "string": "Bxc5",
+        "start": [
+          5,
+          3
+        ],
+        "end": [
+          3,
+          5
+        ]
+      },
+      {
+        "string": "Rxh4",
+        "start": [
+          8,
+          3
+        ],
+        "end": [
+          8,
+          4
+        ]
+      },
+      {
+        "string": "Rh2",
+        "start": [
+          8,
+          3
+        ],
+        "end": [
+          8,
+          2
+        ]
+      },
+      {
+        "string": "Rh1",
+        "start": [
+          8,
+          3
+        ],
+        "end": [
+          8,
+          1
+        ]
+      },
+      {
+        "string": "Rg3",
+        "start": [
+          8,
+          3
+        ],
+        "end": [
+          7,
+          3
+        ]
+      },
+      {
+        "string": "Rf3",
+        "start": [
+          8,
+          3
+        ],
+        "end": [
+          6,
+          3
+        ]
+      },
+      {
+        "string": "Bh5",
+        "start": [
+          7,
+          4
+        ],
+        "end": [
+          8,
+          5
+        ]
+      },
+      {
+        "string": "Bf3",
+        "start": [
+          7,
+          4
+        ],
+        "end": [
+          6,
+          3
+        ]
+      },
+      {
+        "string": "Be2",
+        "start": [
+          7,
+          4
+        ],
+        "end": [
+          5,
+          2
+        ]
+      },
+      {
+        "string": "Bd1",
+        "start": [
+          7,
+          4
+        ],
+        "end": [
+          4,
+          1
+        ]
+      },
+      {
+        "string": "Bf5",
+        "start": [
+          7,
+          4
+        ],
+        "end": [
+          6,
+          5
+        ]
+      },
+      {
+        "string": "Bxe6",
+        "start": [
+          7,
+          4
+        ],
+        "end": [
+          5,
+          6
+        ]
+      },
+      {
+        "string": "Qh5",
+        "start": [
+          8,
+          4
+        ],
+        "end": [
+          8,
+          5
+        ]
+      },
+      {
+        "string": "Qh6",
+        "start": [
+          8,
+          4
+        ],
+        "end": [
+          8,
+          6
+        ]
+      },
+      {
+        "string": "Qh7",
+        "start": [
+          8,
+          4
+        ],
+        "end": [
+          8,
+          7
+        ]
+      },
+      {
+        "string": "Qh8",
+        "start": [
+          8,
+          4
+        ],
+        "end": [
+          8,
+          8
+        ]
+      },
+      {
+        "string": "Qxh3",
+        "start": [
+          8,
+          4
+        ],
+        "end": [
+          8,
+          3
+        ]
+      },
+      {
+        "string": "Qg3",
+        "start": [
+          8,
+          4
+        ],
+        "end": [
+          7,
+          3
+        ]
+      },
+      {
+        "string": "Qxf2",
+        "start": [
+          8,
+          4
+        ],
+        "end": [
+          6,
+          2
+        ]
+      },
+      {
+        "string": "Qxg4",
+        "start": [
+          8,
+          4
+        ],
+        "end": [
+          7,
+          4
+        ]
+      },
+      {
+        "string": "Qg5",
+        "start": [
+          8,
+          4
+        ],
+        "end": [
+          7,
+          5
+        ]
+      },
+      {
+        "string": "Qf6",
+        "start": [
+          8,
+          4
+        ],
+        "end": [
+          6,
+          6
+        ]
+      },
+      {
+        "string": "Qxe7",
+        "start": [
+          8,
+          4
+        ],
+        "end": [
+          5,
+          7
+        ]
+      },
+      {
+        "string": "Bc6",
+        "start": [
+          2,
+          5
+        ],
+        "end": [
+          3,
+          6
+        ]
+      },
+      {
+        "string": "Bd7",
+        "start": [
+          2,
+          5
+        ],
+        "end": [
+          4,
+          7
+        ]
+      },
+      {
+        "string": "Be8",
+        "start": [
+          2,
+          5
+        ],
+        "end": [
+          5,
+          8
+        ]
+      },
+      {
+        "string": "Bc4",
+        "start": [
+          2,
+          5
+        ],
+        "end": [
+          3,
+          4
+        ]
+      },
+      {
+        "string": "Bd3",
+        "start": [
+          2,
+          5
+        ],
+        "end": [
+          4,
+          3
+        ]
+      },
+      {
+        "string": "Be2",
+        "start": [
+          2,
+          5
+        ],
+        "end": [
+          5,
+          2
+        ]
+      },
+      {
+        "string": "Bf1",
+        "start": [
+          2,
+          5
+        ],
+        "end": [
+          6,
+          1
+        ]
+      },
+      {
+        "string": "Ba4",
+        "start": [
+          2,
+          5
+        ],
+        "end": [
+          1,
+          4
+        ]
+      },
+      {
+        "string": "Bxa6",
+        "start": [
+          2,
+          5
+        ],
+        "end": [
+          1,
+          6
+        ]
+      },
+      {
+        "string": "Nb3",
+        "start": [
+          3,
+          5
+        ],
+        "end": [
+          2,
+          3
+        ]
+      },
+      {
+        "string": "Nd3",
+        "start": [
+          3,
+          5
+        ],
+        "end": [
+          4,
+          3
+        ]
+      },
+      {
+        "string": "Na4",
+        "start": [
+          3,
+          5
+        ],
+        "end": [
+          1,
+          4
+        ]
+      },
+      {
+        "string": "Ne4",
+        "start": [
+          3,
+          5
+        ],
+        "end": [
+          5,
+          4
+        ]
+      },
+      {
+        "string": "Nxa6",
+        "start": [
+          3,
+          5
+        ],
+        "end": [
+          1,
+          6
+        ]
+      },
+      {
+        "string": "Nb7",
+        "start": [
+          3,
+          5
+        ],
+        "end": [
+          2,
+          7
+        ]
+      },
+      {
+        "string": "Nd7",
+        "start": [
+          3,
+          5
+        ],
+        "end": [
+          4,
+          7
+        ]
+      },
+      {
+        "string": "d6",
+        "start": [
+          4,
+          5
+        ],
+        "end": [
+          4,
+          6
+        ]
+      },
+      {
+        "string": "axb5",
+        "start": [
+          1,
+          6
+        ],
+        "end": [
+          2,
+          5
+        ]
+      },
+      {
+        "string": "a5",
+        "start": [
+          1,
+          6
+        ],
+        "end": [
+          1,
+          5
+        ]
+      },
+      {
+        "string": "c6",
+        "start": [
+          3,
+          7
+        ],
+        "end": [
+          3,
+          6
+        ]
+      },
+      {
+        "string": "Re8",
+        "start": [
+          5,
+          7
+        ],
+        "end": [
+          5,
+          8
+        ]
+      },
+      {
+        "string": "Rxf7",
+        "start": [
+          5,
+          7
+        ],
+        "end": [
+          6,
+          7
+        ]
+      },
+      {
+        "string": "Rxe6",
+        "start": [
+          5,
+          7
+        ],
+        "end": [
+          5,
+          6
+        ]
+      },
+      {
+        "string": "Rd7",
+        "start": [
+          5,
+          7
+        ],
+        "end": [
+          4,
+          7
+        ]
+      },
+      {
+        "string": "Ne5",
+        "start": [
+          6,
+          7
+        ],
+        "end": [
+          5,
+          5
+        ]
+      },
+      {
+        "string": "Ng5",
+        "start": [
+          6,
+          7
+        ],
+        "end": [
+          7,
+          5
+        ]
+      },
+      {
+        "string": "Nd6",
+        "start": [
+          6,
+          7
+        ],
+        "end": [
+          4,
+          6
+        ]
+      },
+      {
+        "string": "Nh6",
+        "start": [
+          6,
+          7
+        ],
+        "end": [
+          8,
+          6
+        ]
+      },
+      {
+        "string": "Nd8",
+        "start": [
+          6,
+          7
+        ],
+        "end": [
+          4,
+          8
+        ]
+      },
+      {
+        "string": "Nh8",
+        "start": [
+          6,
+          7
+        ],
+        "end": [
+          8,
+          8
+        ]
+      }
     ]
   },
   "legal": [],
   "players": [
     {
-      "id": "1f1f",
+      "id": "5406",
       "color": "White",
       "elo": 1200,
       "time": 300,
@@ -1011,7 +2531,7 @@
       "turn": 1
     },
     {
-      "id": "5a5d",
+      "id": "4832",
       "color": "Black",
       "elo": 1200,
       "time": 300,

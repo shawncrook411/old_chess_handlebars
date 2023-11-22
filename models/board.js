@@ -1,6 +1,14 @@
 const { create } = require('./variants')
 const { Player } = require('./pieces')
 
+class Move {
+    constructor(string, start, end){
+        this.string = string
+        this.start = start
+        this.end = end
+    }
+}
+
 class Square {
     constructor(x, y)
     {   
@@ -95,8 +103,7 @@ class Board {
         this.legal = legal
     }
 
-    SEARCH(start){
-
+    SEARCH(start){       
         let occupant = start.piece
 
         if (occupant === '0')
@@ -161,11 +168,20 @@ class Board {
                         {
                             if(i % 2 === 1 && test.piece !== '0' && test.piece.color !== occupant.color)
                             {   //Format exf4
-                                moves.push(`${String.fromCharCode(start.x + 96)}x${String.fromCharCode(test.x + 96)}${test.y}`)
+                               let move = new Move (
+                                    `${String.fromCharCode(start.x + 96)}x${String.fromCharCode(test.x + 96)}${test.y}`,
+                                    [start.x, start.y],
+                                    [test.x, test.y])
+                                       
+                                moves.push(move)
                             }
                             if(i % 2 === 0 && test.piece === '0')
-                            {   //Format f4                                
-                                moves.push(`${String.fromCharCode(test.x + 96)}${test.y}`)
+                            {   //Format f4
+                                let move = new Move (
+                                    `${String.fromCharCode(test.x + 96)}${test.y}`,
+                                    [start.x, start.y],
+                                    [test.x, test.y])                                       
+                                moves.push(move)                                
                             }
 
                             //Allows for a second move to be calculated IF it's on the starting rank && you're facing the right direction
@@ -176,13 +192,21 @@ class Board {
                         }
                         if (test.piece === '0')
                         {
-                            //Format Rg4
-                            moves.push(`${occupant.type[0]}${String.fromCharCode(test.x + 96)}${test.y}`)                            
+                            //Format Rg4                           
+                            let move = new Move (
+                                `${occupant.type[0]}${String.fromCharCode(test.x + 96)}${test.y}`,
+                                [start.x, start.y],
+                                [test.x, test.y])                                   
+                            moves.push(move)
                         }                        
                         if(test.piece !== '0' && test.piece.color != occupant.color)
                         {    
                             //Format Rxg4
-                            moves.push(`${occupant.type[0]}x${String.fromCharCode(test.x + 96)}${test.y}`)
+                            let move = new Move (
+                                `${occupant.type[0]}x${String.fromCharCode(test.x + 96)}${test.y}`,
+                                [start.x, start.y],
+                                [test.x, test.y])                                   
+                            moves.push(move)
                             continue direction
                         }
                         if(test.piece !== '0')
@@ -191,8 +215,7 @@ class Board {
                         }           
 
                         //Forces King and Pawns to only check once (unless the pawn checks again)
-                        if(occupant.type === "King") {continue direction}
-                        
+                        if(occupant.type === "King") {continue direction}                        
                         continue to_edge
                     } 
                 }
@@ -243,79 +266,175 @@ class Board {
             if (edge[2] >= 1 &&edge[0]>= 2 &&  test.x === start.x + master[0][0] && test.y === start.y + master[0][1])
             {       
                 if(test.piece === '0')
-                {moves.push(`N${String.fromCharCode(test.x + 96)}${test.y}`)}
+                {                    
+                    let move = new Move (
+                        `N${String.fromCharCode(test.x + 96)}${test.y}`,
+                        [start.x, start.y],
+                        [test.x, test.y])                                   
+                    moves.push(move)
+                }
 
                 else if (test.piece.color != occupant.color)
-                {moves.push(`Nx${String.fromCharCode(test.x + 96)}${test.y}`)}               
+                {
+                    let move = new Move (
+                        `Nx${String.fromCharCode(test.x + 96)}${test.y}`,
+                        [start.x, start.y],
+                        [test.x, test.y])                                   
+                    moves.push(move)
+                }               
             }
             
             //2 right 1 up
             if (edge[2] >= 2 &&edge[0]>= 1 && test.x === start.x + master[1][0] && test.y === start.y + master[1][1])
             {
                 if(test.piece === '0')
-                {moves.push(`N${String.fromCharCode(test.x + 96)}${test.y}`)}
+                {                    
+                    let move = new Move (
+                        `N${String.fromCharCode(test.x + 96)}${test.y}`,
+                        [start.x, start.y],
+                        [test.x, test.y])                                   
+                    moves.push(move)
+                }
 
                 else if (test.piece.color != occupant.color)
-                {moves.push(`Nx${String.fromCharCode(test.x + 96)}${test.y}`)}               
+                {
+                    let move = new Move (
+                        `Nx${String.fromCharCode(test.x + 96)}${test.y}`,
+                        [start.x, start.y],
+                        [test.x, test.y])                                   
+                    moves.push(move)
+                }               
             } 
             //2 right 1 down
             if (edge[2] >= 2 && edge[4] >= 1 && test.x === start.x + master[2][0] && test.y === start.y + master[2][1])
             {
                 if(test.piece === '0')
-                {moves.push(`N${String.fromCharCode(test.x + 96)}${test.y}`)}
+                {                    
+                    let move = new Move (
+                        `N${String.fromCharCode(test.x + 96)}${test.y}`,
+                        [start.x, start.y],
+                        [test.x, test.y])                                   
+                    moves.push(move)
+                }
 
                 else if (test.piece.color != occupant.color)
-                {moves.push(`Nx${String.fromCharCode(test.x + 96)}${test.y}`)}               
+                {
+                    let move = new Move (
+                        `Nx${String.fromCharCode(test.x + 96)}${test.y}`,
+                        [start.x, start.y],
+                        [test.x, test.y])                                   
+                    moves.push(move)
+                }               
             }
             
             //1 right 2 down
             if (edge[2] >= 1 && edge[4] >= 2 && test.x === start.x + master[3][0] && test.y === start.y + master[3][1])
             {
                 if(test.piece === '0')
-                {moves.push(`N${String.fromCharCode(test.x + 96)}${test.y}`)}
+                {                    
+                    let move = new Move (
+                        `N${String.fromCharCode(test.x + 96)}${test.y}`,
+                        [start.x, start.y],
+                        [test.x, test.y])                                   
+                    moves.push(move)
+                }
 
                 else if (test.piece.color != occupant.color)
-                {moves.push(`Nx${String.fromCharCode(test.x + 96)}${test.y}`)}               
+                {
+                    let move = new Move (
+                        `Nx${String.fromCharCode(test.x + 96)}${test.y}`,
+                        [start.x, start.y],
+                        [test.x, test.y])                                   
+                    moves.push(move)
+                }               
             }
 
             //1 left 2 down
             if (edge[6] >= 1 && edge[4] >= 2 && test.x === start.x + master[4][0] && test.y === start.y + master[4][1])
             {
                 if(test.piece === '0')
-                {moves.push(`N${String.fromCharCode(test.x + 96)}${test.y}`)}
+                {                    
+                    let move = new Move (
+                        `N${String.fromCharCode(test.x + 96)}${test.y}`,
+                        [start.x, start.y],
+                        [test.x, test.y])                                   
+                    moves.push(move)
+                }
 
                 else if (test.piece.color != occupant.color)
-                {moves.push(`Nx${String.fromCharCode(test.x + 96)}${test.y}`)}               
+                {
+                    let move = new Move (
+                        `Nx${String.fromCharCode(test.x + 96)}${test.y}`,
+                        [start.x, start.y],
+                        [test.x, test.y])                                   
+                    moves.push(move)
+                }               
             }
 
             //2 left 1 down
             if (edge[6] >= 2 && edge[4] >= 1 && test.x === start.x + master[5][0] && test.y === start.y + master[5][1])
             {
                 if(test.piece === '0')
-                {moves.push(`N${String.fromCharCode(test.x + 96)}${test.y}`)}
+                {                    
+                    let move = new Move (
+                        `N${String.fromCharCode(test.x + 96)}${test.y}`,
+                        [start.x, start.y],
+                        [test.x, test.y])                                   
+                    moves.push(move)
+                }
 
                 else if (test.piece.color != occupant.color)
-                {moves.push(`Nx${String.fromCharCode(test.x + 96)}${test.y}`)}               
+                {
+                    let move = new Move (
+                        `Nx${String.fromCharCode(test.x + 96)}${test.y}`,
+                        [start.x, start.y],
+                        [test.x, test.y])                                   
+                    moves.push(move)
+                }               
             }
 
             //2 left 1 up
             if (edge[6] >= 2 &&edge[0]>= 1 && test.x === start.x + master[6][0] && test.y === start.y + master[6][1])
             {
                 if(test.piece === '0')
-                {moves.push(`N${String.fromCharCode(test.x + 96)}${test.y}`)}
+                {                    
+                    let move = new Move (
+                        `N${String.fromCharCode(test.x + 96)}${test.y}`,
+                        [start.x, start.y],
+                        [test.x, test.y])                                   
+                    moves.push(move)
+                }
 
                 else if (test.piece.color != occupant.color)
-                {moves.push(`Nx${String.fromCharCode(test.x + 96)}${test.y}`)}               
+                {
+                    let move = new Move (
+                        `Nx${String.fromCharCode(test.x + 96)}${test.y}`,
+                        [start.x, start.y],
+                        [test.x, test.y])                                   
+                    moves.push(move)
+                }               
             }
 
             //1 left 2 up
             if (edge[6] >= 1 &&edge[0]>= 2 && test.x === start.x + master[7][0] && test.y === start.y + master[7][1])
             {
                 if(test.piece === '0')
-                {moves.push(`N${String.fromCharCode(test.x + 96)}${test.y}`)}
+                {                    
+                    let move = new Move (
+                        `N${String.fromCharCode(test.x + 96)}${test.y}`,
+                        [start.x, start.y],
+                        [test.x, test.y])                                   
+                    moves.push(move)
+                }
 
                 else if (test.piece.color != occupant.color)
-                {moves.push(`Nx${String.fromCharCode(test.x + 96)}${test.y}`)}               
+                {
+                    let move = new Move (
+                        `Nx${String.fromCharCode(test.x + 96)}${test.y}`,
+                        [start.x, start.y],
+                        [test.x, test.y])                                   
+                    moves.push(move)
+                }               
             }
         }      
         //May be redundant not sure if 'null/undefined' is fixed. This eliminates them

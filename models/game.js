@@ -55,9 +55,13 @@ class Game {
             {
                 checkSquares: for (let j = 0; j < this.board.squares.length; j++)
                 {
-                    if (this.board.squares[j].piece)
+                    if (this.board.squares[j].piece !== 0)
                     {
-                        verifyMovePerPiece: for (let k = 0; k < this.board.squares[j].piece.moves[k])
+                        
+                        verifyMovePerPiece: for (let k = 0; k < this.board.squares[j].piece.moves.length; k++)
+                        {
+                            // console.log(this.board.squares[j].piece.moves[k])
+                        }
                         
                         
                         
