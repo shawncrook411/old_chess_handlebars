@@ -1,6 +1,8 @@
 const { create } = require('./variants')
 const { Player } = require('./pieces')
 
+var indexSearch = (x, y, width) => (x-1) + width*(y-1)
+
 class Move {
     constructor(string, start, end){
         this.string = string
@@ -88,6 +90,22 @@ class Board {
 
         let newSquares = create(squares, options, position)
         this.squares = newSquares
+    }
+    
+    MOVE(stringMove){
+        verifyMoves: for(let i = 0; i < this.legal.length; i++)
+        {
+            if (stringMove === this.legal[i].string)
+            {
+                let move = this.legal[i]
+
+                let currentSquare = this.squares[indexSearch(move.start[0], move.start[1], this.sizeX)]
+                let newSquare = this.squares[indexSearch(move.end[0], move.end[1], this.sizeX)]
+
+                newSquare.piece = currentSquare.piece
+                currentSquare.piece = '0'
+            }
+        }
     }
 
     SEARCH_ALL(){
@@ -441,14 +459,7 @@ class Board {
 
         occupant.moves = moves
         return moves
-    }    
-
-    MOVE(start, end){ // if occupied capture, then move
-    }
-
-    CAPTURE(end){
-
-    }
+    }       
 }
 
 module.exports = { Square, Board, Position }

@@ -16,13 +16,13 @@
     ],
     "sizeX": 8,
     "sizeY": 8,
-    "FEN": "8/2p1rN2/p3P3/1BNP4/6bQ/2k1b2r/5p2/1K4B1 w - - 0 1",
+    "FEN": "8/2p1rN2/p3P3/1BNP4/6b1/2k1b2r/5Q2/1K4B1 w - - 0 1",
     "DefaultFEN": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"
   },
-  "id": "8695",
+  "id": "cdbc",
   "result": "In progress",
   "termination": "",
-  "date": "2023-11-22T03:58:38.701Z",
+  "date": "2023-11-22T20:13:41.013Z",
   "board": {
     "sizeX": 8,
     "sizeY": 8,
@@ -32,9 +32,9 @@
         "--p-rN--",
         "p---P---",
         "-BNP----",
-        "------bQ",
+        "------b-",
         "--k-b--r",
-        "-----p--",
+        "-----Q--",
         "-K----B-"
       ],
       "turn": "w",
@@ -187,17 +187,6 @@
                 8,
                 2
               ]
-            },
-            {
-              "string": "Bxf2",
-              "start": [
-                7,
-                1
-              ],
-              "end": [
-                6,
-                2
-              ]
             }
           ],
           "color": "White",
@@ -278,18 +267,95 @@
         "piece": {
           "moves": [
             {
-              "string": "fxg1",
+              "string": "Qf3",
+              "start": [
+                6,
+                2
+              ],
+              "end": [
+                6,
+                3
+              ]
+            },
+            {
+              "string": "Qf4",
+              "start": [
+                6,
+                2
+              ],
+              "end": [
+                6,
+                4
+              ]
+            },
+            {
+              "string": "Qf5",
+              "start": [
+                6,
+                2
+              ],
+              "end": [
+                6,
+                5
+              ]
+            },
+            {
+              "string": "Qf6",
+              "start": [
+                6,
+                2
+              ],
+              "end": [
+                6,
+                6
+              ]
+            },
+            {
+              "string": "Qg3",
               "start": [
                 6,
                 2
               ],
               "end": [
                 7,
-                1
+                3
               ]
             },
             {
-              "string": "f1",
+              "string": "Qh4",
+              "start": [
+                6,
+                2
+              ],
+              "end": [
+                8,
+                4
+              ]
+            },
+            {
+              "string": "Qg2",
+              "start": [
+                6,
+                2
+              ],
+              "end": [
+                7,
+                2
+              ]
+            },
+            {
+              "string": "Qh2",
+              "start": [
+                6,
+                2
+              ],
+              "end": [
+                8,
+                2
+              ]
+            },
+            {
+              "string": "Qf1",
               "start": [
                 6,
                 2
@@ -298,20 +364,96 @@
                 6,
                 1
               ]
+            },
+            {
+              "string": "Qe1",
+              "start": [
+                6,
+                2
+              ],
+              "end": [
+                5,
+                1
+              ]
+            },
+            {
+              "string": "Qe2",
+              "start": [
+                6,
+                2
+              ],
+              "end": [
+                5,
+                2
+              ]
+            },
+            {
+              "string": "Qd2",
+              "start": [
+                6,
+                2
+              ],
+              "end": [
+                4,
+                2
+              ]
+            },
+            {
+              "string": "Qc2",
+              "start": [
+                6,
+                2
+              ],
+              "end": [
+                3,
+                2
+              ]
+            },
+            {
+              "string": "Qb2",
+              "start": [
+                6,
+                2
+              ],
+              "end": [
+                2,
+                2
+              ]
+            },
+            {
+              "string": "Qa2",
+              "start": [
+                6,
+                2
+              ],
+              "end": [
+                1,
+                2
+              ]
+            },
+            {
+              "string": "Qxe3",
+              "start": [
+                6,
+                2
+              ],
+              "end": [
+                5,
+                3
+              ]
             }
           ],
-          "color": "Black",
-          "moved": 0,
-          "type": "Pawn",
+          "color": "White",
+          "type": "Queen",
           "matrix": [
-            0,
-            0,
-            0,
             1,
             1,
             1,
-            0,
-            0
+            1,
+            1,
+            1,
+            1,
+            1
           ]
         }
       },
@@ -515,6 +657,17 @@
               ]
             },
             {
+              "string": "Bxf2",
+              "start": [
+                5,
+                3
+              ],
+              "end": [
+                6,
+                2
+              ]
+            },
+            {
               "string": "Bd2",
               "start": [
                 5,
@@ -601,7 +754,7 @@
         "piece": {
           "moves": [
             {
-              "string": "Rxh4",
+              "string": "Rh4",
               "start": [
                 8,
                 3
@@ -609,6 +762,50 @@
               "end": [
                 8,
                 4
+              ]
+            },
+            {
+              "string": "Rh5",
+              "start": [
+                8,
+                3
+              ],
+              "end": [
+                8,
+                5
+              ]
+            },
+            {
+              "string": "Rh6",
+              "start": [
+                8,
+                3
+              ],
+              "end": [
+                8,
+                6
+              ]
+            },
+            {
+              "string": "Rh7",
+              "start": [
+                8,
+                3
+              ],
+              "end": [
+                8,
+                7
+              ]
+            },
+            {
+              "string": "Rh8",
+              "start": [
+                8,
+                3
+              ],
+              "end": [
+                8,
+                8
               ]
             },
             {
@@ -821,143 +1018,7 @@
           "column": "H",
           "row": 4
         },
-        "piece": {
-          "moves": [
-            {
-              "string": "Qh5",
-              "start": [
-                8,
-                4
-              ],
-              "end": [
-                8,
-                5
-              ]
-            },
-            {
-              "string": "Qh6",
-              "start": [
-                8,
-                4
-              ],
-              "end": [
-                8,
-                6
-              ]
-            },
-            {
-              "string": "Qh7",
-              "start": [
-                8,
-                4
-              ],
-              "end": [
-                8,
-                7
-              ]
-            },
-            {
-              "string": "Qh8",
-              "start": [
-                8,
-                4
-              ],
-              "end": [
-                8,
-                8
-              ]
-            },
-            {
-              "string": "Qxh3",
-              "start": [
-                8,
-                4
-              ],
-              "end": [
-                8,
-                3
-              ]
-            },
-            {
-              "string": "Qg3",
-              "start": [
-                8,
-                4
-              ],
-              "end": [
-                7,
-                3
-              ]
-            },
-            {
-              "string": "Qxf2",
-              "start": [
-                8,
-                4
-              ],
-              "end": [
-                6,
-                2
-              ]
-            },
-            {
-              "string": "Qxg4",
-              "start": [
-                8,
-                4
-              ],
-              "end": [
-                7,
-                4
-              ]
-            },
-            {
-              "string": "Qg5",
-              "start": [
-                8,
-                4
-              ],
-              "end": [
-                7,
-                5
-              ]
-            },
-            {
-              "string": "Qf6",
-              "start": [
-                8,
-                4
-              ],
-              "end": [
-                6,
-                6
-              ]
-            },
-            {
-              "string": "Qxe7",
-              "start": [
-                8,
-                4
-              ],
-              "end": [
-                5,
-                7
-              ]
-            }
-          ],
-          "color": "White",
-          "type": "Queen",
-          "matrix": [
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1
-          ]
-        }
+        "piece": "0"
       },
       {
         "x": 1,
@@ -1749,36 +1810,179 @@
         ]
       },
       {
-        "string": "Bxf2",
+        "string": "Qf3",
         "start": [
-          7,
-          1
+          6,
+          2
         ],
         "end": [
           6,
+          3
+        ]
+      },
+      {
+        "string": "Qf4",
+        "start": [
+          6,
+          2
+        ],
+        "end": [
+          6,
+          4
+        ]
+      },
+      {
+        "string": "Qf5",
+        "start": [
+          6,
+          2
+        ],
+        "end": [
+          6,
+          5
+        ]
+      },
+      {
+        "string": "Qf6",
+        "start": [
+          6,
+          2
+        ],
+        "end": [
+          6,
+          6
+        ]
+      },
+      {
+        "string": "Qg3",
+        "start": [
+          6,
+          2
+        ],
+        "end": [
+          7,
+          3
+        ]
+      },
+      {
+        "string": "Qh4",
+        "start": [
+          6,
+          2
+        ],
+        "end": [
+          8,
+          4
+        ]
+      },
+      {
+        "string": "Qg2",
+        "start": [
+          6,
+          2
+        ],
+        "end": [
+          7,
           2
         ]
       },
       {
-        "string": "fxg1",
+        "string": "Qh2",
         "start": [
           6,
           2
         ],
         "end": [
-          7,
+          8,
+          2
+        ]
+      },
+      {
+        "string": "Qf1",
+        "start": [
+          6,
+          2
+        ],
+        "end": [
+          6,
           1
         ]
       },
       {
-        "string": "f1",
+        "string": "Qe1",
         "start": [
           6,
           2
         ],
         "end": [
-          6,
+          5,
           1
+        ]
+      },
+      {
+        "string": "Qe2",
+        "start": [
+          6,
+          2
+        ],
+        "end": [
+          5,
+          2
+        ]
+      },
+      {
+        "string": "Qd2",
+        "start": [
+          6,
+          2
+        ],
+        "end": [
+          4,
+          2
+        ]
+      },
+      {
+        "string": "Qc2",
+        "start": [
+          6,
+          2
+        ],
+        "end": [
+          3,
+          2
+        ]
+      },
+      {
+        "string": "Qb2",
+        "start": [
+          6,
+          2
+        ],
+        "end": [
+          2,
+          2
+        ]
+      },
+      {
+        "string": "Qa2",
+        "start": [
+          6,
+          2
+        ],
+        "end": [
+          1,
+          2
+        ]
+      },
+      {
+        "string": "Qxe3",
+        "start": [
+          6,
+          2
+        ],
+        "end": [
+          5,
+          3
         ]
       },
       {
@@ -1903,6 +2107,17 @@
         ]
       },
       {
+        "string": "Bxf2",
+        "start": [
+          5,
+          3
+        ],
+        "end": [
+          6,
+          2
+        ]
+      },
+      {
         "string": "Bd2",
         "start": [
           5,
@@ -1947,7 +2162,7 @@
         ]
       },
       {
-        "string": "Rxh4",
+        "string": "Rh4",
         "start": [
           8,
           3
@@ -1955,6 +2170,50 @@
         "end": [
           8,
           4
+        ]
+      },
+      {
+        "string": "Rh5",
+        "start": [
+          8,
+          3
+        ],
+        "end": [
+          8,
+          5
+        ]
+      },
+      {
+        "string": "Rh6",
+        "start": [
+          8,
+          3
+        ],
+        "end": [
+          8,
+          6
+        ]
+      },
+      {
+        "string": "Rh7",
+        "start": [
+          8,
+          3
+        ],
+        "end": [
+          8,
+          7
+        ]
+      },
+      {
+        "string": "Rh8",
+        "start": [
+          8,
+          3
+        ],
+        "end": [
+          8,
+          8
         ]
       },
       {
@@ -2065,127 +2324,6 @@
         "end": [
           5,
           6
-        ]
-      },
-      {
-        "string": "Qh5",
-        "start": [
-          8,
-          4
-        ],
-        "end": [
-          8,
-          5
-        ]
-      },
-      {
-        "string": "Qh6",
-        "start": [
-          8,
-          4
-        ],
-        "end": [
-          8,
-          6
-        ]
-      },
-      {
-        "string": "Qh7",
-        "start": [
-          8,
-          4
-        ],
-        "end": [
-          8,
-          7
-        ]
-      },
-      {
-        "string": "Qh8",
-        "start": [
-          8,
-          4
-        ],
-        "end": [
-          8,
-          8
-        ]
-      },
-      {
-        "string": "Qxh3",
-        "start": [
-          8,
-          4
-        ],
-        "end": [
-          8,
-          3
-        ]
-      },
-      {
-        "string": "Qg3",
-        "start": [
-          8,
-          4
-        ],
-        "end": [
-          7,
-          3
-        ]
-      },
-      {
-        "string": "Qxf2",
-        "start": [
-          8,
-          4
-        ],
-        "end": [
-          6,
-          2
-        ]
-      },
-      {
-        "string": "Qxg4",
-        "start": [
-          8,
-          4
-        ],
-        "end": [
-          7,
-          4
-        ]
-      },
-      {
-        "string": "Qg5",
-        "start": [
-          8,
-          4
-        ],
-        "end": [
-          7,
-          5
-        ]
-      },
-      {
-        "string": "Qf6",
-        "start": [
-          8,
-          4
-        ],
-        "end": [
-          6,
-          6
-        ]
-      },
-      {
-        "string": "Qxe7",
-        "start": [
-          8,
-          4
-        ],
-        "end": [
-          5,
-          7
         ]
       },
       {
@@ -2523,7 +2661,7 @@
   "legal": [],
   "players": [
     {
-      "id": "9a0b",
+      "id": "e500",
       "color": "White",
       "elo": 1200,
       "time": 300,
@@ -2531,7 +2669,7 @@
       "turn": 1
     },
     {
-      "id": "2a18",
+      "id": "b0a8",
       "color": "Black",
       "elo": 1200,
       "time": 300,

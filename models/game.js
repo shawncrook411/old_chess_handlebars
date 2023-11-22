@@ -30,7 +30,7 @@ class Response {
         let legalStrings = []
         for(let i = 0; i < legal.length; i++)
         {
-            newLegal.push(legal[i].string)
+            legalStrings.push(legal[i].string)
         }
         this.legal = legalStrings
     }
@@ -54,38 +54,11 @@ class Game {
         this.board.SEARCH_ALL()    
     }
 
-    move(move){
-        verifyMoves: for(let i = 0; i < this.board.legal.length; i++)
-        {
-            if (move === this.board.legal[i])
-            {
-                checkSquares: for (let j = 0; j < this.board.squares.length; j++)
-                {
-                    if (this.board.squares[j].piece !== 0)
-                    {
-                        
-                        verifyMovePerPiece: for (let k = 0; k < this.board.squares[j].piece.moves.length; k++)
-                        {
-                            // console.log(this.board.squares[j].piece.moves[k])
-                        }
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                    }
-                }
-            }
-        }
+    submit(string){
+        this.board.MOVE(string)
+        this.writeFEN()
+        this.board.SEARCH_ALL()
+        this.board.position = new Position(this.options.FEN)
     }
 
     respond(){
@@ -94,67 +67,71 @@ class Game {
 
     writeFEN(){
         const board  = this.board.squares
+        let row = '';
         let FEN = '';
-        let digit = 0;
-        for (let i = 0; i < board.length; i++)
-        {
-            const length = this.options.sizeX
 
-            if ((i) % length == 0 && i !== 0)
-            {
-                if (digit)
-                {
-                    FEN += digit
-                }
-                digit = 0
-                FEN += '/'
-            }
+        let digit = 0;
+        for (let i = 1; i <= board.length; i++)
+        {
+            const length = this.options.sizeX            
             
-            if (board[i].piece != '0')
+            if (board[i-1].piece != '0')
             {
                 let char = '';
                 if (digit)
                 {
-                    char += `${digit}`                    
+                    row += `${digit}`                    
                 }
                 digit = 0;
-                switch (board[i].piece.type)
+                switch (board[i-1].piece.type)
                 {
                     case "King":
-                        char += "K"
+                        char = "K"
                     break
                     case "Queen":
-                        char += "Q"
+                        char = "Q"
                     break
                     case "Rook":
-                        char += "R"
+                        char = "R"
                     break
                     case "Bishop":
-                        char += "B"
+                        char = "B"
                     break
                     case "Knight":
-                        char += "N"
+                        char = "N"
                     break
                     case "Pawn":
-                        char += "P"
+                        char = "P"
                     break
                     default :
                     break                        
                 }                    
-                if (board[i].piece.color === "White")
+                if (board[i-1].piece.color === "Black")
                 {
                     char = char.toLowerCase()
                 }
-                FEN += char;
+                row += char;
             }
             else{
                 digit++;
             }
+
+            if ((i) % length == 0)
+            {
+                if (digit)
+                {
+                    row += `${digit}`
+                    digit = 0
+                }
+
+                row +='/'                
+                FEN = row + FEN
+                row = ''
+            }
         }
-        if (digit)
-        {
-            FEN += `${digit}`
-        }
+        if (FEN[ FEN.length - 1] === '/')
+        {FEN = FEN.slice(0, -1)}
+        
         let object = this.board.position 
         FEN += ` ${object.turn} ${object.castling} ${object.enPassant} ${object.draw50} ${object.moveCount}`        
         this.options.FEN = FEN
