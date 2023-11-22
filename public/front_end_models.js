@@ -55,12 +55,12 @@ class Display{
         //Row decreases, generate top to bottom rows
         newRow: for(let i = this.options.sizeY; i > 0; i--)
         {
-            let row = document.createElement('div')
-            row.setAttribute('class', 'column')
+            let column = document.createElement('div')
+            column.setAttribute('class', 'column')
             newSquare: for (let j = 0; j < this.options.sizeX; j++)
             {
                 let square = document.createElement('div')
-                square.setAttribute('id',  `${String.fromCharCode(j+65).toUpperCase()}${9-i}`,  )            
+                square.setAttribute('id',  `${String.fromCharCode(8 - i + 65).toUpperCase()}${j+1}`,  )            
 
                 if( (j+i) % 2 == 0){ square.setAttribute('class', 'square primary_square') }
                 else { square.setAttribute('class', 'square secondary_square')}
@@ -68,11 +68,11 @@ class Display{
                 square.addEventListener('click', function(event){
                     //complete moves????? (event.target)
                 })
-                row.appendChild(square);
+                column.appendChild(square);
             }
 
             let board = document.getElementById("board_border")
-            board.appendChild(row)
+            board.appendChild(column)
         }
 
         displayPieces_row: for (let i = 0; i < this.position.placement.length; i++)
@@ -95,7 +95,7 @@ class Display{
 
                     image.setAttribute('src', source)
 
-                    let square = document.getElementById(`${String.fromCharCode(i+65).toUpperCase()}${j+1}`)
+                    let square = document.getElementById(`${String.fromCharCode(j+65).toUpperCase()}${i+1}`)
 
                     square.appendChild(anchor)
                     anchor.appendChild(image)
