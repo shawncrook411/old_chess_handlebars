@@ -16,13 +16,13 @@
     ],
     "sizeX": 8,
     "sizeY": 8,
-    "FEN": "8/2p1rN2/p3P3/1BNP4/6b1/2k1b2r/5Q2/1K4B1 w - - 0 1",
+    "FEN": "8/2p1rN2/p3P3/1BNP4/6b1/2k1b2r/5Q2/1K4B1 b - - 0 1",
     "DefaultFEN": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"
   },
-  "id": "cdbc",
+  "id": "6c41",
   "result": "In progress",
   "termination": "",
-  "date": "2023-11-22T20:13:41.013Z",
+  "date": "2023-11-22T20:49:33.556Z",
   "board": {
     "sizeX": 8,
     "sizeY": 8,
@@ -37,7 +37,7 @@
         "-----Q--",
         "-K----B-"
       ],
-      "turn": "w",
+      "turn": "b",
       "castling": "-",
       "enPassant": "-",
       "draw50": "0",
@@ -187,6 +187,17 @@
                 8,
                 2
               ]
+            },
+            {
+              "string": "Bxf2",
+              "start": [
+                7,
+                1
+              ],
+              "end": [
+                6,
+                2
+              ]
             }
           ],
           "color": "White",
@@ -267,43 +278,109 @@
         "piece": {
           "moves": [
             {
-              "string": "Qf3",
+              "string": "Qh5",
               "start": [
-                6,
-                2
+                8,
+                4
               ],
               "end": [
-                6,
+                8,
+                5
+              ]
+            },
+            {
+              "string": "Qh6",
+              "start": [
+                8,
+                4
+              ],
+              "end": [
+                8,
+                6
+              ]
+            },
+            {
+              "string": "Qh7",
+              "start": [
+                8,
+                4
+              ],
+              "end": [
+                8,
+                7
+              ]
+            },
+            {
+              "string": "Qh8",
+              "start": [
+                8,
+                4
+              ],
+              "end": [
+                8,
+                8
+              ]
+            },
+            {
+              "string": "Qxh3",
+              "start": [
+                8,
+                4
+              ],
+              "end": [
+                8,
                 3
               ]
             },
             {
-              "string": "Qf4",
+              "string": "Qg3",
               "start": [
-                6,
-                2
+                8,
+                4
+              ],
+              "end": [
+                7,
+                3
+              ]
+            },
+            {
+              "string": "Qxf2",
+              "start": [
+                8,
+                4
               ],
               "end": [
                 6,
+                2
+              ]
+            },
+            {
+              "string": "Qxg4",
+              "start": [
+                8,
+                4
+              ],
+              "end": [
+                7,
                 4
               ]
             },
             {
-              "string": "Qf5",
+              "string": "Qg5",
               "start": [
-                6,
-                2
+                8,
+                4
               ],
               "end": [
-                6,
+                7,
                 5
               ]
             },
             {
               "string": "Qf6",
               "start": [
-                6,
-                2
+                8,
+                4
               ],
               "end": [
                 6,
@@ -311,135 +388,14 @@
               ]
             },
             {
-              "string": "Qg3",
+              "string": "Qxe7",
               "start": [
-                6,
-                2
-              ],
-              "end": [
-                7,
-                3
-              ]
-            },
-            {
-              "string": "Qh4",
-              "start": [
-                6,
-                2
-              ],
-              "end": [
                 8,
                 4
-              ]
-            },
-            {
-              "string": "Qg2",
-              "start": [
-                6,
-                2
-              ],
-              "end": [
-                7,
-                2
-              ]
-            },
-            {
-              "string": "Qh2",
-              "start": [
-                6,
-                2
-              ],
-              "end": [
-                8,
-                2
-              ]
-            },
-            {
-              "string": "Qf1",
-              "start": [
-                6,
-                2
-              ],
-              "end": [
-                6,
-                1
-              ]
-            },
-            {
-              "string": "Qe1",
-              "start": [
-                6,
-                2
               ],
               "end": [
                 5,
-                1
-              ]
-            },
-            {
-              "string": "Qe2",
-              "start": [
-                6,
-                2
-              ],
-              "end": [
-                5,
-                2
-              ]
-            },
-            {
-              "string": "Qd2",
-              "start": [
-                6,
-                2
-              ],
-              "end": [
-                4,
-                2
-              ]
-            },
-            {
-              "string": "Qc2",
-              "start": [
-                6,
-                2
-              ],
-              "end": [
-                3,
-                2
-              ]
-            },
-            {
-              "string": "Qb2",
-              "start": [
-                6,
-                2
-              ],
-              "end": [
-                2,
-                2
-              ]
-            },
-            {
-              "string": "Qa2",
-              "start": [
-                6,
-                2
-              ],
-              "end": [
-                1,
-                2
-              ]
-            },
-            {
-              "string": "Qxe3",
-              "start": [
-                6,
-                2
-              ],
-              "end": [
-                5,
-                3
+                7
               ]
             }
           ],
@@ -1744,248 +1700,6 @@
     ],
     "legal": [
       {
-        "string": "Kb2",
-        "start": [
-          2,
-          1
-        ],
-        "end": [
-          2,
-          2
-        ]
-      },
-      {
-        "string": "Kc2",
-        "start": [
-          2,
-          1
-        ],
-        "end": [
-          3,
-          2
-        ]
-      },
-      {
-        "string": "Kc1",
-        "start": [
-          2,
-          1
-        ],
-        "end": [
-          3,
-          1
-        ]
-      },
-      {
-        "string": "Ka1",
-        "start": [
-          2,
-          1
-        ],
-        "end": [
-          1,
-          1
-        ]
-      },
-      {
-        "string": "Ka2",
-        "start": [
-          2,
-          1
-        ],
-        "end": [
-          1,
-          2
-        ]
-      },
-      {
-        "string": "Bh2",
-        "start": [
-          7,
-          1
-        ],
-        "end": [
-          8,
-          2
-        ]
-      },
-      {
-        "string": "Qf3",
-        "start": [
-          6,
-          2
-        ],
-        "end": [
-          6,
-          3
-        ]
-      },
-      {
-        "string": "Qf4",
-        "start": [
-          6,
-          2
-        ],
-        "end": [
-          6,
-          4
-        ]
-      },
-      {
-        "string": "Qf5",
-        "start": [
-          6,
-          2
-        ],
-        "end": [
-          6,
-          5
-        ]
-      },
-      {
-        "string": "Qf6",
-        "start": [
-          6,
-          2
-        ],
-        "end": [
-          6,
-          6
-        ]
-      },
-      {
-        "string": "Qg3",
-        "start": [
-          6,
-          2
-        ],
-        "end": [
-          7,
-          3
-        ]
-      },
-      {
-        "string": "Qh4",
-        "start": [
-          6,
-          2
-        ],
-        "end": [
-          8,
-          4
-        ]
-      },
-      {
-        "string": "Qg2",
-        "start": [
-          6,
-          2
-        ],
-        "end": [
-          7,
-          2
-        ]
-      },
-      {
-        "string": "Qh2",
-        "start": [
-          6,
-          2
-        ],
-        "end": [
-          8,
-          2
-        ]
-      },
-      {
-        "string": "Qf1",
-        "start": [
-          6,
-          2
-        ],
-        "end": [
-          6,
-          1
-        ]
-      },
-      {
-        "string": "Qe1",
-        "start": [
-          6,
-          2
-        ],
-        "end": [
-          5,
-          1
-        ]
-      },
-      {
-        "string": "Qe2",
-        "start": [
-          6,
-          2
-        ],
-        "end": [
-          5,
-          2
-        ]
-      },
-      {
-        "string": "Qd2",
-        "start": [
-          6,
-          2
-        ],
-        "end": [
-          4,
-          2
-        ]
-      },
-      {
-        "string": "Qc2",
-        "start": [
-          6,
-          2
-        ],
-        "end": [
-          3,
-          2
-        ]
-      },
-      {
-        "string": "Qb2",
-        "start": [
-          6,
-          2
-        ],
-        "end": [
-          2,
-          2
-        ]
-      },
-      {
-        "string": "Qa2",
-        "start": [
-          6,
-          2
-        ],
-        "end": [
-          1,
-          2
-        ]
-      },
-      {
-        "string": "Qxe3",
-        "start": [
-          6,
-          2
-        ],
-        "end": [
-          5,
-          3
-        ]
-      },
-      {
         "string": "Kc4",
         "start": [
           3,
@@ -2327,193 +2041,6 @@
         ]
       },
       {
-        "string": "Bc6",
-        "start": [
-          2,
-          5
-        ],
-        "end": [
-          3,
-          6
-        ]
-      },
-      {
-        "string": "Bd7",
-        "start": [
-          2,
-          5
-        ],
-        "end": [
-          4,
-          7
-        ]
-      },
-      {
-        "string": "Be8",
-        "start": [
-          2,
-          5
-        ],
-        "end": [
-          5,
-          8
-        ]
-      },
-      {
-        "string": "Bc4",
-        "start": [
-          2,
-          5
-        ],
-        "end": [
-          3,
-          4
-        ]
-      },
-      {
-        "string": "Bd3",
-        "start": [
-          2,
-          5
-        ],
-        "end": [
-          4,
-          3
-        ]
-      },
-      {
-        "string": "Be2",
-        "start": [
-          2,
-          5
-        ],
-        "end": [
-          5,
-          2
-        ]
-      },
-      {
-        "string": "Bf1",
-        "start": [
-          2,
-          5
-        ],
-        "end": [
-          6,
-          1
-        ]
-      },
-      {
-        "string": "Ba4",
-        "start": [
-          2,
-          5
-        ],
-        "end": [
-          1,
-          4
-        ]
-      },
-      {
-        "string": "Bxa6",
-        "start": [
-          2,
-          5
-        ],
-        "end": [
-          1,
-          6
-        ]
-      },
-      {
-        "string": "Nb3",
-        "start": [
-          3,
-          5
-        ],
-        "end": [
-          2,
-          3
-        ]
-      },
-      {
-        "string": "Nd3",
-        "start": [
-          3,
-          5
-        ],
-        "end": [
-          4,
-          3
-        ]
-      },
-      {
-        "string": "Na4",
-        "start": [
-          3,
-          5
-        ],
-        "end": [
-          1,
-          4
-        ]
-      },
-      {
-        "string": "Ne4",
-        "start": [
-          3,
-          5
-        ],
-        "end": [
-          5,
-          4
-        ]
-      },
-      {
-        "string": "Nxa6",
-        "start": [
-          3,
-          5
-        ],
-        "end": [
-          1,
-          6
-        ]
-      },
-      {
-        "string": "Nb7",
-        "start": [
-          3,
-          5
-        ],
-        "end": [
-          2,
-          7
-        ]
-      },
-      {
-        "string": "Nd7",
-        "start": [
-          3,
-          5
-        ],
-        "end": [
-          4,
-          7
-        ]
-      },
-      {
-        "string": "d6",
-        "start": [
-          4,
-          5
-        ],
-        "end": [
-          4,
-          6
-        ]
-      },
-      {
         "string": "axb5",
         "start": [
           1,
@@ -2589,79 +2116,13 @@
           4,
           7
         ]
-      },
-      {
-        "string": "Ne5",
-        "start": [
-          6,
-          7
-        ],
-        "end": [
-          5,
-          5
-        ]
-      },
-      {
-        "string": "Ng5",
-        "start": [
-          6,
-          7
-        ],
-        "end": [
-          7,
-          5
-        ]
-      },
-      {
-        "string": "Nd6",
-        "start": [
-          6,
-          7
-        ],
-        "end": [
-          4,
-          6
-        ]
-      },
-      {
-        "string": "Nh6",
-        "start": [
-          6,
-          7
-        ],
-        "end": [
-          8,
-          6
-        ]
-      },
-      {
-        "string": "Nd8",
-        "start": [
-          6,
-          7
-        ],
-        "end": [
-          4,
-          8
-        ]
-      },
-      {
-        "string": "Nh8",
-        "start": [
-          6,
-          7
-        ],
-        "end": [
-          8,
-          8
-        ]
       }
     ]
   },
   "legal": [],
   "players": [
     {
-      "id": "e500",
+      "id": "1f2d",
       "color": "White",
       "elo": 1200,
       "time": 300,
@@ -2669,7 +2130,7 @@
       "turn": 1
     },
     {
-      "id": "b0a8",
+      "id": "fb30",
       "color": "Black",
       "elo": 1200,
       "time": 300,

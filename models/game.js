@@ -56,6 +56,18 @@ class Game {
 
     submit(string){
         this.board.MOVE(string)
+
+        let turn = this.board.position.turn
+        let color;
+        if (turn.toLowerCase() === 'w') {color = "White"}
+        if (turn.toLowerCase() === 'b') {color = "Black"}
+
+
+        console.log (`${color} moved: ${string}`)
+
+        if (color === "White") { this.board.position.turn = 'b'}
+        if (color === "Black") { this.board.position.turn = 'w'}
+
         this.writeFEN()
         this.board.SEARCH_ALL()
         this.board.position = new Position(this.options.FEN)
@@ -132,7 +144,8 @@ class Game {
         if (FEN[ FEN.length - 1] === '/')
         {FEN = FEN.slice(0, -1)}
         
-        let object = this.board.position 
+        let object = this.board.position
+
         FEN += ` ${object.turn} ${object.castling} ${object.enPassant} ${object.draw50} ${object.moveCount}`        
         this.options.FEN = FEN
     }

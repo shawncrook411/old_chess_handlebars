@@ -124,8 +124,18 @@ class Board {
     SEARCH(start){       
         let occupant = start.piece
 
+        //If unoccupied, can't move
         if (occupant === '0')
         { return [] }
+
+        //If it's white's turn and the piece color isn't white, can't move
+        if (occupant.color !== 'White' && this.position.turn === 'w')
+        { return [] }
+
+        //If it's black's turn and the piece color isn't black, can't move
+        if (occupant.color !== 'Black' && this.position.turn === 'b')
+        { return [] }
+
         if (occupant.type === "Knight")
         { 
             return this.SEARCH_KNIGHT(start)            
