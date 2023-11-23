@@ -1,0 +1,31 @@
+ROUTES
+
+/ : Home Page
+
+/api : All API requests
+
+    /response : Generate board response for Display
+
+    /submit : Go to Routes to submit to GAME
+
+
+        /move : submit move requests
+        
+        /draw : submit draw offer
+
+        /resign : submit resignation
+
+        /claimDraw : submit draw claim (three/fold 50move)
+
+        
+        
+
+    /meta : Go to Routes to affect game
+
+        /newGame : creates a new game
+
+        /terminate : terminate game and respond result
+
+        /forceDraw : terminate draw (5fold / 75 move / Insufficient)
+
+        

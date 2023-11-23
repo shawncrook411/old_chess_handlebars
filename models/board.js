@@ -146,6 +146,8 @@ class Board {
         //Calculates distance to edge, based on thisBOARD's size based on the starting position of the search
         let distance = [
             this.sizeY - start.y,            
+
+            
             this.sizeX - start.x,            
             start.y - 1,            
             start.x - 1,            

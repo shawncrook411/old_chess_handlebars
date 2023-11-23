@@ -1,0 +1,46 @@
+{
+  "options": {
+    "players": [],
+    "playersNumber": 2,
+    "time": 5,
+    "increment": 3,
+    "variant": "classic",
+    "style": "pixel",
+    "playerColors": [
+      "White",
+      "Black"
+    ],
+    "boardColors": [
+      "#1750AC",
+      "#73B9EE"
+    ],
+    "sizeX": 8,
+    "sizeY": 8,
+    "FEN": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+    "DefaultFEN": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"
+  },
+  "id": "ddb2",
+  "result": "In progress",
+  "termination": "",
+  "date": "2023-11-22T21:52:25.378Z",
+  "board": "",
+  "legal": [],
+  "players": [
+    {
+      "id": "6d85",
+      "color": "White",
+      "elo": 1200,
+      "time": 300,
+      "increment": 3,
+      "turn": 1
+    },
+    {
+      "id": "fd6a",
+      "color": "Black",
+      "elo": 1200,
+      "time": 300,
+      "increment": 3,
+      "turn": 0
+    }
+  ]
+}

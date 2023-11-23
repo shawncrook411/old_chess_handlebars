@@ -1,6 +1,6 @@
 const { Board , Position } = require('./board.js')
 const { Player } = require('./pieces.js')
-const uuid = require('./uuid.js')
+const uuid = require('../helpers/uuid.js')
 const dayjs = require('dayjs')
 
 
