@@ -1,5 +1,7 @@
-const express = require('express')
 const path = require('path')
+
+const express = require('express')
+
 const api = require('./routes')
 
 const app = express()

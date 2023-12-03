@@ -11,7 +11,7 @@ app.put('/response/', (req, res) => {
     res.json(game.respond())
 })
 
-module.exports = { app }
+module.exports =  app 
 
 
 
