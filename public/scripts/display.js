@@ -1,5 +1,6 @@
 const DATA = {
-    piecelink: 'https://raw.githubusercontent.com/lichess-org/lila/cf1ad792dafa8b7bebad8cc262826d9e0a165491/public/piece/'
+    piecelink: 'https://raw.githubusercontent.com/lichess-org/lila/cf1ad792dafa8b7bebad8cc262826d9e0a165491/public/piece/',
+    style: 'pixel'
 }
 
 class Display{
@@ -7,8 +8,8 @@ class Display{
     {
         this.options = response.options
         this.position = response.position
-        this.time_WHITE = response.players[0].time
-        this.time_BLACK = response.players[1].time
+        // this.time_WHITE = response.players[0].time
+        // this.time_BLACK = response.players[1].time
         this.displayALL()
     }
 
@@ -53,11 +54,11 @@ class Display{
 
     displayBOARD(){
         //Row decreases, generate top to bottom rows
-        newRow: for(let i = this.options.sizeY; i > 0; i--)
+        newRow: for(let i = this.options.height; i > 0; i--)
         {
             let column = document.createElement('div')
             column.setAttribute('class', 'column')
-            newSquare: for (let j = 0; j < this.options.sizeX; j++)
+            newSquare: for (let j = 0; j < this.options.width; j++)
             {
                 let square = document.createElement('div')
                 square.setAttribute('id',  `${String.fromCharCode(8 - i + 65).toUpperCase()}${j+1}`,  )            
@@ -88,7 +89,7 @@ class Display{
                     if (this.options.style === 'disguised')
                     { char = ''}
                     
-                    let source = `${DATA.piecelink}/${this.options.style}/${color}${char.toUpperCase()}.svg`
+                    let source = `${DATA.piecelink}/${DATA.style}/${color}${char.toUpperCase()}.svg`
 
                     let anchor = document.createElement('a')
                     let image = document.createElement('img')

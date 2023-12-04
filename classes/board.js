@@ -71,17 +71,17 @@ class Position {
 class Board {
     constructor(options)
     {
-        this.sizeX = options.sizeX
-        this.sizeY = options.sizeY
+        this.sizeX = options.width
+        this.sizeY = options.height
         this.playersCount = options.playersCount
         let squares = []
         
         let position = new Position(options.FEN)
         this.position = position
         
-        for (let i = 0; i < options.sizeY; i++)
+        for (let i = 0; i < this.sizeY; i++)
         {
-            for (let j = 0; j < options.sizeX; j++)
+            for (let j = 0; j < this.sizeX; j++)
             {   
                 let object = new Square(j, i)               
                 squares.push(object)
@@ -145,9 +145,7 @@ class Board {
         
         //Calculates distance to edge, based on thisBOARD's size based on the starting position of the search
         let distance = [
-            this.sizeY - start.y,            
-
-            
+            this.sizeY - start.y,        
             this.sizeX - start.x,            
             start.y - 1,            
             start.x - 1,            

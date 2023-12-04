@@ -1,4 +1,9 @@
 const router = require('express').Router()
+const { Game, Response, Default, Square, Board, Position, Piece, King, Queen, Rook, Bishop, Knight, Pawn } = require('../classes/index')
+const { User, Player, Preferences, Chess, Chess4} = require('../models/index')
+const sequelize = require('../config/connection')
+
+
 module.exports = router
 
 router.get('/', async (req, res) => {
@@ -11,10 +16,13 @@ router.get('/', async (req, res) => {
     }
 })
 
-router.get('/chess', async (req, res) => {
-    try{
-        res.render('chess')
-
+router.get('/chess/game/:id', async (req, res) => {
+    try{      
+        res.render('homepage', {
+            loggedIn: req.session.loggedIn,
+            username: req.session.username,
+            
+        })
     } catch (err) {
         console.log(err)
         res.status(500).json(err)

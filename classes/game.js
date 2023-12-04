@@ -1,24 +1,22 @@
 const { Board , Position } = require('./board.js')
 const { Player } = require('./pieces.js')
-const uuid = require('../helpers/uuid.js')
+// const uuid = require('../helpers/uuid.js') 
 const dayjs = require('dayjs')
+//MUST FIX GAME ID GENERATION
 
-
-var options =  
+const Default =  
 {        
     players : [],
     playersNumber : 2,
     time : 5,
-    increment : 3,
+    inc : 3,
     variant : 'classic',
-    style : 'pixel',
-    playerColors : ['White', 'Black'],
-    boardColors : ['#1750AC', '#73B9EE'],
-    sizeX : 8,
-    sizeY : 8,
-    FEN : '',
-    DefaultFEN: 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1'
+    width : 8,
+    height : 8,
+    FEN: 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1',
+    bonus: false
 }
+
 
 class Response {
     constructor(options, position, players, legal)
@@ -39,17 +37,10 @@ class Response {
 class Game {
     constructor(options){      
         this.options = options
-        this.id = uuid()
-        this.result = 'In progress'
-        this.termination = ''
-        this.date = dayjs()
-        
+        this.id = options.id        
         this.board = new Board(options)
-        this.legal = []   
+        this.legal = []         
 
-        this.players = []
-        for (let i = 0; i < options.playersNumber; i++)
-        { this.players.push(new Player(uuid(), options.playerColors[i], options.time, options.increment))}
     
         this.board.SEARCH_ALL()    
     }
@@ -155,4 +146,4 @@ class Game {
 }
    
 
-module.exports = { Game, Response, options }
+module.exports = { Game, Response, Default }

@@ -1,18 +1,18 @@
-class Player {
-    constructor(id, color, time, increment)
-    {
-        this.id = id
-        this.color = color
-        this.elo = 1200
-        this.time = time * 60
-        this.increment = increment
-        this.turn = 0 
+// class Player {
+//     constructor(id, color, time, increment)
+//     {
+//         this.id = id
+//         this.color = color
+//         this.elo = 1200
+//         this.time = time * 60
+//         this.increment = increment
+//         this.turn = 0 
 
-        if (this.color === "White") {
-            this.turn = 1
-        }
-    }
-} 
+//         if (this.color === "White") {
+//             this.turn = 1
+//         }
+//     }
+// } 
 
 class Piece {
     constructor(color)
@@ -108,5 +108,5 @@ class Pawn extends Piece {
 
 }
 
-module.exports = { Player, Piece, King, Queen, Rook, Bishop, Knight, Pawn } 
+module.exports = { Piece, King, Queen, Rook, Bishop, Knight, Pawn } 
 

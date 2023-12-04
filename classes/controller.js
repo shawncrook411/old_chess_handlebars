@@ -1,9 +1,9 @@
 
-const { Game, options } = require('./game.js')
+const { Game, Default } = require('./game.js')
 const fs = require('fs')
 
-options.FEN = 'r7/2n5/6p1/rk3np1/1b2P2p/1K1NP3/2p4P/1Q6 w - - 0 1'
-game = new Game(options)
+
+game = new Game(Default)
 
 response = game.respond()
 response = JSON.stringify(response, null, 2)
@@ -11,6 +11,8 @@ fs.writeFile('./data/response.json', response, (err) => err ? console.error(err)
 
 data = JSON.stringify(game, null, 2)
 fs.writeFile(`./data/games/game.json`, data, (err) => err ? console.error(err) : {})
+
+// console.log(response)
 
 //En Passant target FEN
 
