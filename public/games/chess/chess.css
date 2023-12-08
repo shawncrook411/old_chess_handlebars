@@ -1,0 +1,152 @@
+:root{
+    --border-size: 3px;
+    --primary-board-color: rgb(117, 80, 0);
+    --secondary-board-color: rgb(255, 226, 99);
+    --board-grid-color: rgb(58, 58, 58);
+    
+    --primary-board-color: #ff7839 ;
+    --secondary-board-color: #ffed48;
+    --primary-board-color: #1750AC ;
+    --secondary-board-color: #73B9EE;
+
+}
+
+*{
+    color: gray;
+}
+
+header{
+    height: 0px;
+}
+
+.square{
+    width: 80px;
+    height: 80px;
+    border: var(--board-grid-color) solid var(--border-size);
+    position: relative;       
+}
+
+#board_border{
+    border: var(--board-grid-color) solid var(--border-size);
+    display: flex;
+}
+
+.column{
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+#board{  
+    border: rgb(0, 0, 0) solid 10px;   
+    border-radius: 10px; 
+}
+
+main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#main_section{
+    display: flex;
+}
+
+.spacers{
+    border: black solid 5px;
+    border-radius: 10px;
+    width: 485px;
+    margin-right: 30px;
+    margin-left: 30px;
+}
+
+form{
+    padding: 10px;
+}
+
+label{
+    font-size: 30px;
+}
+
+.primary_square::after{   
+    position: absolute;
+    top: -3px;
+    left: 0px;
+    content: attr(id);
+    font-size: 20px;
+    color: var(--secondary-board-color);
+}
+
+.secondary_square::after{
+    position: absolute;
+    top: -3px;
+    left: 0px;
+    content: attr(id);
+    font-size: 18px;
+    color: var(--primary-board-color);   
+}
+
+
+.primary_square{
+    background: var(--primary-board-color);     
+}
+
+.secondary_square{
+    background: var(--secondary-board-color);
+    
+}
+
+.clock_card{
+    height: 150px;
+    width: 1775px;
+    border: green dashed 5px;
+    margin: 20px;
+    display: flex;
+}
+
+.clock{
+    height: auto;
+    width: 140px;
+    border: black solid 5px;
+    margin: 10px;
+    flex: 1;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: black;
+    font-size: 90px;
+    font-family: 'Nabla';
+    text-shadow:
+		-1px -1px 0 #000,
+		1px -1px 0 #000,
+		-1px 1px 0 #000,
+		1px 1px 0 #000;
+}
+
+#player1Clock{
+    
+    background-color: var(--secondary-board-color)
+}
+ 
+#player2Clock{
+        
+    background-color: var(--primary-board-color)
+}
+
+.cage{
+    height: auto;
+    flex: 4;
+    border: black solid 5px;
+    margin: 10px;
+    border-radius: 10px;
+}
+
+a{
+    height: 80px;
+    width: 80px;
+}
+
+img{
+    height: 80px;
+    width: 80px;    
+}
