@@ -30,13 +30,18 @@ header{
     border: var(--board-grid-color) solid var(--border-size);
     display: flex;
     flex-direction: column;
+ /* flex-direction: column-reverse */
 }
 
 .row{
     display: flex;
     flex-direction: row;
+ /* flex-direction: row-reverse */
+
     
 }
+
+
 
 #board{  
     border: rgb(0, 0, 0) solid 10px;   

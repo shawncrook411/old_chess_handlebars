@@ -1,7 +1,7 @@
 var convert_x = function(x) { return String.fromCharCode(x + 97) }  //Used for converting x, y coordinates to the chess grid ex: 0, 3 -> A4
 var convert_y = function(y) { return (y + 1 ) }                     //Used for converting x, y coordinates to the chess grid ex: 0, 3 -> A4
 
-class Move{
+class Move{ //May have special properties. 1 for en Passant, 2 for Castling, 3 for Promotion
     constructor(string, command, start, end){
         this.string = string
         this.command = command
@@ -212,7 +212,6 @@ class Chess_Game {
                             //If in diagnol direction, the test square is occupied and can be captured
                             if(direction % 2 && test.occupant !== '0' && test.occupant.color !== occupant.color){
 
-
                                 //Format exf4
                                 let moveString = `${convert_x(start.x)}x${convert_x(test.x)}${convert_y(test.y)}`
                                 //Format e2e4
@@ -220,6 +219,24 @@ class Chess_Game {
 
                                 let output = new Move(moveString, move, {x: start.x, y: start.y}, {x: test.x, y: test.y})
                                 legal.push(output)
+                                continue direction
+                            }
+
+                            //Check for enPassant target
+                            if(this.target !== '-')
+                            {
+                                if(this.target === `${convert_x(test.x)}${convert_y(test.y)}`)
+                                {
+                                    //Format exf4
+                                    let moveString = `${convert_x(start.x)}x${convert_x(test.x)}${convert_y(test.y)}`
+                                    //Format e2e4
+                                    let move = `${convert_x(start.x)}${convert_y(start.y)}${convert_x(test.x)}${convert_y(test.y)}`
+
+                                    let output = new Move(moveString, move, {x: start.x, y: start.y}, {x: test.x, y: test.y})
+                                    output.special = 'enPassant'
+                                    legal.push(output)
+                                    continue direction
+                                }
                             }
 
                             if(direction % 2 === 0 && test.occupant === '0'){
@@ -229,8 +246,7 @@ class Chess_Game {
                                 let move = `${convert_x(start.x)}${convert_y(start.y)}${convert_x(test.x)}${convert_y(test.y)}`
 
                                 let output = new Move(moveString, move, {x: start.x, y: start.y}, {x: test.x, y: test.y})
-                                legal.push(output)                               
-                                
+                                legal.push(output)                              
                             }
 
                             //Allows for a second move to be caluclated IF it's on the starting rank && you're facing the right direction
@@ -265,7 +281,7 @@ class Chess_Game {
                         }
 
                         if(occupant.type === "K")    continue direction
-                        else                            continue to_edge
+                        else                         continue to_edge
                     }
                 }
             }
@@ -409,16 +425,15 @@ class Chess_Game {
                 input = input.slice(0, -1)
                 break
         }
-
         let success = false
 
         this.legal.forEach(move => {
             if(move.string === input){
-                this.move(move.start, move.end)
+                this.move(move)
                 success = true            
             }
             else if (move.command === input){
-                this.move(move.start, move.end)
+                this.move(move)
                 success = true                
             }
         })
@@ -426,13 +441,35 @@ class Chess_Game {
         if(!success) console.log(`Invalid Move: ${input}`)
     }    
 
-    move(start, end){        
+    move(move){   
+        const start = move.start
+        const end = move.end
+        const special = move.special
+
         const oldSquare = this.board[start.y][start.x]
         const newSquare = this.board[end.y][end.x]
-
         const piece = oldSquare.occupant
+
+        switch(special){
+            case 'enPassant':
+                let captureSquare
+                if(piece.color === 'w') captureSquare = this.board[end.y - 1][end.x]
+                if(piece.color === 'b') captureSquare = this.board[end.y + 1][end.x]
+                if(captureSquare)       captureSquare.occupant = '0'           
+                break
+            case 'Castling':
+                break
+            case 'Promotion':
+                break    
+        }
+
         newSquare.occupant = piece
         oldSquare.occupant = '0'
+
+        this.target = '-'
+
+        if(piece.type === 'P' && start.y === end.y + 2) this.target = `${convert_x(end.x)}${convert_y(end.y + 1)}`
+        if(piece.type === 'P' && start.y === end.y - 2) this.target = `${convert_x(end.x)}${convert_y(end.y - 1)}`
 
         if (this.turn === 'w') {
             this.turn = 'b'
