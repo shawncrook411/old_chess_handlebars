@@ -218,6 +218,9 @@ class Chess_Game {
                                 let move = `${convert_x(start.x)}${convert_y(start.y)}${convert_x(test.x)}${convert_y(test.y)}`
 
                                 let output = new Move(moveString, move, {x: start.x, y: start.y}, {x: test.x, y: test.y})
+
+                                if(test.y === this.height - 1 || test.y === 0) output.special = 'Promotion'
+
                                 legal.push(output)
                                 continue direction
                             }
@@ -246,6 +249,8 @@ class Chess_Game {
                                 let move = `${convert_x(start.x)}${convert_y(start.y)}${convert_x(test.x)}${convert_y(test.y)}`
 
                                 let output = new Move(moveString, move, {x: start.x, y: start.y}, {x: test.x, y: test.y})
+                                if(test.y === this.height - 1 || test.y === 0) output.special = 'Promotion'
+
                                 legal.push(output)                              
                             }
 
@@ -466,8 +471,8 @@ class Chess_Game {
         newSquare.occupant = piece
         oldSquare.occupant = '0'
 
+        //Target is always reset, but if a pawn moves twice it will be set to one square behind it
         this.target = '-'
-
         if(piece.type === 'P' && start.y === end.y + 2) this.target = `${convert_x(end.x)}${convert_y(end.y + 1)}`
         if(piece.type === 'P' && start.y === end.y - 2) this.target = `${convert_x(end.x)}${convert_y(end.y - 1)}`
 

@@ -1,11 +1,11 @@
 const { Chess_Game, Default } = require('./games/chess')
 
 const options = {...Default}
-options.FEN = 'rnbqkbnr/pppp1ppp/8/4P3/5p2/8/PPPP2PP/RNBQKBNR b KQkq - 0 3'
+options.FEN = 'rnQq2nr/ppp1k1pp/8/5Q2/1b6/5N2/PPPP2pP/RNB1KB1R b KQ - 1 9'
 
 const game = new Chess_Game(options)
 
-game.submit('f5')
+
 game.table()
 game.legals()
 
