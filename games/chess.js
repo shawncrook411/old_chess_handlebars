@@ -75,6 +75,7 @@ class Chess_Game {
         this.player_2 = options.player_2
         this.player_1_time = options.player_1_time
         this.player_2_time = options.player_2_time
+        this.promote = 'Q'
         this.variant = options.variant
         this.time = options.time
         this.inc = options.inc
@@ -417,11 +418,7 @@ class Chess_Game {
 
         return broken
     }
-
-    submit_mass(array){
-        array.forEach(move => this.submit(move))
-    }
-
+    
     submit(input){
 
         switch(input[input.length -1])
@@ -465,6 +462,7 @@ class Chess_Game {
             case 'Castling':
                 break
             case 'Promotion':
+                piece.type = this.promote
                 break    
         }
 
