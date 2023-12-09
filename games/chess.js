@@ -1,6 +1,16 @@
 var convert_x = function(x) { return String.fromCharCode(x + 97) }  //Used for converting x, y coordinates to the chess grid ex: 0, 3 -> A4
 var convert_y = function(y) { return (y + 1 ) }                     //Used for converting x, y coordinates to the chess grid ex: 0, 3 -> A4
 
+class Move{
+    constructor(string, command, start, end){
+        this.string = string
+        this.command = command
+        this.start = start
+        this.end = end
+        //start and end = {x: x, y: y}
+    }
+}
+
 class Square{
     constructor(x, y, occupant){
         this.x = x,
@@ -107,10 +117,7 @@ class Chess_Game {
             this.board.push(row)
         }
         this.search()
-    }
-
-    respond(){        
-    }
+    }    
 
     table(){
         let array = []
@@ -127,6 +134,10 @@ class Chess_Game {
         }
         console.table(array)
         return array
+    }
+
+    table_legal(){
+        console.table(this.legal)
     }
 
     search(){
@@ -146,13 +157,8 @@ class Chess_Game {
 
                 if (occupant.type === 'N')
                 {
-                    let results = this.search_KNIGHT(start)
-                    let knightMoves = results[0]
-                    let knightStrings = results [1]  
-                    
-                    knightMoves.forEach(move => legal.push(move))
-                    knightStrings.forEach(move => legalStrings.push(move))
-
+                    let results = this.search_KNIGHT(start)                  
+                    results.forEach(move => legal.push(move))                  
                     continue checkSquareStart
                 }
 
@@ -207,21 +213,24 @@ class Chess_Game {
                             //If in diagnol direction, the test square is occupied and can be captured
                             if(direction % 2 && test.occupant !== '0' && test.occupant.color !== occupant.color){
 
+
                                 //Format exf4
                                 let moveString = `${convert_x(start.x)}x${convert_x(test.x)}${convert_y(test.y)}`
-                                legalStrings.push(moveString)
                                 //Format e2e4
                                 let move = `${convert_x(start.x)}${convert_y(start.y)}${convert_x(test.x)}${convert_y(test.y)}`
-                                legal.push(move)
+
+                                let output = new Move(moveString, move, {x: start.x, y: start.y}, {x: test.x, y: test.y})
+                                legal.push(output)
                             }
 
                             if(direction % 2 === 0 && test.occupant === '0'){
                                 //Format f4
                                 let moveString = `${convert_x(test.x)}${convert_y(test.y)}`
-                                legalStrings.push(moveString)
                                 //Format e2e4
                                 let move = `${convert_x(start.x)}${convert_y(start.y)}${convert_x(test.x)}${convert_y(test.y)}`
-                                legal.push(move)                               
+
+                                let output = new Move(moveString, move, {x: start.x, y: start.y}, {x: test.x, y: test.y})
+                                legal.push(output)                               
                                 
                             }
 
@@ -235,20 +244,23 @@ class Chess_Game {
                         if (test.occupant === '0') {
                             //Format Rg4                            
                             let moveString = `${occupant.type[0]}${convert_x(test.x)}${convert_y(test.y)}`
-                            legalStrings.push(moveString)
+                            
                             //Format e4e8
                             let move = `${convert_x(start.x)}${convert_y(start.y)}${convert_x(test.x)}${convert_y(test.y)}`
-                            legal.push(move)                          
+
+                            let output = new Move(moveString, move, {x: start.x, y: start.y}, {x: test.x, y: test.y})
+                            legal.push(output)                          
                         }
 
                         if(test.occupant !== '0'){                 
                             if (test.occupant.color !== occupant.color){
                                 //Format Rxg4
                                 let moveString = `${occupant.type[0]}x${convert_x(test.x)}${convert_y(test.y)}`
-                                legalStrings.push(moveString)
                                 //Format e4e8
                                 let move = `${convert_x(start.x)}${convert_y(start.y)}${convert_x(test.x)}${convert_y(test.y)}`
-                                legal.push(move)
+
+                                let output = new Move(moveString, move, {x: start.x, y: start.y}, {x: test.x, y: test.y})
+                                legal.push(output)
                             }
                             continue direction
                         }
@@ -260,11 +272,9 @@ class Chess_Game {
             }
         }
         this.legal = legal
-        this.legalStrings = legalStrings
     }
 
-    search_KNIGHT(start){
-        let results = []
+    search_KNIGHT(start){        
         let moves = []
         let moveStrings = []
         let occupant = start.occupant        
@@ -288,18 +298,17 @@ class Chess_Game {
 
             if( test.x >= 0 && test.x < this.width &&
                 test.y >= 0 && test.y < this.height)
-            {
-                
-
+            {              
                 let reference = this.board[test.y][test.x]
-
 
                 if (reference.occupant === '0'){
                     let moveString = `N${convert_x(test.x)}${convert_y(test.y)}`
                     moveStrings.push(moveString)
 
                     let move = `${convert_x(start.x)}${convert_y(start.y)}${convert_x(test.x)}${convert_y(test.y)}`
-                    moves.push(move)
+
+                    let output = new Move(moveString, move, {x: start.x, y: start.y}, {x: test.x, y: test.y})
+                    moves.push(output)
                 }
 
                 if (reference.occupant !== '0' && reference.occupant.color !== occupant.color)
@@ -308,14 +317,13 @@ class Chess_Game {
                     moveStrings.push(moveString)
 
                     let move = `${convert_x(start.x)}${convert_y(start.y)}${convert_x(test.x)}${convert_y(test.y)}`
-                    moves.push(move)
+
+                    let output = new Move(moveString, move, {x: start.x, y: start.y}, {x: test.x, y: test.y})
+                    moves.push(output)
                 }
             }
         }        
-
-        results[0] = moves
-        results[1] = moveStrings
-        return results
+        return moves
     }
     
     writeFEN(){
@@ -390,8 +398,83 @@ class Chess_Game {
         return broken
     }
 
-    move(){
+    submit(move){
 
+        if (this.legal.includes(move) || this.legalStrings.includes(move.string)){
+
+            if (this.legal.includes(move)) {
+                this.move(move)            
+            } else {
+                this.move_by_string(move.string)
+            }
+
+            if (this.turn === 'w') {
+                this.turn = 'b'
+            } //Only increase move count after Black's turn
+            else if (this.turn === 'b') {
+                this.turn = 'w'
+                this.moves++
+            }       
+
+            this.writeFEN()
+            this.readFEN()
+            this.search()
+
+        } else {
+            console.log("Invalid Move")
+        }
+    }
+
+    move_by_string(move){
+        const start = move.start
+        const end = move.end
+        //Need to create move object that contains {string: start: end: }
+
+        //Ensure that both start && end positions are valid in the board
+        if( start.x < this.width  && end.x < this.width &&
+            start.y < this.height && end.y < this.height &&
+            start.x >= 0 && end.x >= 0 &&
+            start.y >= 0 && end.y >= 0 ){
+
+            const oldSquare = this.board[start.y][start.x]
+            const newSquare = this.board[end.y][end.x]
+
+            const piece = oldSquare.occupant
+            newSquare.occupant = piece
+            oldSquare.occupant = '0'
+        }  
+        else {
+            console.log("Invalid Move")
+        }
+    }
+
+    move(move){
+        
+        if (move.length !== 4) {
+            console.log("Invalid Move")
+            return 
+        }
+        const start = {x: (move.charCodeAt(0) -97 ), y: move[1] - 1}
+        const end   = {x: (move.charCodeAt(2) -97 ), y: move[3] - 1}
+
+        console.log(start)
+
+        //Ensure that both start && end positions are valid in the board
+        if( start.x < this.width  && end.x < this.width &&
+            start.y < this.height && end.y < this.height &&
+            start.x >= 0 && end.x >= 0 &&
+            start.y >= 0 && end.y >= 0 ){
+
+            const oldSquare = this.board[start.y][start.x]
+            const newSquare = this.board[end.y][end.x]
+
+            const piece = oldSquare.occupant
+            newSquare.occupant = piece
+            oldSquare.occupant = '0'
+        }  
+        else {
+            console.log("Invalid Move")
+        }
     }
 }
 
