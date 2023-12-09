@@ -32,15 +32,14 @@ async function submitMove(move) {
 
 async function refresh() {
     const id = document.location.pathname.split('/').slice(-1)
-    let object = {id: id}
-    const data = await fetch(`/api/response/${id}`,
+    const data = await fetch(`/api/chess/response/${id}`,
     {
-        method: 'PUT', 
+        method: 'GET', 
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify(object)
     })
     const response = await data.json()
     return response
 }
+

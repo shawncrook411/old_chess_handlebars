@@ -1,7 +1,7 @@
 const router = require('express').Router()
 
 
-router.get('/chess', async (req, res) => {
+router.get('/chess/:id', async (req, res) => {
     try {
         res.render('chess')
         

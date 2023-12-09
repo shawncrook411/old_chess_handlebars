@@ -2,16 +2,13 @@
 //     DISPLAY = new Display(response)
 // })
 
-var DISPLAY;
-
-
 refresh().then(response => {
-    DISPLAY = new Display(response)
-    GLOBAL = response    
-}).then(() => {
-    const input = document.querySelector('#input')
-    input.addEventListener('submit', submit) 
+    const DISPLAY = new Display(response)   
 })
+
+// const input = document.querySelector('#input')
+// input.addEventListener('submit', submit) 
+
 
 
     

@@ -3,7 +3,7 @@ const { Chess, User } = require ('../../models/index')
 const { readID, writeID, writeNewGame } = require('../../utils/chess/read-write')
 const router = require('express').Router()
 
-router.get('/', (req, res) => {
+router.get('/:id', (req, res) => {
     res.json({message: 'good'})
 })
 
@@ -44,9 +44,9 @@ router.put('/move', async (req, res) => {
 })
 
 
-router.put('/retrieve', async (req, res) => {
+router.get('/response/:id', async (req, res) => {
     try{
-        const options = await readID(req.body.id)
+        const options = await readID(req.params.id)
         if(!options)
         {
             res.status(404).json("Game doesn't exist")

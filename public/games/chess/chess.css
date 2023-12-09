@@ -29,11 +29,13 @@ header{
 #board_border{
     border: var(--board-grid-color) solid var(--border-size);
     display: flex;
+    flex-direction: column;
 }
 
-.column{
+.row{
     display: flex;
-    flex-direction: column-reverse;
+    flex-direction: row;
+    
 }
 
 #board{  

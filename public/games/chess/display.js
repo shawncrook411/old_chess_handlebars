@@ -6,22 +6,39 @@ const DATA = {
 class Display{
     constructor(response)
     {
-        this.options = response.options
-        this.position = response.position
-        // this.time_WHITE = response.players[0].time
-        // this.time_BLACK = response.players[1].time
+        this.id = response.id
+        this.FEN = response.FEN
+        this.legal = []
+        
+        response.legal.forEach(move =>{
+            this.legal.push(move.string)
+            this.legal.push(move.command)
+        })
+
+        this.player_1 = response.player_1
+        this.player_2 = response.player_2
+        this.player_1_time = response.player_1
+        this.player_2_time = response.player_2
+        this.width = response.width
+        this.height = response.height
+        this.status = response.status
+        this.turn = response.turn
+        this.target = response.target
+        this.board = response.board
+
         this.displayALL()
     }
 
     displayALL(){
         this.displayBOARD()
-        this.displayCLOCKS()
+        this.displayPIECES()
+        // this.displayCLOCKS()
         this.saveDATA()
     }
 
     saveDATA(){
         const main = document.querySelector('#main_section')
-        main.setAttribute('data-id', this.options.id)
+        main.setAttribute('data-id', this.id)
     }
 
     startTimer(){
@@ -58,42 +75,44 @@ class Display{
 
     }
 
-    displayBOARD(){
-        //Row decreases, generate top to bottom rows
-        newRow: for(let i = this.options.height; i > 0; i--)
+    displayBOARD(){        
+       
+        const board = []
+        this.board.forEach(row => board.splice(0, -1, row))
+
+        newRow: for(let row of board)
         {
-            let column = document.createElement('div')
-            column.setAttribute('class', 'column')
-            newSquare: for (let j = 0; j < this.options.width; j++)
+            let display_row = document.createElement('div')
+            display_row.setAttribute('class', 'row')
+            newSquare: for(let square of row)
             {
-                let square = document.createElement('div')
-                square.setAttribute('id',  `${String.fromCharCode(8 - i + 65).toUpperCase()}${j+1}`,  )            
+                let display_square = document.createElement('div')
+                display_square.setAttribute('id', `${square.id}`)
 
-                if( (j+i) % 2 == 0){ square.setAttribute('class', 'square primary_square') }
-                else { square.setAttribute('class', 'square secondary_square')}
+                if( (square.x + square.y) % 2 == 0) { display_square.setAttribute('class', 'square primary_square')}
+                else                                { display_square.setAttribute('class', 'square secondary_square')}
 
-                square.addEventListener('click', function(event){
+                display_square.addEventListener('click', function(event){
                     //complete moves????? (event.target)
-                })
-                column.appendChild(square);
+                })    
+                display_row.appendChild(display_square)        
             }
-
-            let board = document.getElementById("board_border")
-            board.appendChild(column)
+            let position = document.getElementById("board_border")
+                position.appendChild(display_row)
         }
+    }
 
-        displayPieces_row: for (let i = 0; i < this.position.placement.length; i++)
+    displayPIECES(){
+        displayPieces_row: for(let row of this.board)
         {
-            displayPieces_checkSquare: for (let j = 0; j < this.position.placement[i].length; j++)
+            displayPieces_checkSquare: for (let square of row)
             {
-                let char = this.position.placement[7 - i][j]
-                if (char !== '-')
+                if (square.occupant !== '0')
                 {
-                    let color = 'b'
-                    if(char !== char.toLowerCase()) { color = 'w'}
+                    let char = square.occupant.type
+                    let color = square.occupant.color                    
 
-                    if (this.options.style === 'disguised')
-                    { char = ''}
+                    if (DATA.style === 'disguised') char = ''
                     
                     let source = `${DATA.piecelink}/${DATA.style}/${color}${char.toUpperCase()}.svg`
 
@@ -102,12 +121,12 @@ class Display{
 
                     image.setAttribute('src', source)
 
-                    let square = document.getElementById(`${String.fromCharCode(j+65).toUpperCase()}${i+1}`)
+                    let display_square = document.getElementById(`${square.id}`)
 
-                    square.appendChild(anchor)
+                    display_square.appendChild(anchor)
                     anchor.appendChild(image)
                 }                
             }
         }
-    }
+    }    
 }
