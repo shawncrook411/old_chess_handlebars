@@ -52,6 +52,9 @@ const Default =
     status : true,
     turn : 1,
     moves : 0,
+    draw50: 0,
+    target: '-',
+    castling: 'KQkq'
 }
 
 class Chess_Game {
@@ -71,7 +74,9 @@ class Chess_Game {
         this.height = options.height
         this.status = options.status
         this.turn = options.turn
+        this.castling = options.castling
         this.moves = options.moves
+        this.draw50 = options.draw50
         this.target = options.target
         this.result = options.result
         this.termination = options.termination
@@ -324,7 +329,38 @@ class Chess_Game {
     }
 
     writeFEN(){
-        
+        let FEN = ''       
+
+        for (let row of this.board){
+            let newRow = ''
+            let digit = 0
+            for (let square of row){                
+                if (square.occupant !== '0')
+                {
+                    if (digit) newRow += `${digit}`           
+                    digit = 0
+
+                    let char = square.occupant.type
+                    if (square.occupant.color === 'b') char = char.toLowerCase()
+                    newRow += char
+                }
+                else digit++
+            }
+            if (digit) newRow += digit
+            newRow += '/'
+            FEN = newRow + FEN           
+        }
+
+        if (FEN[ FEN.length - 1] === '/') FEN = FEN.slice(0, -1) //Removes the last trailing '/'
+
+        let turn
+        if (this.turn === 1)  turn = 'w'
+        if (this.turn === -1) turn = 'b'
+
+        FEN += ` ${turn} ${this.castling} ${this.target} ${this.draw50} ${this.moves}`
+
+        this.FEN = FEN
+        return FEN    
     }
 
     readFEN(){
@@ -339,7 +375,6 @@ class Chess_Game {
         for (let string of position){
             let row = []
             for(let char of string){
-                console.log(char)
                 if(Number(char))
                 {
                     row += ('-').repeat(Number(char))
@@ -351,17 +386,25 @@ class Chess_Game {
             data.splice(0, 0, row)
         }
 
+        console.log(array[5])
+
         const broken = {
             placement: data,
             turn: array[1],
             castling: array[2],
-            enPassant: array[3],
+            target: array[3],
             draw50: array[4],
             moveCount: array[5],
         }
 
         if(broken.turn === 'w' || 'W') this.turn = 1
         if(broken.turn === 'b' || 'B') this.turn = -1
+
+        this.castling = broken.castling
+        this.target = broken.target
+        this.draw50 = broken.draw50
+        this.moves = broken.moveCount
+
         return broken
     }
 

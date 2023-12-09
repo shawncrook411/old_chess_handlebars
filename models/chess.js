@@ -79,9 +79,19 @@ Chess.init(
             defaultValue: 1,
             validate: { isIn: [['w', 'b']]} 
         },
+        castling: {
+            type: DataTypes.STRING,
+            defaultValue: 'KQkq',
+            validate: { len: [1, 4] }
+        },
         moves: {
             type: DataTypes.INTEGER,
+            defaultValue: 1,
+        },
+        draw50: {
+            type: DataTypes.INTEGER,
             defaultValue: 0,
+            validaate: { max: 76 }
         },
         target: {
             type: DataTypes.STRING,
