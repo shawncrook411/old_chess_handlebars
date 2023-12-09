@@ -46,7 +46,6 @@ const writeNewGame = async function(game){
 
 }
 
-
 const writeID = async function(game){
     if(game.id){
         const data = await Chess.findOne({
@@ -81,7 +80,8 @@ const writeID = async function(game){
                     }
                 })
                 return response
-            }            
+            }    
+            return updatedData        
         }        
     }    
 }
