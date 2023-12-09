@@ -23,15 +23,14 @@ async function submitMove(move, id) {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json'},
         body: {id: id, move: move}
-    })
-    .then(response => {
-        new Display(response)
-    })
+    }).then(reload())
 
 }
 
 async function refresh() {
-    const id = document.location.pathname.split('/').slice(-1)
+    const id = localStorage.getItem('id')
+    if (!id) return
+    
     const data = await fetch(`/api/chess/response/${id}`,
     {
         method: 'GET', 
@@ -40,6 +39,7 @@ async function refresh() {
         },
     })
     const response = await data.json()
-    return response
+    new Display(response)
+    return
 }
 

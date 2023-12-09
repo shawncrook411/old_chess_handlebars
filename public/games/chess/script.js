@@ -2,12 +2,11 @@
 //     DISPLAY = new Display(response)
 // })
 
-refresh().then(response => {
-    const DISPLAY = new Display(response)   
-})
+refresh()
 
-// const input = document.querySelector('#input')
-// input.addEventListener('submit', submit) 
+//Allows for the input move box to listen
+const input = document.querySelector('#input')
+input.addEventListener('submit', submit) 
 
 
 

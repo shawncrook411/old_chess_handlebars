@@ -34,7 +34,9 @@ router.put('/move', async (req, res) => {
             res.json({message: "No game found"}).status(404)
         }        
         else{
-            res.json(data).status(200)
+            const options = await readID(req.body.id)
+            const game = new Chess_Game(options)
+            res.json(game).status(200)
         }
 
     } catch(err) {

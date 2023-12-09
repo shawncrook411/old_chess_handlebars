@@ -1,31 +1,21 @@
 
-var retrieveDATA = function(){
-    const main = document.querySelector('#main_section')
-    let ID = main.getAttribute('data-id')
-    if (!ID) ID = document.location.pathname.split('/').slice(-1)
-    return ID
-}
-
-
 //Finds the input Move box and sends the move to submit. 
 var submit = async (event) => {
     event.preventDefault()
 
     const move = document.querySelector('#move').value.trim()
-    const id = retrieveDATA()
-    if (!move) return
 
-    if (!legal.includes(move)){
+    const moves = localStorage.getItem('legal')
+    if (!moves || !move) return
+    if (!moves.includes(move)){
         alert('Illegal Move')
         return
     }
 
-    const ID = retrieveDATA()
-    
+    const ID = localStorage.getItem('id')    
     object = { id: ID, move: move}
 
-    console.log(object)
-    await fetch(`/api/move/`,
+    const response = await fetch(`/api/chess/move/`,
     {
         method: 'PUT',
         headers: {
@@ -33,8 +23,7 @@ var submit = async (event) => {
         },
         body: JSON.stringify(object),
     })
-    .then(() => {
-        document.reload()
-    })
+    refresh()
+    return response
 }
 

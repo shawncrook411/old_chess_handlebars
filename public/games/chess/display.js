@@ -37,8 +37,11 @@ class Display{
     }
 
     saveDATA(){
-        const main = document.querySelector('#main_section')
-        main.setAttribute('data-id', this.id)
+        localStorage.setItem('id', this.id)
+        localStorage.setItem('legal', this.legal)
+        localStorage.setItem('player_1_time', this.player_1_time)
+        localStorage.setItem('player_2_time', this.player_2_time)
+        localStorage.setItem('turn', this.turn)
     }
 
     startTimer(){
@@ -74,7 +77,9 @@ class Display{
         blackClock.textContent = this.timerConvert( this.player_2_time )
     }
 
-    displayBOARD(){        
+    displayBOARD(){   
+        let position = document.getElementById("board_border")
+        while(position.firstChild) position.removeChild(position.firstChild)
        
         const board = []
         this.board.forEach(row => board.splice(0, -1, row))
@@ -96,7 +101,6 @@ class Display{
                 })    
                 display_row.appendChild(display_square)        
             }
-            let position = document.getElementById("board_border")
                 position.appendChild(display_row)
         }
     }
