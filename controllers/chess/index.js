@@ -13,10 +13,30 @@ router.post('/newGame', async (req, res) => {
     const game = new Chess_Game(newGame)
     game.table()
     res.json(game)
+})
+
+router.put('/move', async (req, res) => {
 
 })
 
 
+router.put('/retrieve', async (req, res) => {
+    try{
+        const options = await readID(req.body.game_id)
+        if(!options)
+        {
+            res.status(404).json("Game doesn't exist")
+            return
+        }
+        const game = new Chess_Game(options)
+    
+        game.table()
+        res.json(game)
+    } catch(err) {
+        console.log(err)
+        res.json(err)
+    }
+})
 
 
 module.exports = router

@@ -1,4 +1,4 @@
-var convert_x = function(x) { return String.fromCharCode(x + 65) }  //Used for converting x, y coordinates to the chess grid ex: 0, 3 -> A4
+var convert_x = function(x) { return String.fromCharCode(x + 97) }  //Used for converting x, y coordinates to the chess grid ex: 0, 3 -> A4
 var convert_y = function(y) { return (y + 1 ) }                     //Used for converting x, y coordinates to the chess grid ex: 0, 3 -> A4
 
 class Square{
@@ -62,7 +62,6 @@ class Chess_Game {
         this.FEN = options.FEN
         this.legal = []
         this.legalStrings = []
-        this.board = []
         this.player_1 = options.player_1
         this.player_2 = options.player_2
         this.player_1_time = options.player_1_time
@@ -82,6 +81,7 @@ class Chess_Game {
         this.result = options.result
         this.termination = options.termination
         this.opening = options.opening
+        this.board = []
 
         this.initialize()
     }
@@ -136,20 +136,13 @@ class Chess_Game {
         checkRowStart: for (let row of this.board){
             checkSquareStart: for (let start of row) {   
                 i++
-                let occupant = start.occupant
-                
-                
+                let occupant = start.occupant             
 
                 //If unoccupied, can't move
-                if (occupant === '0') continue checkSquareStart
-
-                
+                if (occupant === '0') continue checkSquareStart                
 
                 //If it's not that pieces' color's turn, can't move
-                if (occupant.color === 'w' && this.turn === -1) continue checkSquareStart
-                if (occupant.color === 'b' && this.turn ===  1) continue checkSquareStart
-
-                
+                if (occupant.color !== this.turn) continue checkSquareStart
 
                 if (occupant.type === 'N')
                 {
@@ -350,11 +343,7 @@ class Chess_Game {
 
         if (FEN[ FEN.length - 1] === '/') FEN = FEN.slice(0, -1) //Removes the last trailing '/'
 
-        let turn
-        if (this.turn === 1)  turn = 'w'
-        if (this.turn === -1) turn = 'b'
-
-        FEN += ` ${turn} ${this.castling} ${this.target} ${this.draw50} ${this.moves}`
+        FEN += ` ${this.turn} ${this.castling} ${this.target} ${this.draw50} ${this.moves}`
 
         this.FEN = FEN
         return FEN    
@@ -391,10 +380,8 @@ class Chess_Game {
             draw50: array[4],
             moveCount: array[5],
         }
-
-        if(broken.turn === 'w' || 'W') this.turn = 1
-        if(broken.turn === 'b' || 'B') this.turn = -1
-
+       
+        this.turn = broken.turn
         this.castling = broken.castling
         this.target = broken.target
         this.draw50 = broken.draw50

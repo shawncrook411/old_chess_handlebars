@@ -2,10 +2,10 @@ const { Chess_Game, Default } = require ('../../games/chess')
 const { Chess, User } = require ('../../models/index')
 
 //Reads an ID, finds the cooresponding game, and returns a Chess_Game object that is usable
-const readID = async function(id){
+const readID = async function(game_id){
     const data = await Chess.findOne({
         where: {
-            id: id
+            id: game_id
         },
     })
 
@@ -14,6 +14,11 @@ const readID = async function(id){
 }
 
 const writeNewGame = async function(game){
+
+    //Allows you to manually set their time, otherwise will default to starting time
+    if(!game.player_1_time) game.player_1_time = game.time
+    if(!game.player_2_time) game.player_2_time = game.time
+
     const newData = await Chess.create({
         //All are optional but will Default
         FEN: game.FEN,   
@@ -28,7 +33,7 @@ const writeNewGame = async function(game){
         width: game.width,
         height: game.height,
         status: game.status,
-        turn: game.turn === 1 ? 'w' : 'b',
+        turn: game.turn,
         castling: game.castling,
         moves: game.moves,
         draw50: game.draw50,
@@ -43,10 +48,10 @@ const writeNewGame = async function(game){
 
 
 const writeID = async function(game){
-    if(game.id){
+    if(game.game_id){
         const data = await Chess.findOne({
             where: {
-                id: game.id
+                id: game.game_id
             },
         })
 
@@ -66,7 +71,7 @@ const writeID = async function(game){
                 opening: game.opening
             },
             {
-                where: {id: game.id}
+                where: {id: game.game_id}
             })
             return updatedData
         }      

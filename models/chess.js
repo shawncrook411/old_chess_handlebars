@@ -86,7 +86,7 @@ Chess.init(
         },
         turn: {
             type: DataTypes.STRING,
-            defaultValue: 1,
+            defaultValue: 'w',
             validate: { isIn: [['w', 'b']]} 
         },
         castling: {
