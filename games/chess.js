@@ -133,10 +133,11 @@ class Chess_Game {
             array.splice(0, 0, mappedRow)
         }
         console.table(array)
+        console.table(this.legal)
         return array
     }
 
-    table_legal(){
+    legals(){
         console.table(this.legal)
     }
 
@@ -398,83 +399,54 @@ class Chess_Game {
         return broken
     }
 
-    submit(move){
+    submit_mass(array){
+        array.forEach(move => this.submit(move))
+    }
 
-        if (this.legal.includes(move) || this.legalStrings.includes(move.string)){
+    submit(input){
 
-            if (this.legal.includes(move)) {
-                this.move(move)            
-            } else {
-                this.move_by_string(move.string)
+        switch(input[input.length -1])
+        {
+            case '#', '!', '=', '+':
+                input = input.slice(0, -1)
+                break
+        }
+
+        let success = false
+
+        this.legal.forEach(move => {
+            if(move.string === input){
+                this.move(move.start, move.end)
+                success = true            
             }
+            else if (move.command === input){
+                this.move(move.start, move.end)
+                success = true                
+            }
+        })
 
-            if (this.turn === 'w') {
-                this.turn = 'b'
-            } //Only increase move count after Black's turn
-            else if (this.turn === 'b') {
-                this.turn = 'w'
-                this.moves++
-            }       
+        if(!success) console.log(`Invalid Move: ${input}`)
+    }    
 
-            this.writeFEN()
-            this.readFEN()
-            this.search()
+    move(start, end){        
+        const oldSquare = this.board[start.y][start.x]
+        const newSquare = this.board[end.y][end.x]
 
-        } else {
-            console.log("Invalid Move")
-        }
-    }
+        const piece = oldSquare.occupant
+        newSquare.occupant = piece
+        oldSquare.occupant = '0'
 
-    move_by_string(move){
-        const start = move.start
-        const end = move.end
-        //Need to create move object that contains {string: start: end: }
+        if (this.turn === 'w') {
+            this.turn = 'b'
+        } //Only increase move count after Black's turn
+        else if (this.turn === 'b') {
+            this.turn = 'w'
+            this.moves++
+        }       
 
-        //Ensure that both start && end positions are valid in the board
-        if( start.x < this.width  && end.x < this.width &&
-            start.y < this.height && end.y < this.height &&
-            start.x >= 0 && end.x >= 0 &&
-            start.y >= 0 && end.y >= 0 ){
-
-            const oldSquare = this.board[start.y][start.x]
-            const newSquare = this.board[end.y][end.x]
-
-            const piece = oldSquare.occupant
-            newSquare.occupant = piece
-            oldSquare.occupant = '0'
-        }  
-        else {
-            console.log("Invalid Move")
-        }
-    }
-
-    move(move){
-        
-        if (move.length !== 4) {
-            console.log("Invalid Move")
-            return 
-        }
-        const start = {x: (move.charCodeAt(0) -97 ), y: move[1] - 1}
-        const end   = {x: (move.charCodeAt(2) -97 ), y: move[3] - 1}
-
-        console.log(start)
-
-        //Ensure that both start && end positions are valid in the board
-        if( start.x < this.width  && end.x < this.width &&
-            start.y < this.height && end.y < this.height &&
-            start.x >= 0 && end.x >= 0 &&
-            start.y >= 0 && end.y >= 0 ){
-
-            const oldSquare = this.board[start.y][start.x]
-            const newSquare = this.board[end.y][end.x]
-
-            const piece = oldSquare.occupant
-            newSquare.occupant = piece
-            oldSquare.occupant = '0'
-        }  
-        else {
-            console.log("Invalid Move")
-        }
+        this.writeFEN()
+        this.readFEN()
+        this.search()
     }
 }
 
