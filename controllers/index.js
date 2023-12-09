@@ -14,9 +14,4 @@ router.use('/user', userRoutes )
 router.use('/', view)
 
 
-
-
-
-
-
 module.exports = router

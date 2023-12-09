@@ -1,6 +1,5 @@
-var convert_x = function(x) { return String.fromCharCode(x + 97) }
-var convert_y = function(y) { return (y + 1 ) }
-
+var convert_x = function(x) { return String.fromCharCode(x + 65) }  //Used for converting x, y coordinates to the chess grid ex: 0, 3 -> A4
+var convert_y = function(y) { return (y + 1 ) }                     //Used for converting x, y coordinates to the chess grid ex: 0, 3 -> A4
 
 class Square{
     constructor(x, y, occupant){
@@ -66,6 +65,8 @@ class Chess_Game {
         this.board = []
         this.player_1 = options.player_1
         this.player_2 = options.player_2
+        this.player_1_time = options.player_1_time
+        this.player_2_time = options.player_2_time
         this.variant = options.variant
         this.time = options.time
         this.inc = options.inc
@@ -323,11 +324,7 @@ class Chess_Game {
         results[1] = moveStrings
         return results
     }
-
-    move(){
-
-    }
-
+    
     writeFEN(){
         let FEN = ''       
 
@@ -384,9 +381,7 @@ class Chess_Game {
                 }
             }
             data.splice(0, 0, row)
-        }
-
-        console.log(array[5])
+        }        
 
         const broken = {
             placement: data,

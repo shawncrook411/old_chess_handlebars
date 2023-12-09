@@ -24,7 +24,8 @@ Chess.init(
             references: {
                 model: 'user',
                 key: 'id'
-            }
+            },
+            defaultValue: 1
         },
         player_2: {
             type: DataTypes.INTEGER,
@@ -32,8 +33,17 @@ Chess.init(
             references: {
                 model: 'user',
                 key: 'id'
-            }
-        },            
+            },
+            defaultValue: 1
+        },  
+        player_1_time: {
+            type: DataTypes.INTEGER,
+            defaultValue: 300,
+        },
+        player_2_time: {
+            type: DataTypes.INTEGER,
+            defaultValue: 300,
+        },         
         variant: {
             type: DataTypes.INTEGER,
             allowNull: false,
