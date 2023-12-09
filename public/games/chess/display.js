@@ -37,6 +37,8 @@ class Display{
     }
 
     saveDATA(){
+        localStorage.removeItem('touch1')
+        localStorage.removeItem('touch2')
         localStorage.setItem('id', this.id)
         localStorage.setItem('legal', this.legal)
         localStorage.setItem('player_1_time', this.player_1_time)
@@ -92,13 +94,12 @@ class Display{
             {
                 let display_square = document.createElement('div')
                 display_square.setAttribute('id', `${square.id}`)
+                display_square.setAttribute('square-id', `${square.id}`)
 
                 if( (square.x + square.y) % 2 == 0) { display_square.setAttribute('class', 'square primary_square')}
                 else                                { display_square.setAttribute('class', 'square secondary_square')}
 
-                display_square.addEventListener('click', function(event){
-                    //complete moves????? (event.target)
-                })    
+                display_square.addEventListener('click', touchMove)    
                 display_row.appendChild(display_square)        
             }
                 position.appendChild(display_row)
@@ -120,8 +121,10 @@ class Display{
                     let source = `${DATA.piecelink}/${DATA.style}/${color}${char.toUpperCase()}.svg`
 
                     let anchor = document.createElement('a')
-                    let image = document.createElement('img')
+                    anchor.setAttribute('square-id', `${square.id}`)
 
+                    let image = document.createElement('img')
+                    image.setAttribute('square-id', `${square.id}`)
                     image.setAttribute('src', source)
 
                     let display_square = document.getElementById(`${square.id}`)

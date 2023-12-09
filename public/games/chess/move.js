@@ -1,13 +1,22 @@
 
 //Finds the input Move box and sends the move to submit. 
 var submit = async (event) => {
-    event.preventDefault()
+    if(event) event.preventDefault()
 
-    const move = document.querySelector('#move').value.trim()
+    const start = localStorage.getItem('touch1')
+    const end   = localStorage.getItem('touch2')
+    let move = `${start}${end}`
 
+    localStorage.removeItem('touch1')
+    localStorage.removeItem('touch2')
+
+    if (!start || !end){
+        move = document.querySelector('#move').value.trim()
+    }
+   
     const moves = localStorage.getItem('legal')
-    if (!moves || !move) return
-    if (!moves.includes(move)){
+    
+    if (!moves || !moves.includes(move)){
         alert('Illegal Move')
         return
     }
@@ -27,3 +36,16 @@ var submit = async (event) => {
     return response
 }
 
+var touchMove = async (event) => {
+    event.preventDefault()
+    const target = event.target
+    const square_id = target.getAttribute('square-id')
+
+    if(!localStorage.getItem('touch1')){
+        localStorage.setItem('touch1', square_id)
+    }
+    else{
+        localStorage.setItem('touch2', square_id)
+        submit()
+    }    
+}
