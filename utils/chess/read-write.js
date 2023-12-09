@@ -2,10 +2,10 @@ const { Chess_Game, Default } = require ('../../games/chess')
 const { Chess, User } = require ('../../models/index')
 
 //Reads an ID, finds the cooresponding game, and returns a Chess_Game object that is usable
-const readID = async function(game_id){
+const readID = async function(id){
     const data = await Chess.findOne({
         where: {
-            id: game_id
+            id: id
         },
     })
 
@@ -48,10 +48,10 @@ const writeNewGame = async function(game){
 
 
 const writeID = async function(game){
-    if(game.game_id){
+    if(game.id){
         const data = await Chess.findOne({
             where: {
-                id: game.game_id
+                id: game.id
             },
         })
 
@@ -71,10 +71,18 @@ const writeID = async function(game){
                 opening: game.opening
             },
             {
-                where: {id: game.game_id}
+                where: {id: game.id},
             })
-            return updatedData
-        }      
+
+            if(updatedData){
+                const response = await Chess.findOne({
+                    where: {
+                        id: game.id
+                    }
+                })
+                return response
+            }            
+        }        
     }    
 }
 

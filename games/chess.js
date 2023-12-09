@@ -71,7 +71,6 @@ class Chess_Game {
         this.id = options.id
         this.FEN = options.FEN
         this.legal = []
-        this.legalStrings = []
         this.player_1 = options.player_1
         this.player_2 = options.player_2
         this.player_1_time = options.player_1_time
@@ -133,7 +132,7 @@ class Chess_Game {
             array.splice(0, 0, mappedRow)
         }
         console.table(array)
-        console.table(this.legal)
+        // console.table(this.legal)
         return array
     }
 
@@ -144,7 +143,6 @@ class Chess_Game {
     search(){
         let i = 0 
         let legal = []
-        let legalStrings = []
         checkRowStart: for (let row of this.board){
             checkSquareStart: for (let start of row) {   
                 i++

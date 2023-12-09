@@ -16,20 +16,43 @@ router.post('/newGame', async (req, res) => {
 })
 
 router.put('/move', async (req, res) => {
+    try{
+        const options = await readID(req.body.id)
+        if(!options)
+        {
+            res.status(404).json("Game doesn't exist")
+        }
+        const game = new Chess_Game(options)
 
+        game.table()
+        game.submit(req.body.move)   
+        game.table()
+
+        const data = await writeID(game)
+
+        if (!data){
+            res.json({message: "No game found"}).status(404)
+        }        
+        else{
+            res.json(data).status(200)
+        }
+
+    } catch(err) {
+        console.log(err)
+        res.json(err)
+    }
 })
 
 
 router.put('/retrieve', async (req, res) => {
     try{
-        const options = await readID(req.body.game_id)
+        const options = await readID(req.body.id)
         if(!options)
         {
             res.status(404).json("Game doesn't exist")
             return
         }
-        const game = new Chess_Game(options)
-    
+        const game = new Chess_Game(options)    
         game.table()
         res.json(game)
     } catch(err) {
