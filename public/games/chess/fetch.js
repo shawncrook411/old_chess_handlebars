@@ -17,15 +17,15 @@ async function fetchResponse() {
     return response
 }
 
-async function submitMove(move) {
-    await fetch(`/submitMove/${move}`,
+async function submitMove(move, id) {
+    await fetch(`/api/chess/move`,
     {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json'},
-        body: ''
+        body: {id: id, move: move}
     })
     .then(response => {
-        DISPLAY = new Display(response)
+        new Display(response)
     })
 
 }

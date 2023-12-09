@@ -32,7 +32,7 @@ class Display{
     displayALL(){
         this.displayBOARD()
         this.displayPIECES()
-        // this.displayCLOCKS()
+        this.displayCLOCKS()
         this.saveDATA()
     }
 
@@ -42,8 +42,8 @@ class Display{
     }
 
     startTimer(){
-        time_WHITE = this.time_WHITE
-        time_BLACK = this.time_BLACK
+        time_WHITE = this.player_1_time
+        time_BLACK = this.player_2_time
     }
 
     timeout(result){
@@ -70,9 +70,8 @@ class Display{
         let whiteClock = document.querySelector("#player1Clock");
         let blackClock = document.querySelector("#player2Clock");      
         
-        whiteClock.textContent = this.timerConvert( this.time_WHITE )
-        blackClock.textContent = this.timerConvert( this.time_BLACK )
-
+        whiteClock.textContent = this.timerConvert( this.player_1_time )
+        blackClock.textContent = this.timerConvert( this.player_2_time )
     }
 
     displayBOARD(){        
@@ -113,7 +112,7 @@ class Display{
                     let color = square.occupant.color                    
 
                     if (DATA.style === 'disguised') char = ''
-                    
+
                     let source = `${DATA.piecelink}/${DATA.style}/${color}${char.toUpperCase()}.svg`
 
                     let anchor = document.createElement('a')

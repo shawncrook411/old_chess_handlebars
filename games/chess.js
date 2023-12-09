@@ -16,7 +16,7 @@ class Square{
         this.x = x,
         this.y = y,
         this.occupant = occupant
-        this.id = `${String.fromCharCode(x + 65)}${y + 1}`
+        this.id = `${String.fromCharCode(x + 97)}${y + 1}`
     }}
 
 class Piece{

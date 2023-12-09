@@ -7,16 +7,15 @@ var retrieveDATA = function(){
 }
 
 
-
-
 //Finds the input Move box and sends the move to submit. 
 var submit = async (event) => {
     event.preventDefault()
 
     const move = document.querySelector('#move').value.trim()
+    const id = retrieveDATA()
     if (!move) return
 
-    if (!GLOBAL.legal.includes(move)){
+    if (!legal.includes(move)){
         alert('Illegal Move')
         return
     }
