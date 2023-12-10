@@ -548,6 +548,27 @@ class Chess_Game {
         if(piece.type === 'P' && start.y === end.y + 2) this.target = `${convert_x(end.x)}${convert_y(end.y + 1)}`
         if(piece.type === 'P' && start.y === end.y - 2) this.target = `${convert_x(end.x)}${convert_y(end.y - 1)}`
 
+        //Remove Castling if king moves
+        if(piece.type === 'K' && piece.color === 'w') {            
+            this.castling = this.castling.replace(/K/, '')
+            this.castling = this.castling.replace(/Q/, '')          
+        }
+        if(piece.type === 'K' && piece.color === 'b'){
+            this.castling = this.castling.replace(/k/, '')
+            this.castling = this.castling.replace(/q/, '')
+        } 
+        if(this.castling.length === 0) this.castling = '-'
+
+        if(piece.type === 'R' && piece.color === 'w'){
+            if(start.x === this.width - 1) this.castling = this.castling.replace(/K/, '')
+            if(start.x === 0) this.castling = this.castling.replace(/Q/, '')
+        }
+        if(piece.type === 'R' && piece.color === 'b'){
+            if(start.x === this.width - 1) this.castling = this.castling.replace(/k/, '')
+            if(start.x === 0) this.castling = this.castling.replace(/q/, '')
+        }
+
+
         if (this.turn === 'w') {
             this.turn = 'b'
         } //Only increase move count after Black's turn

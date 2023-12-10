@@ -6,10 +6,11 @@ options.FEN = 'r3k2r/ppp2ppp/2nqbn2/2bpp3/2B1P3/2NPBN2/PPP1QPPP/R3K2R b KQkq - 3
 const game = new Chess_Game(options)
 
 
-game.submit('O-O')
+game.submit('a8b8')
+game.submit('Rb1')
 game.submit('O-O-O')
-game.table()
-game.legals()
+console.log(game.FEN)
+
 
 //Things to do !
 

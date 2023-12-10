@@ -24,7 +24,6 @@ async function submitMove(move, id) {
         headers: { 'Content-Type': 'application/json'},
         body: {id: id, move: move}
     }).then(reload())
-
 }
 
 async function refresh() {
