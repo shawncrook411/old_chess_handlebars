@@ -151,12 +151,10 @@ class Chess_Game {
     }
     
     search(){
-        let i = 0 
         let legal = []
         
         checkRowStart: for (let row of this.board){
             checkSquareStart: for (let start of row) {   
-                i++
                 let occupant = start.occupant             
 
                 //If unoccupied, can't move
@@ -361,27 +359,50 @@ class Chess_Game {
             }
         }     
 
+        //Edits each move to contain check data
         legal.forEach((move) => {
             const end = move.end
             if(end.x === this.white_king.x && end.y === this.white_king.y){
-                move.check = true
+                move.illegal = true
             }          
             if(end.x === this.black_king.x && end.y === this.black_king.y){
-                move.check = true
+                move.illegal = true
             }            
         })
 
+        legal.forEach((move) => {
+            if(this.test) return
+                     
+            const testGame = new Chess_Game(this, true)
+            testGame.submit(move.command)
+
+            if (testGame.turn === 'w') testGame.turn = 'b'
+            if (testGame.turn === 'b') testGame.turn = 'w'
+            testGame.search()
+
+            for(let testMove of testGame.legal){
+                const end = testMove.end
+                if(testGame.turn === 'b' && end.x === this.white_king.x && end.y === this.white_king.y){
+                    move.check = true
+                    move.string += '+'
+                }
+                if(testGame.turn === 'w' && end.x === this.black_king.x && end.y === this.black_king.y){
+                    move.check = true
+                    move.string += '+'
+                }
+            }
+        })
+
+        //Filters out moves that result in your king being capturable
         const filter = legal.filter((move) => {
             if(this.test) return true
             const testGame = new Chess_Game(this, true)
-            testGame.submit(move.command)      
+            testGame.submit(move.command)    
             
-            let test = true
             for (let testMove of testGame.legal){                
-                if (testMove.check === true) {
-                    test = false}
+                if (testMove.illegal === true) return false
             }
-            return test
+            return true
         })
 
         this.legal = filter
@@ -620,15 +641,7 @@ class Chess_Game {
         this.readFEN()
         this.search()
         this.verify()
-    }
-
-    // //Must be ran AFTER the turn has switched from the move method
-    // test_for_check(){
-    // }
-
-    // check_for_check(){
-    //     } ) 
-    // }
+    }    
 
     verify(){
         class Result {
