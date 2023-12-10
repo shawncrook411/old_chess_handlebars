@@ -124,6 +124,7 @@ class Chess_Game {
         }
     }
 
+
     initialize(){
         const broken = this.readFEN()
         newRow: for (let y = 0; y < this.height; y++){
@@ -397,16 +398,22 @@ class Chess_Game {
         //Filters out moves that result in your king being capturable
         //Adds check markings if game results in check
             const filter = legal.filter((move) => {
-                if(this.depth) return true
+                if(this.depth > 1) return true
 
                 const testGame = new Chess_Game(this, this.depth + 1)
                 testGame.submit(move.command)
                 testGame.is_check()
                 
                 if(testGame.check) {
-                    if(testGame.legal.length === 0) { console.log('checkmate')}
-                    move.check = true
-                    move.string += '+'
+                    if(testGame.legal.length === 0) {
+                        move.check = true
+                        move.checkmate = true
+                        move.string += '#'
+                    }
+                    else{
+                        move.check = true
+                        move.string += '+'
+                    }
                 }
                 
                 for (let testMove of testGame.legal){                
