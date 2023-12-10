@@ -1,3 +1,5 @@
+const { Chess } = require("../models")
+
 var convert_x = function(x) {            return String.fromCharCode(x + 97) }  //Used for converting x, y coordinates to the chess grid ex: 0, 3 -> A4
 var convert_y = function(y) {            return (y + 1 ) }                     //Used for converting x, y coordinates to the chess grid ex: 0, 3 -> A4
 var convert_square = function (square) { return `${String.fromCharCode(square.x + 97)}${square.y + 1}`}
@@ -67,10 +69,15 @@ const Default =
 }
 
 class Chess_Game {
-    constructor(options){
+    constructor(options, test){
         this.id = options.id
         this.FEN = options.FEN
         this.legal = []
+        this.test = test
+        this.white_king;
+        this.black_king;
+        this.white_check;
+        this.black_check
         this.player_1 = options.player_1
         this.player_2 = options.player_2
         this.player_1_time = options.player_1_time
@@ -107,16 +114,18 @@ class Chess_Game {
                 else {
                     if(occupant === occupant.toUpperCase()){
                         occupant = new Piece('w', occupant.toUpperCase() )
+                        if (occupant.type === 'K') this.white_king = {x: x, y: y}
                     }
                     else{
                         occupant = new Piece('b', occupant.toUpperCase() )
+                        if (occupant.type === 'K') this.black_king = {x: x, y: y}
                     }
                 }
                 row.push( new Square(x, y, occupant))
             }
             this.board.push(row)
         }
-        this.search()
+        this.search()        
     }    
 
     table(){
@@ -350,9 +359,33 @@ class Chess_Game {
                     }
                 }
             }
-        }
-        this.legal = legal
-    }
+        }     
+
+        legal.forEach((move) => {
+            const end = move.end
+            if(end.x === this.white_king.x && end.y === this.white_king.y){
+                move.check = true
+            }          
+            if(end.x === this.black_king.x && end.y === this.black_king.y){
+                move.check = true
+            }            
+        })
+
+        const filter = legal.filter((move) => {
+            if(this.test) return true
+            const testGame = new Chess_Game(this, true)
+            testGame.submit(move.command)      
+            
+            let test = true
+            for (let testMove of testGame.legal){                
+                if (testMove.check === true) {
+                    test = false}
+            }
+            return test
+        })
+
+        this.legal = filter
+    }        
 
     search_KNIGHT(start){        
         let moves = []
@@ -437,8 +470,7 @@ class Chess_Game {
         return FEN    
     }
 
-    readFEN(){
-        
+    readFEN(){        
         let FEN = this.FEN
         let array = FEN.split(' ')
     
@@ -548,14 +580,16 @@ class Chess_Game {
         if(piece.type === 'P' && start.y === end.y + 2) this.target = `${convert_x(end.x)}${convert_y(end.y + 1)}`
         if(piece.type === 'P' && start.y === end.y - 2) this.target = `${convert_x(end.x)}${convert_y(end.y - 1)}`        
 
-        //Remove Castling if king moves
+        //Remove Castling if king moves / set king position for checking for check
         if(piece.type === 'K' && piece.color === 'w') {            
             this.castling = this.castling.replace(/K/, '')
-            this.castling = this.castling.replace(/Q/, '')          
+            this.castling = this.castling.replace(/Q/, '') 
+            this.white_king = {x: end.x, y: end.y}
         }
         if(piece.type === 'K' && piece.color === 'b'){
             this.castling = this.castling.replace(/k/, '')
             this.castling = this.castling.replace(/q/, '')
+            this.black_king = {x: end.x, y: end.y}
         } 
         
         //Remove Castling depending on which moved. Currently based on magic numbers, not setup for 960 castling
@@ -577,7 +611,7 @@ class Chess_Game {
             this.turn = 'w'
             this.moves++
             this.draw50++
-        }       
+        } 
 
         //Adds draw50 support
         if(piece.type === 'P' || move.string.includes('x')) this.draw50 === 0
@@ -588,7 +622,13 @@ class Chess_Game {
         this.verify()
     }
 
-    check(){}
+    // //Must be ran AFTER the turn has switched from the move method
+    // test_for_check(){
+    // }
+
+    // check_for_check(){
+    //     } ) 
+    // }
 
     verify(){
         class Result {

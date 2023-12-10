@@ -8,7 +8,6 @@
     --secondary-board-color: #ffed48;
     --primary-board-color: #1750AC ;
     --secondary-board-color: #73B9EE;
-
 }
 
 *{
@@ -36,12 +35,8 @@ header{
 .row{
     display: flex;
     flex-direction: row;
- /* flex-direction: row-reverse */
-
-    
+ /* flex-direction: row-reverse */ 
 }
-
-
 
 #board{  
     border: rgb(0, 0, 0) solid 10px;   
