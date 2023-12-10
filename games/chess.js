@@ -7,6 +7,7 @@ var convert_square = function (square) { return `${String.fromCharCode(square.x 
 class Move{ //May have special properties. 1 for en Passant, 2 for Castling, 3 for Promotion
     constructor(string, command, start, end){
         this.string = string
+        this.alt = string
         this.command = command        
         this.start = start
         this.end = end
@@ -590,6 +591,10 @@ class Chess_Game {
             else if (move.command === input){
                 this.move(move)
                 success = true                
+            }
+            else if (move.alt === input){
+                this.move(move)
+                success = true
             }
         })
 
