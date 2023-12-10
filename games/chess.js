@@ -546,7 +546,7 @@ class Chess_Game {
         //Target is always reset, but if a pawn moves twice it will be set to one square behind it
         this.target = '-'
         if(piece.type === 'P' && start.y === end.y + 2) this.target = `${convert_x(end.x)}${convert_y(end.y + 1)}`
-        if(piece.type === 'P' && start.y === end.y - 2) this.target = `${convert_x(end.x)}${convert_y(end.y - 1)}`
+        if(piece.type === 'P' && start.y === end.y - 2) this.target = `${convert_x(end.x)}${convert_y(end.y - 1)}`        
 
         //Remove Castling if king moves
         if(piece.type === 'K' && piece.color === 'w') {            
@@ -557,8 +557,8 @@ class Chess_Game {
             this.castling = this.castling.replace(/k/, '')
             this.castling = this.castling.replace(/q/, '')
         } 
-        if(this.castling.length === 0) this.castling = '-'
-
+        
+        //Remove Castling depending on which moved. Currently based on magic numbers, not setup for 960 castling
         if(piece.type === 'R' && piece.color === 'w'){
             if(start.x === this.width - 1) this.castling = this.castling.replace(/K/, '')
             if(start.x === 0) this.castling = this.castling.replace(/Q/, '')
@@ -567,7 +567,8 @@ class Chess_Game {
             if(start.x === this.width - 1) this.castling = this.castling.replace(/k/, '')
             if(start.x === 0) this.castling = this.castling.replace(/q/, '')
         }
-
+        //Incase the string is replace entirely, set to '-'
+        if(this.castling.length === 0) this.castling = '-'
 
         if (this.turn === 'w') {
             this.turn = 'b'
@@ -575,11 +576,52 @@ class Chess_Game {
         else if (this.turn === 'b') {
             this.turn = 'w'
             this.moves++
+            this.draw50++
         }       
+
+        //Adds draw50 support
+        if(piece.type === 'P' || move.string.includes('x')) this.draw50 === 0
 
         this.writeFEN()
         this.readFEN()
         this.search()
+        this.verify()
+    }
+
+    check(){}
+
+    verify(){
+        class Result {
+            constructor(status, result, termination){
+                this.status = status
+                this.result = result
+                this.termination = termination
+            }
+        }
+
+        if(this.check === true && this.legal.length === 0){
+            // The turn counter has updated since the last move, 
+            // therefore if it's white's turn, they're in check, and they have no moves
+            // It would be checkmate
+            if(this.turn === 'w') return new Result(false, '0-1', 'Checkmate')
+            if(this.turn === 'b') return new Result(false, '1-0', 'Checkmate')
+        } 
+
+        //Check draw50 rule
+        if(this.draw50 >= 50) return new Result(false, '1/2-1/2', 'Draw50') 
+
+        //Check for insufficient material
+        let pieces = []
+        checkRows: for(let row of this.board){
+            checkSquares: for(let square of row){
+                if(square.occupant !== '0') pieces.push(square.occupant.type)
+            }
+        }
+        if(!pieces.includes('P') && !pieces.includes('Q') && !pieces.includes('R')){
+            if(pieces.length < 4) return new Result(false, '1/2-1/2', 'Insufficient Material')}
+
+
+        if(this.legal.length === 0) return new Result(false, '1/2-1/2', 'Stalemate')     
     }
 }
 

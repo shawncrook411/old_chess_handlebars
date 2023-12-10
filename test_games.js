@@ -5,18 +5,12 @@ options.FEN = 'r3k2r/ppp2ppp/2nqbn2/2bpp3/2B1P3/2NPBN2/PPP1QPPP/R3K2R b KQkq - 3
 
 const game = new Chess_Game(options)
 
-
 game.submit('a8b8')
-game.submit('Rb1')
-game.submit('O-O-O')
-console.log(game.FEN)
 
 
 //Things to do !
 
 //Promotion - need to allow way to pass this.promote from user
-
-//Castling
 
 //Logging in 
 
@@ -30,12 +24,9 @@ console.log(game.FEN)
 
 //Calculate Checkmate
 
-//Calculate Stalemate
-
 //Draws offers
-// 50move 
+
 // 3fold - Create table of previous FEN's?
-// insufficient materials
 
 
 
