@@ -1,11 +1,10 @@
 const { Chess_Game, Default } = require('./games/chess')
 
 const options = {...Default}
-options.FEN = '7K/4r3/6k1/8/6n1/1p6/8/8 b - - 25 13'
+options.FEN = '7K/8/5r2/8/8/np4k1/8/8 b - - 1 1'
 
 const game = new Chess_Game(options)
 
-console.log(game.check)
 game.legals()
 //Things to do !
 

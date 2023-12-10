@@ -123,6 +123,7 @@ class Chess_Game {
         for(let move of this.enemy){
             if (move.illegal) this.check = true
         }
+
     }
 
 
@@ -399,7 +400,7 @@ class Chess_Game {
         //Filters out moves that result in your king being capturable
         //Adds check markings if game results in check
             const filter = legal.filter((move) => {
-                if(this.depth > 1) return true
+                if(this.depth > 0) return true
 
                 const testGame = new Chess_Game(this, this.depth + 1)
                 testGame.submit(move.command)
@@ -423,7 +424,7 @@ class Chess_Game {
                 return true
             })
 
-               this.legal = filter
+            this.legal = filter
 
         // let swapMove = new Move('X', 'swap', {x: 0, y: 0}, {x: 0, y: 0})
         // this.legal.push(swapMove)
@@ -597,8 +598,6 @@ class Chess_Game {
                 success = true
             }
         })
-
-        if(!success) console.log(`Invalid Move: ${input}`)
     }    
 
     move(move){   
