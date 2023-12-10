@@ -109,9 +109,19 @@ class Chess_Game {
     }       
 
     is_check(){
-        if(this.turn === 'w') this.turn = 'b'
-        if(this.turn === 'b') this.turn = 'w'
+        this.check = false
 
+        if(this.turn === 'w') this.turn = 'b'
+        else if(this.turn === 'b') this.turn = 'w'
+
+        this.search(1)
+
+        if(this.turn === 'w') this.turn = 'b'
+        else if(this.turn === 'b') this.turn = 'w'
+
+        for(let move of this.enemy){
+            if (move.illegal) this.check = true
+        }
     }
 
     initialize(){
@@ -160,7 +170,7 @@ class Chess_Game {
         console.table(this.legal)
     } 
     
-    search(){
+    search(enemy){
         let legal = []
         
         checkRowStart: for (let row of this.board){
@@ -367,7 +377,7 @@ class Chess_Game {
                 }
             }
         }       
-
+        
         //Edits each move to contain illegal check data
         legal.forEach((move) => {
             const end = move.end
@@ -377,27 +387,35 @@ class Chess_Game {
             if(end.x === this.black_king.x && end.y === this.black_king.y){
                 move.illegal = true
             }            
-        })      
-
+        })
+        
+        if(enemy)   {
+            this.enemy = legal
+            return
+        }
+        
         //Filters out moves that result in your king being capturable
         //Adds check markings if game results in check
-        const filter = legal.filter((move) => {
-            if(this.depth) return true
-            const testGame = new Chess_Game(this, this.depth + 1)
-            testGame.submit(move.command)
-            
-            // if(testGame.is_check()) {
-            //     move.check = true
-            //     move.string += '+'
-            // }
-            
-            for (let testMove of testGame.legal){                
-                if (testMove.illegal === true) return false
-            }
-            return true
-        })
+            const filter = legal.filter((move) => {
+                if(this.depth) return true
 
-        this.legal = filter
+                const testGame = new Chess_Game(this, this.depth + 1)
+                testGame.submit(move.command)
+                testGame.is_check()
+                
+                if(testGame.check) {
+                    if(testGame.legal.length === 0) { console.log('checkmate')}
+                    move.check = true
+                    move.string += '+'
+                }
+                
+                for (let testMove of testGame.legal){                
+                    if (testMove.illegal === true) return false
+                }
+                return true
+            })
+
+               this.legal = filter
 
         // let swapMove = new Move('X', 'swap', {x: 0, y: 0}, {x: 0, y: 0})
         // this.legal.push(swapMove)
