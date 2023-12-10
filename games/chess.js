@@ -1,5 +1,6 @@
-var convert_x = function(x) { return String.fromCharCode(x + 97) }  //Used for converting x, y coordinates to the chess grid ex: 0, 3 -> A4
-var convert_y = function(y) { return (y + 1 ) }                     //Used for converting x, y coordinates to the chess grid ex: 0, 3 -> A4
+var convert_x = function(x) {            return String.fromCharCode(x + 97) }  //Used for converting x, y coordinates to the chess grid ex: 0, 3 -> A4
+var convert_y = function(y) {            return (y + 1 ) }                     //Used for converting x, y coordinates to the chess grid ex: 0, 3 -> A4
+var convert_square = function (square) { return `${String.fromCharCode(square.x + 97)}${square.y + 1}`}
 
 class Move{ //May have special properties. 1 for en Passant, 2 for Castling, 3 for Promotion
     constructor(string, command, start, end){
@@ -16,14 +17,13 @@ class Square{
         this.x = x,
         this.y = y,
         this.occupant = occupant
-        this.id = `${String.fromCharCode(x + 97)}${y + 1}`
+        this.id = convert_square({x: x, y: y})
     }}
 
 class Piece{
     constructor(color, type){
         this.color = color
         this.type = type
-        this.moved = 0
         
         switch(type){
             case "Pawn", 'P':
@@ -140,10 +140,11 @@ class Chess_Game {
     legals(){
         console.table(this.legal)
     }
-
+    
     search(){
         let i = 0 
         let legal = []
+        
         checkRowStart: for (let row of this.board){
             checkSquareStart: for (let start of row) {   
                 i++
@@ -160,6 +161,64 @@ class Chess_Game {
                     let results = this.search_KNIGHT(start)                  
                     results.forEach(move => legal.push(move))                  
                     continue checkSquareStart
+                }
+
+                //Calculates if Castling is legal
+                //Later must add support for custom castling in Chess960
+                if(occupant.type === 'K'){
+                    if(start.x === 4 && this.variant === 1)
+                    {
+                        if(occupant.color === 'w' && start.y === 0){
+                            if(this.castling.includes('K')){
+                                const check1 = this.board[0][start.x + 1]
+                                const check2 = this.board[0][start.x + 2]
+                                if(check1.occupant === '0' && check2.occupant === '0')
+                                {
+                                    let output = new Move('O-O', `${convert_square(start)}${convert_square(check2)}`, {x: start.x, y: 0}, {x: start.x + 2, y: 0})
+                                    output.special = 'Castling'
+                                    output.rook = {x: start.x + 3, y: 0}
+                                    legal.push(output)
+                                }
+                            }
+                            if(this.castling.includes('Q')){
+                                const check1 = this.board[0][start.x - 1]
+                                const check2 = this.board[0][start.x - 2]
+                                const check3 = this.board[0][start.x - 3]
+                                if(check1.occupant === '0' && check2.occupant === '0' && check3.occupant === '0')
+                                {
+                                    let output = new Move('O-O-O', `${convert_square(start)}${convert_square(check2)}`, {x: start.x, y: 0}, {x: start.x - 2, y: 0})
+                                    output.special = 'Castling'
+                                    output.rook = {x: start.x -4, y: 0}
+                                    legal.push(output)
+                                }
+                            }
+                        }
+                        else if (occupant.color === 'b' && start.y === (this.height -1 )){
+                            if(this.castling.includes('k')){
+                                const check1 = this.board[this.height - 1][start.x + 1]
+                                const check2 = this.board[this.height - 1][start.x + 2]
+                                if(check1.occupant === '0' && check2.occupant === '0')
+                                {
+                                    let output = new Move('O-O', `${convert_square(start)}${convert_square(check2)}`, {x: start.x, y: this.height - 1}, {x: start.x + 2, y: this.height - 1})
+                                    output.special = 'Castling'
+                                    output.rook = {x: start.x + 3, y: this.height - 1}
+                                    legal.push(output)
+                                }
+                            }
+                            if(this.castling.includes('q')){
+                                const check1 = this.board[this.height - 1][start.x - 1]
+                                const check2 = this.board[this.height - 1][start.x - 2]
+                                const check3 = this.board[this.height - 1][start.x - 3]
+                                if(check1.occupant === '0' && check2.occupant === '0' && check3.occupant === '0')
+                                {
+                                    let output = new Move('O-O-O', `${convert_square(start)}${convert_square(check2)}`, {x: start.x, y: this.height - 1}, {x: start.x - 2, y: this.height - 1})
+                                    output.special = 'Castling'
+                                    output.rook = {x: start.x -4, y: this.height - 1}
+                                    legal.push(output)
+                                }
+                            }
+                        }                        
+                    }
                 }
 
                 //Calculates distance to edge, based on board size and starting position of the search
@@ -214,9 +273,9 @@ class Chess_Game {
                             if(direction % 2 && test.occupant !== '0' && test.occupant.color !== occupant.color){
 
                                 //Format exf4
-                                let moveString = `${convert_x(start.x)}x${convert_x(test.x)}${convert_y(test.y)}`
+                                let moveString = `${convert_x(start.x)}x${convert_square(test)}`
                                 //Format e2e4
-                                let move = `${convert_x(start.x)}${convert_y(start.y)}${convert_x(test.x)}${convert_y(test.y)}`
+                                let move = `${convert_square(start)}${convert_square(test)}`
 
                                 let output = new Move(moveString, move, {x: start.x, y: start.y}, {x: test.x, y: test.y})
 
@@ -229,12 +288,12 @@ class Chess_Game {
                             //Check for enPassant target
                             if(this.target !== '-')
                             {
-                                if(this.target === `${convert_x(test.x)}${convert_y(test.y)}`)
+                                if(this.target === `${convert_square(test)}`)
                                 {
                                     //Format exf4
-                                    let moveString = `${convert_x(start.x)}x${convert_x(test.x)}${convert_y(test.y)}`
+                                    let moveString = `${convert_x(start.x)}x${convert_square(test)}`
                                     //Format e2e4
-                                    let move = `${convert_x(start.x)}${convert_y(start.y)}${convert_x(test.x)}${convert_y(test.y)}`
+                                    let move = `${convert_square(start)}${convert_square(test)}`
 
                                     let output = new Move(moveString, move, {x: start.x, y: start.y}, {x: test.x, y: test.y})
                                     output.special = 'enPassant'
@@ -245,9 +304,9 @@ class Chess_Game {
 
                             if(direction % 2 === 0 && test.occupant === '0'){
                                 //Format f4
-                                let moveString = `${convert_x(test.x)}${convert_y(test.y)}`
+                                let moveString = `${convert_square(test)}`
                                 //Format e2e4
-                                let move = `${convert_x(start.x)}${convert_y(start.y)}${convert_x(test.x)}${convert_y(test.y)}`
+                                let move = `${convert_square(start)}${convert_square(test)}`
 
                                 let output = new Move(moveString, move, {x: start.x, y: start.y}, {x: test.x, y: test.y})
                                 if(test.y === this.height - 1 || test.y === 0) output.special = 'Promotion'
@@ -264,10 +323,10 @@ class Chess_Game {
 
                         if (test.occupant === '0') {
                             //Format Rg4                            
-                            let moveString = `${occupant.type[0]}${convert_x(test.x)}${convert_y(test.y)}`
+                            let moveString = `${occupant.type[0]}${convert_square(test)}`
                             
                             //Format e4e8
-                            let move = `${convert_x(start.x)}${convert_y(start.y)}${convert_x(test.x)}${convert_y(test.y)}`
+                            let move = `${convert_square(start)}${convert_square(test)}`
 
                             let output = new Move(moveString, move, {x: start.x, y: start.y}, {x: test.x, y: test.y})
                             legal.push(output)                          
@@ -276,9 +335,9 @@ class Chess_Game {
                         if(test.occupant !== '0'){                 
                             if (test.occupant.color !== occupant.color){
                                 //Format Rxg4
-                                let moveString = `${occupant.type[0]}x${convert_x(test.x)}${convert_y(test.y)}`
+                                let moveString = `${occupant.type[0]}x${convert_square(test)}`
                                 //Format e4e8
-                                let move = `${convert_x(start.x)}${convert_y(start.y)}${convert_x(test.x)}${convert_y(test.y)}`
+                                let move = `${convert_square(start)}${convert_square(test)}`
 
                                 let output = new Move(moveString, move, {x: start.x, y: start.y}, {x: test.x, y: test.y})
                                 legal.push(output)
@@ -323,10 +382,10 @@ class Chess_Game {
                 let reference = this.board[test.y][test.x]
 
                 if (reference.occupant === '0'){
-                    let moveString = `N${convert_x(test.x)}${convert_y(test.y)}`
+                    let moveString = `N${convert_square(test)}`
                     moveStrings.push(moveString)
 
-                    let move = `${convert_x(start.x)}${convert_y(start.y)}${convert_x(test.x)}${convert_y(test.y)}`
+                    let move = `${convert_square(start)}${convert_square(test)}`
 
                     let output = new Move(moveString, move, {x: start.x, y: start.y}, {x: test.x, y: test.y})
                     moves.push(output)
@@ -334,10 +393,10 @@ class Chess_Game {
 
                 if (reference.occupant !== '0' && reference.occupant.color !== occupant.color)
                 {
-                    let moveString = `Nx${convert_x(test.x)}${convert_y(test.y)}`
+                    let moveString = `Nx${convert_square(test)}`
                     moveStrings.push(moveString)
 
-                    let move = `${convert_x(start.x)}${convert_y(start.y)}${convert_x(test.x)}${convert_y(test.y)}`
+                    let move = `${convert_square(start)}${convert_square(test)}`
 
                     let output = new Move(moveString, move, {x: start.x, y: start.y}, {x: test.x, y: test.y})
                     moves.push(output)
@@ -460,6 +519,21 @@ class Chess_Game {
                 if(captureSquare)       captureSquare.occupant = '0'           
                 break
             case 'Castling':
+                let rookNew
+
+                if(move.string === 'O-O') {
+                    rookNew = this.board[start.y][start.x + 1]
+                }
+                if(move.string === 'O-O-O'){
+                    rookNew = this.board[start.y][start.x - 1]
+                }
+                const rookOld = this.board[move.rook.y][move.rook.x]
+
+                if(rookOld.occupant.type === 'R'){
+                    const rook = rookOld.occupant
+                    rookNew.occupant = rook
+                    rookOld.occupant = '0' 
+                }
                 break
             case 'Promotion':
                 piece.type = this.promote

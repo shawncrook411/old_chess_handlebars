@@ -1,21 +1,21 @@
 const { Chess_Game, Default } = require('./games/chess')
 
 const options = {...Default}
-options.FEN = 'rnQq2nr/ppp1k1pp/8/5Q2/1b6/5N2/PPPP2pP/RNB1KB1R b KQ - 1 9'
+options.FEN = 'r3k2r/ppp2ppp/2nqbn2/2bpp3/2B1P3/2NPBN2/PPP1QPPP/R3K2R b KQkq - 3 8'
 
 const game = new Chess_Game(options)
 
 
-game.submit('g1')
+game.submit('O-O')
+game.submit('O-O-O')
 game.table()
+game.legals()
 
 //Things to do !
 
-//Promotion
+//Promotion - need to allow way to pass this.promote from user
 
 //Castling
-
-//En Passant
 
 //Logging in 
 

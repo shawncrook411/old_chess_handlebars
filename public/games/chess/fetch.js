@@ -28,7 +28,11 @@ async function submitMove(move, id) {
 }
 
 async function refresh() {
-    const id = localStorage.getItem('id')
+    const location = document.location.pathname.split('/')
+    let id
+    if(location){  id = location[location.length - 1]}
+    else { id = localStorage.getItem('id')}
+
     if (!id) return
     
     const data = await fetch(`/api/chess/response/${id}`,
