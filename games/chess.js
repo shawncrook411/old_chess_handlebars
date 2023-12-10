@@ -7,7 +7,7 @@ var convert_square = function (square) { return `${String.fromCharCode(square.x 
 class Move{ //May have special properties. 1 for en Passant, 2 for Castling, 3 for Promotion
     constructor(string, command, start, end){
         this.string = string
-        this.command = command
+        this.command = command        
         this.start = start
         this.end = end
         //start and end = {x: x, y: y}
@@ -69,11 +69,15 @@ const Default =
 }
 
 class Chess_Game {
-    constructor(options, test){
+    constructor(options, depth){
         this.id = options.id
         this.FEN = options.FEN
         this.legal = []
-        this.test = test
+        
+        if(!depth) depth = 0
+        this.depth = depth
+
+        this.check = false
         this.white_king;
         this.black_king;
         this.white_check;
@@ -101,6 +105,13 @@ class Chess_Game {
         this.board = []
 
         this.initialize()
+        this.is_check()
+    }       
+
+    is_check(){
+        if(this.turn === 'w') this.turn = 'b'
+        if(this.turn === 'b') this.turn = 'w'
+
     }
 
     initialize(){
@@ -125,7 +136,7 @@ class Chess_Game {
             }
             this.board.push(row)
         }
-        this.search()        
+        this.search()
     }    
 
     table(){
@@ -142,13 +153,12 @@ class Chess_Game {
             array.splice(0, 0, mappedRow)
         }
         console.table(array)
-        // console.table(this.legal)
         return array
     }
 
     legals(){
         console.table(this.legal)
-    }
+    } 
     
     search(){
         let legal = []
@@ -317,13 +327,12 @@ class Chess_Game {
 
                                 let output = new Move(moveString, move, {x: start.x, y: start.y}, {x: test.x, y: test.y})
                                 if(test.y === this.height - 1 || test.y === 0) output.special = 'Promotion'
-
                                 legal.push(output)                              
                             }
 
                             //Allows for a second move to be caluclated IF it's on the starting rank && you're facing the right direction
-                            if(occupant.color === 'w' && start.y === 1 && direction == 0 && distance === 1) continue to_edge
-                            if(occupant.color === 'b' && start.y === (this.height - 2) && direction == 4 && distance === 1) continue to_edge
+                            if(occupant.color === 'w' && test.occupant === '0' && start.y === 1 && direction == 0 && distance === 1) continue to_edge
+                            if(occupant.color === 'b' && test.occupant === '0' && start.y === (this.height - 2) && direction == 4 && distance === 1) continue to_edge
 
                             continue direction
                         }
@@ -357,9 +366,9 @@ class Chess_Game {
                     }
                 }
             }
-        }     
+        }       
 
-        //Edits each move to contain check data
+        //Edits each move to contain illegal check data
         legal.forEach((move) => {
             const end = move.end
             if(end.x === this.white_king.x && end.y === this.white_king.y){
@@ -368,36 +377,19 @@ class Chess_Game {
             if(end.x === this.black_king.x && end.y === this.black_king.y){
                 move.illegal = true
             }            
-        })
-
-        legal.forEach((move) => {
-            if(this.test) return
-                     
-            const testGame = new Chess_Game(this, true)
-            testGame.submit(move.command)
-
-            if (testGame.turn === 'w') testGame.turn = 'b'
-            if (testGame.turn === 'b') testGame.turn = 'w'
-            testGame.search()
-
-            for(let testMove of testGame.legal){
-                const end = testMove.end
-                if(testGame.turn === 'b' && end.x === this.white_king.x && end.y === this.white_king.y){
-                    move.check = true
-                    move.string += '+'
-                }
-                if(testGame.turn === 'w' && end.x === this.black_king.x && end.y === this.black_king.y){
-                    move.check = true
-                    move.string += '+'
-                }
-            }
-        })
+        })      
 
         //Filters out moves that result in your king being capturable
+        //Adds check markings if game results in check
         const filter = legal.filter((move) => {
-            if(this.test) return true
-            const testGame = new Chess_Game(this, true)
-            testGame.submit(move.command)    
+            if(this.depth) return true
+            const testGame = new Chess_Game(this, this.depth + 1)
+            testGame.submit(move.command)
+            
+            // if(testGame.is_check()) {
+            //     move.check = true
+            //     move.string += '+'
+            // }
             
             for (let testMove of testGame.legal){                
                 if (testMove.illegal === true) return false
@@ -406,6 +398,30 @@ class Chess_Game {
         })
 
         this.legal = filter
+
+        // let swapMove = new Move('X', 'swap', {x: 0, y: 0}, {x: 0, y: 0})
+        // this.legal.push(swapMove)
+
+        
+        //Check if future moves result in check
+
+            // if (testGame.turn === 'w') testGame.turn = 'b'
+            // if (testGame.turn === 'b') testGame.turn = 'w'
+            // testGame.search()
+
+            // for(let testMove of testGame.legal){
+            //     const end = testMove.end
+            //     if(testGame.turn === 'b' && end.x === this.white_king.x && end.y === this.white_king.y){
+            //         move.check = true
+            //         move.string += '+'
+            //     }
+            //     if(testGame.turn === 'w' && end.x === this.black_king.x && end.y === this.black_king.y){
+            //         move.check = true
+            //         move.string += '+'
+            //     }
+            // }
+        
+
     }        
 
     search_KNIGHT(start){        
@@ -535,7 +551,7 @@ class Chess_Game {
 
         switch(input[input.length -1])
         {
-            case '#', '!', '=', '+':
+            case '#', '!', '=':
                 input = input.slice(0, -1)
                 break
         }
