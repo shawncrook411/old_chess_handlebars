@@ -174,6 +174,7 @@ class Chess_Game {
     } 
     
     search(enemy){
+        if(!this.status) return
         let legal = []
         
         checkRowStart: for (let row of this.board){
@@ -552,7 +553,7 @@ class Chess_Game {
     }
     
     submit(input){
-
+        if(!this.status) return
         switch(input[input.length -1])
         {
             case '#', '!', '=':
@@ -562,18 +563,19 @@ class Chess_Game {
         let success = false
 
         this.legal.forEach(move => {
-            if(move.string === input){
+            if(move.string === input && success === false){
                 this.move(move)
                 success = true            
             }
-            else if (move.command === input){
+            else if (move.command === input && success === false){
                 this.move(move)
                 success = true                
             }
-            else if (move.alt === input){
+            else if (move.alt === input && success === false){
                 this.move(move)
                 success = true
             }
+            if(success) return
         })
     }    
 
@@ -647,6 +649,8 @@ class Chess_Game {
         //Incase the string is replace entirely, set to '-'
         if(this.castling.length === 0) this.castling = '-'
 
+        if(this.depth === 0) console.log(this.turn)
+
         if (this.turn === 'w') {
             this.turn = 'b'
         } //Only increase move count after Black's turn
@@ -656,14 +660,24 @@ class Chess_Game {
             this.draw50++
         } 
 
+        if(this.depth === 0) console.log(this.turn)
+
         //Adds draw50 support
         if(piece.type === 'P' || move.string.includes('x')) this.draw50 === 0
 
         this.writeFEN()
         this.readFEN()
         this.search()
-        this.verify()
-    }    
+
+        if(this.depth === 0){
+            let verify = this.verify()
+            if (!verify.status){
+                this.status = verify.status
+                this.result = verify.result
+                this.termination = verify.termination
+            }
+        }    
+    }
 
     verify(){
         class Result {
@@ -672,7 +686,9 @@ class Chess_Game {
                 this.result = result
                 this.termination = termination
             }
-        }
+        }     
+
+        this.is_check()
 
         if(this.check === true && this.legal.length === 0){
             // The turn counter has updated since the last move, 
@@ -696,7 +712,9 @@ class Chess_Game {
             if(pieces.length < 4) return new Result(false, '1/2-1/2', 'Insufficient Material')}
 
 
-        if(this.legal.length === 0) return new Result(false, '1/2-1/2', 'Stalemate')     
+        if(this.legal.length === 0) return new Result(false, '1/2-1/2', 'Stalemate')  
+        
+        return new Result(true)
     }
 }
 
