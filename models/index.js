@@ -40,6 +40,7 @@ Chess.afterUpdate( async (chess) => {
 
 Chess.afterBulkUpdate( async (chessGames) => {
     if (chessGames.length > 0){
+        // ******** FOR EACH BULK UPDATE HAS NOT BEEN TESTED!! *********** //
         chessGames.forEach(async (chess) => {
             await FEN_table.create({
                 game_id: chess.id,
