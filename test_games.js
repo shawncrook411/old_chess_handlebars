@@ -1,7 +1,7 @@
 const { Chess_Game, Default } = require('./games/chess')
 
 const options = {...Default}
-options.FEN = '7K/8/5r2/8/8/np4k1/8/8 b - - 1 1'
+options.FEN = '8/R7/8/8/8/Kr6/4k3/7r w - - 4 3'
 
 const game = new Chess_Game(options)
 

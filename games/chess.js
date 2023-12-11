@@ -384,10 +384,10 @@ class Chess_Game {
         //Edits each move to contain illegal check data
         legal.forEach((move) => {
             const end = move.end
-            if(end.x === this.white_king.x && end.y === this.white_king.y){
+            if(end.x === this.white_king.x && end.y === this.white_king.y && this.turn === 'b'){
                 move.illegal = true
             }          
-            if(end.x === this.black_king.x && end.y === this.black_king.y){
+            if(end.x === this.black_king.x && end.y === this.black_king.y && this.turn === 'w'){
                 move.illegal = true
             }            
         })
@@ -395,19 +395,19 @@ class Chess_Game {
         if(enemy)   {
             this.enemy = legal
             return
-        }
+        }        
         
         //Filters out moves that result in your king being capturable
         //Adds check markings if game results in check
-            const filter = legal.filter((move) => {
-                if(this.depth > 0) return true
-
+        if(this.depth === 0) {
+            const filter = legal.filter((move) => {              
                 const testGame = new Chess_Game(this, this.depth + 1)
                 testGame.submit(move.command)
-                testGame.is_check()
+                testGame.is_check()  
                 
-                if(testGame.check) {
-                    if(testGame.legal.length === 0) {
+                if(testGame.check){    
+                    //CHECKMATE CHECKS DO NOT WORK. DON'T KNOW HOW TO CHECK IF MATE BEFORE MOVE IS PLAYED                
+                    if(testGame.legal.length === 0){
                         move.check = true
                         move.checkmate = true
                         move.string += '#'
@@ -415,7 +415,7 @@ class Chess_Game {
                     else{
                         move.check = true
                         move.string += '+'
-                    }
+                    }   
                 }
                 
                 for (let testMove of testGame.legal){                
@@ -423,33 +423,10 @@ class Chess_Game {
                 }
                 return true
             })
-
-            this.legal = filter
-
-        // let swapMove = new Move('X', 'swap', {x: 0, y: 0}, {x: 0, y: 0})
-        // this.legal.push(swapMove)
-
-        
-        //Check if future moves result in check
-
-            // if (testGame.turn === 'w') testGame.turn = 'b'
-            // if (testGame.turn === 'b') testGame.turn = 'w'
-            // testGame.search()
-
-            // for(let testMove of testGame.legal){
-            //     const end = testMove.end
-            //     if(testGame.turn === 'b' && end.x === this.white_king.x && end.y === this.white_king.y){
-            //         move.check = true
-            //         move.string += '+'
-            //     }
-            //     if(testGame.turn === 'w' && end.x === this.black_king.x && end.y === this.black_king.y){
-            //         move.check = true
-            //         move.string += '+'
-            //     }
-            // }
-        
-
-    }        
+            this.legal = filter 
+        }
+        else this.legal = legal 
+    }    
 
     search_KNIGHT(start){        
         let moves = []
