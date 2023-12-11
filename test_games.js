@@ -1,18 +1,22 @@
 const { Chess_Game, Default } = require('./games/chess')
 
 const options = {...Default}
-options.FEN = '8/R7/8/1r6/8/K7/4k3/7r b - - 3 2'
+options.FEN = '8/8/8/8/8/4N1B1/8/1K5k b - - 45 6'
 
 const game = new Chess_Game(options)
 
-game.submit('Rb1')
+game.submit('Kg1')
+game.submit('Ka1')
 
+console.log(game.movelist)
 
-
-game.legals()
 //Things to do !
 
 //Promotion - need to allow way to pass this.promote from user
+
+//Filter moves to add '#' tag
+
+//Filter moves that are identical : Rb1 Rb1 => Rab1 Rcb1
 
 //Logging in 
 
@@ -21,10 +25,6 @@ game.legals()
 //Refresh /listen to incoming move
 
 //Implement Timing
-
-//Calculate Check
-
-//Calculate Checkmate
 
 //Draws offers
 

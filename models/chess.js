@@ -98,6 +98,10 @@ Chess.init(
             type: DataTypes.INTEGER,
             defaultValue: 1,
         },
+        movelist: {
+            type: DataTypes.TEXT,
+            defaultValue: '-',
+        },
         draw50: {
             type: DataTypes.INTEGER,
             defaultValue: 0,

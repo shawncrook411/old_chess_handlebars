@@ -64,6 +64,7 @@ const Default =
     status : true,
     turn : 1,
     moves : 0,
+    movelist: '-',
     draw50: 0,
     target: '-',
     castling: 'KQkq'
@@ -98,6 +99,7 @@ class Chess_Game {
         this.turn = options.turn
         this.castling = options.castling
         this.moves = options.moves
+        this.movelist = options.movelist
         this.draw50 = options.draw50
         this.target = options.target
         this.result = options.result
@@ -400,12 +402,18 @@ class Chess_Game {
         
         //Filters out moves that result in your king being capturable
         //Adds check markings if game results in check
+        //CHECKMATE CHECKS DO NOT WORK. DON'T KNOW HOW TO CHECK IF MATE BEFORE MOVE IS PLAYED                
+
         if(this.depth === 0) {
             const filter = legal.filter((move) => {              
                 const testGame = new Chess_Game(this, this.depth + 1)
                 testGame.submit(move.command)
-                testGame.is_check()  
+                testGame.is_check()                  
                 
+                for (let testMove of testGame.legal){                
+                    if (testMove.illegal === true) return false
+                }
+
                 if(testGame.check){    
                     //CHECKMATE CHECKS DO NOT WORK. DON'T KNOW HOW TO CHECK IF MATE BEFORE MOVE IS PLAYED                
                     if(testGame.legal.length === 0){
@@ -417,10 +425,6 @@ class Chess_Game {
                         move.check = true
                         move.string += '+'
                     }   
-                }
-                
-                for (let testMove of testGame.legal){                
-                    if (testMove.illegal === true) return false
                 }
                 return true
             })
@@ -565,18 +569,25 @@ class Chess_Game {
         this.legal.forEach(move => {
             if(move.string === input && success === false){
                 this.move(move)
-                success = true            
+                success = move.string            
             }
             else if (move.command === input && success === false){
                 this.move(move)
-                success = true                
+                success = move.string             
             }
             else if (move.alt === input && success === false){
                 this.move(move)
-                success = true
+                success = move.string
             }
-            if(success) return
+            if(success) return 
         })
+        
+        if(success === false && this.depth === 0) console.log(`Invalid Move: ${input}`)
+        if(success){
+            if(this.movelist === '-') this.movelist = success
+            else this.movelist += `,${success}`
+        } 
+        return success
     }    
 
     move(move){   
@@ -649,8 +660,6 @@ class Chess_Game {
         //Incase the string is replace entirely, set to '-'
         if(this.castling.length === 0) this.castling = '-'
 
-        if(this.depth === 0) console.log(this.turn)
-
         if (this.turn === 'w') {
             this.turn = 'b'
         } //Only increase move count after Black's turn
@@ -658,12 +667,11 @@ class Chess_Game {
             this.turn = 'w'
             this.moves++
             this.draw50++
-        } 
-
-        if(this.depth === 0) console.log(this.turn)
+            if(this.depth === 0) console.log(this.draw50)
+        }         
 
         //Adds draw50 support
-        if(piece.type === 'P' || move.string.includes('x')) this.draw50 === 0
+        if(piece.type === 'P' || move.string.includes('x')) this.draw50 = 0
 
         this.writeFEN()
         this.readFEN()
@@ -675,6 +683,7 @@ class Chess_Game {
                 this.status = verify.status
                 this.result = verify.result
                 this.termination = verify.termination
+                console.log(`Game ended by: ${this.termination}`)
             }
         }    
     }
