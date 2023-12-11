@@ -3,11 +3,11 @@
 const login = async (event) => {
     event.preventDefault()
     
-    const username = document.querySelector('#username').value.trim().toLowerCase()
-    const password = document.querySelector('#password').value.trim().toLowerCase()
-    const email = document.querySelector('#email').value.trim().toLowerCase()
+    const username = document.querySelector('#username').value.trim()
+    const password = document.querySelector('#password').value.trim()
+    const email = document.querySelector('#email').value.trim()
 
-    if (username && password) {
+    if ((username || email) && password) {
         const response = await fetch('/user/login', {
             method: 'POST',
             body: JSON.stringify({ username, password, email }),
