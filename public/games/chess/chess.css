@@ -32,6 +32,10 @@ header{
  /* flex-direction: column-reverse */
 }
 
+.checkmate{
+    border: gold solid 10px !important;
+}
+
 .row{
     display: flex;
     flex-direction: row;
@@ -154,7 +158,10 @@ img{
     width: 64px;    
 }
 
-ul {
-    list-style-type: none;
+#moveslist{
+    
 }
 
+.touch1{
+    background-color: yellow;
+}

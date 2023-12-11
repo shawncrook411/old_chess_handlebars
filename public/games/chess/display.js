@@ -10,21 +10,25 @@ class Display{
         this.FEN = response.FEN
         this.legal = []
         
-        response.legal.forEach(move =>{
-            this.legal.push(move.string)
-            this.legal.push(move.command)
-        })
+        if(response.legal){
+            response.legal.forEach(move =>{
+                this.legal.push(move.string)
+                this.legal.push(move.command)
+            })}
 
         this.player_1 = response.player_1
         this.player_2 = response.player_2
         this.player_1_time = response.player_1
         this.player_2_time = response.player_2
+        this.moves = response.moves
         this.movelist = response.movelist
         this.width = response.width
         this.height = response.height
         this.status = response.status
         this.turn = response.turn
         this.target = response.target
+        this.result = response.result
+        this.termination = response.termination
         this.board = response.board
 
         this.displayALL()
@@ -35,6 +39,7 @@ class Display{
         this.displayPIECES()
         this.displayMOVELIST()
         this.displayCLOCKS()
+        this.displaySTATUS()
         this.saveDATA()
     }
 
@@ -155,5 +160,16 @@ class Display{
                 list.append(moveItem)
             }
         })
+    }
+
+    displaySTATUS(){
+        if(!this.status){
+            
+            if(this.termination === 'Checkmate'){
+                const board = document.querySelector('#board')
+                board.classList.add('checkmate')
+            }
+
+        }
     }
 }

@@ -43,9 +43,11 @@ var touchMove = async (event) => {
 
     if(!localStorage.getItem('touch1')){
         localStorage.setItem('touch1', square_id)
+        target.classList.add('touch1')
     }
     else{
         localStorage.setItem('touch2', square_id)
+        document.querySelector('.touch1').classList.remove('touch1')
         submit()
     }    
 }

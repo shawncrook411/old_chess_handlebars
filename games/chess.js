@@ -108,7 +108,7 @@ class Chess_Game {
         this.board = []
 
         this.initialize()
-        this.is_check()
+        if(this.status) this.is_check()
     }       
 
     is_check(){
