@@ -1,5 +1,6 @@
 const router = require('express').Router()
 const { User } = require('../models/index')
+const bcrypt = require('bcrypt')
 const sequelize = require('../config/connection')
 
 router.post('/createAccount', async (req, res) => {
@@ -32,5 +33,51 @@ router.post('/createAccount', async (req, res) => {
         res.status(500).json(err)
     }
 })
+
+router.post('/login', async (req, res) => {
+    try{
+       const username = req.body.username.toLowerCase()
+       const email = req.body.email.toLowerCase()
+       const password = req.body.password
+
+        const userData = await User.findOne({ where: sequelize.or( { username: username }, {email: email} )})
+        if (!userData) {
+            res.status(404).json({ message: 'Login Failure'})
+            return
+        }
+
+        const validPassword = await bcrypt.compare(
+            password,
+            userData.password
+        )
+
+        if(!validPassword) {
+            res.status(400).json({ message: 'Login Failure'})
+            return
+        }
+
+        req.session.save( () => {
+            req.session.loggedIn = true
+            req.session.username = username
+            req.session.user_id = userData.id
+            res.status(200).json({ message: 'Login successful' })
+        })
+
+    } catch(err) {
+        console.log(err)
+        res.status(500).json(err)
+    }
+})
+
+router.post('/logout', async (req, res) => {    
+    if (req.session.loggedIn) {
+        req.session.destroy(() => {
+            res.status(204).end()
+        })
+    } else {
+        res.status(404).end()
+    }    
+})
+
 
 module.exports = router

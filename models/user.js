@@ -50,11 +50,15 @@ User.init(
     },
     {
         hooks: {
-            beforeCreate: async (newUserData) => {
-                newUserData.password = await bcrypt.hash(newUserData.password, 10)
-                return newUserData            
+            beforeBulkCreate: (newUserData) => {
+                newUserData.forEach((newUser) => {
+                    newUser.password =  bcrypt.hashSync(newUser.password, 10)                                       
+                })   
             },
-        },       
+            beforeCreate: (newUserData) => {
+                newUserData.password = bcrypt.hashSync(newUserData.password, 10)
+            }
+        },   
         sequelize,
         timestamps: true,
         freezeTableName: true,
