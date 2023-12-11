@@ -36,8 +36,8 @@ router.post('/createAccount', async (req, res) => {
 
 router.post('/login', async (req, res) => {
     try{
-       const username = req.body.username.toLowerCase()
-       const email = req.body.email.toLowerCase()
+       const username = req.body.username
+       const email = req.body.email
        const password = req.body.password
 
         const userData = await User.findOne({ where: sequelize.or( { username: username }, {email: email} )})
@@ -78,6 +78,5 @@ router.post('/logout', async (req, res) => {
         res.status(404).end()
     }    
 })
-
 
 module.exports = router

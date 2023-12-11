@@ -1,0 +1,41 @@
+<body>
+        <header>
+            <nav>
+                <a href="/" class="navButton border" id="homeButton">Home</a>
+                <a href="/dashboard" class="navButton border" id="dashboardButton">Dashboard</a>
+                {{#if loggedIn}}
+                <button href="/logout" class="navButton border" id="logoutButton">Logout</button>
+                <script src="/js/logout.js"></script>
+                {{else}}
+                <a href="/login" class="navButton border" id="loginButton">Login</a>
+                {{/if}}
+            </nav>
+            <div class="border" id="titleDiv">
+                <h1>Welcome to Chess for Crooks!</h1>
+            </div>
+        </header>
+        <main class="border">
+            <div class="blog">
+                {{{body}}}
+            </div>
+            {{#if loggedIn}}
+                <section class="comment borderSmall">
+                    <form id="newPost">
+                        <h3> New Post</h3>        
+                        <div class="commentDiv">
+                            <label for="commentTitle">Title:</label>
+                            <input type="text" id="postTitle" name="commentTitle"><br>
+                        </div>
+                        <div class="commentDiv">
+                            <label for="commentText">Text:</label>
+                            <textarea type="text" id="postText" name="commentText"></textarea><br>
+                        </div>
+                        <input class="button" type="submit" value="Submit">
+                    </form>
+                    <br>
+                </section>
+                <script src="/js/newPost.js"></script>
+            {{/if}}
+        </main>
+    </body>
+</html>

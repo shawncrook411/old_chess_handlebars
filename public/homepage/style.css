@@ -1,0 +1,179 @@
+:root{
+    --color1: #0c243c;
+    --color2: #c9d1d5;
+    --color3: #55c2c3;
+    --color4: #7e8c9c;
+}
+
+body {
+    background-color: var(--color1);
+    color: var(--color3);
+
+}
+
+.border{
+    border: 3px solid var(--color4);
+    border-radius: 10px;    
+}
+
+.borderSmall{
+    border: 1px solid var(--color4);
+    border-radius: 10px;    
+}
+
+main {
+    margin: 10px;
+    padding: 10px;
+    min-height: 500px;
+}
+
+header, footer {
+    padding: 10px;
+}
+
+nav{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.navButton{
+    display: inline;
+    padding: 10px;
+    margin: 0px 10px;
+}
+
+#titleDiv{
+    width: fit-content;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-style: bolder;
+}
+
+#homepageDiv{
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+    text-align: center;
+    align-items: center;
+}
+
+#homepageTitle{
+       font-size: 50px; 
+}
+
+#techImg{
+    height: 183px;
+    width: 275px;
+}
+
+/* Disables Nav Button Decorations */
+a:link {text-decoration: none;}
+a, #logoutButton {color: currentColor;}
+a, #logoutButton {
+    font-size: 25px;
+    font-weight: bold;
+}
+
+#logoutButton {
+    background-color: var(--color1);
+    font-family: inherit;
+}
+
+/* Login Module Formatting */
+#loginDiv{
+    display: flex;
+    justify-content: center;
+    font-size: 30px;
+}
+
+#loginDiv h2{
+    margin: 5px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 30px;
+}
+
+.labelDiv{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    border: 3px solid var(--color4);
+    border-radius: 10px;  
+
+    padding: 15px;
+    margin: 10px;
+
+    height: 70px;
+}
+
+.button {
+    color: black;
+    background-color: var(--color4)
+}
+
+/* BLOGPOST PARTIAL STYLING */
+.blogpost{
+    margin: 15px 5px;
+    padding: 5px;
+    padding-left: 25px;
+    padding-right: 10px;
+}
+
+.blogpost_header{
+    display: flex;
+    justify-content: space-between;
+}
+
+.blogpost_title{
+    border-bottom: 3px solid var(--color4);
+    height: 50px;
+}
+
+/* COMMENT PARTIAL STYLING */
+.comment{
+    margin: 15px 5px;
+    padding-left: 25px;
+    padding-right: 10px;
+    padding-top: 15px;
+    color: var(--color4);
+    height: fit-content;
+}
+
+.comment_header{
+    display: flex;
+    justify-content: space-between;
+    height: 30px;
+}
+
+#commentTitle{
+    width: 20vw;
+    background-color: var(--color2);
+    height: 25px;
+}
+
+#commentText{
+    width: 80vw;
+    background-color: var(--color2);
+
+}
+
+.commentDiv{
+    padding: 10px;
+    padding-left: 50px;
+    font-size: 125%;
+}
+
+#newComment{
+    display: block;
+}
+
+
+h2, h3{
+    margin: 0px;
+    padding: 0px;
+}
