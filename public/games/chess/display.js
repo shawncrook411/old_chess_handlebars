@@ -19,6 +19,7 @@ class Display{
         this.player_2 = response.player_2
         this.player_1_time = response.player_1
         this.player_2_time = response.player_2
+        this.movelist = response.movelist
         this.width = response.width
         this.height = response.height
         this.status = response.status
@@ -32,6 +33,7 @@ class Display{
     displayALL(){
         this.displayBOARD()
         this.displayPIECES()
+        this.displayMOVELIST()
         this.displayCLOCKS()
         this.saveDATA()
     }
@@ -134,5 +136,24 @@ class Display{
                 }                
             }
         }
-    }    
+    }
+    
+    displayMOVELIST(){
+        const list = document.querySelector('#moveslist')
+        while(list.firstChild) list.removeChild(list.firstChild)
+
+        let array = this.movelist.split(',')
+        array.forEach((move) => {
+            const index = array.indexOf(move)
+            if(index % 2){
+                list.lastChild.textContent += ` ${move}`
+            }
+
+            else{    
+                const moveItem = document.createElement('li')
+                moveItem.textContent = move
+                list.append(moveItem)
+            }
+        })
+    }
 }

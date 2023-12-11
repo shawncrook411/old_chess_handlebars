@@ -89,7 +89,6 @@ label{
     
 }
 
-
 .primary_square{
     background: var(--primary-board-color);     
 }
@@ -154,3 +153,8 @@ img{
     height: 64px;
     width: 64px;    
 }
+
+ul {
+    list-style-type: none;
+}
+
