@@ -1,4 +1,4 @@
-const { User, Chess, } = require('../models/index')
+const { User, Chess, FEN_table, } = require('../models/index')
 const sequelize = require('../config/connection.js')
 
 const seedDatabase = async() => {
@@ -29,6 +29,12 @@ const seedDatabase = async() => {
             FEN: 'rnbqkbnr/ppQppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1'
          },
         ])
+
+    await Chess.create({
+        player_1: 1,
+        player_2: 2,
+        FEN: 'rnbqkbnr/ppQppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w - - 0 1'
+    })
 }
 
 seedDatabase()

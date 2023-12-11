@@ -1,5 +1,5 @@
 const { Chess_Game, Default } = require ('../../games/chess')
-const { Chess, User } = require ('../../models/index')
+const { Chess, User, FEN_table } = require ('../../models/index')
 
 //Reads an ID, finds the cooresponding game, and returns a Chess_Game object that is usable
 const readID = async function(id){
@@ -42,7 +42,8 @@ const writeNewGame = async function(game){
         result: game.result,
         termination: game.termination,
         opening: game.opening
-    })
+    })   
+
     return newData
 
 }
