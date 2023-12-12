@@ -134,6 +134,7 @@ class Display{
                     let image = document.createElement('img')
                     image.setAttribute('square-id', `${square.id}`)
                     image.setAttribute('src', source)
+                    image.classList.add('piece')
 
                     let display_square = document.getElementById(`${square.id}`)
 

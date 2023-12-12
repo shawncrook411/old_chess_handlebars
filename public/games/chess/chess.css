@@ -168,3 +168,7 @@ body{
     display: flex;
     flex-direction: column;
 }
+
+.hover{
+    background-color: red;
+}

@@ -17,7 +17,6 @@ var submit = async (event) => {
     const moves = localStorage.getItem('legal')
     
     if (!moves || !moves.includes(move)){
-        alert('Illegal Move')
         return
     }
 
@@ -42,12 +41,37 @@ var touchMove = async (event) => {
     const square_id = target.getAttribute('square-id')
 
     if(!localStorage.getItem('touch1')){
+        if(!target.classList.contains('piece')) return //Don't want to start the touch move if clicking an empty square
         localStorage.setItem('touch1', square_id)
         target.classList.add('touch1')
+
+        let legal = localStorage.getItem('legal')
+        legal = legal.split(',')
+        
+        let brokenMoves = []
+        legal.forEach( move => {
+            if (legal.indexOf(move) % 2 === 0) return
+
+            let newMove = {
+                start : move[0] + move[1],
+                end : move[2] + move[3]
+            }
+            brokenMoves.push(newMove)
+        })
+
+        brokenMoves.forEach( move => {
+            if(move.start === square_id){
+                let hover = document.querySelector(`[square-id=${move.end}]`)
+                console.log(hover)
+                hover.classList.add('hover')
+            }
+        })
     }
+
     else{
         localStorage.setItem('touch2', square_id)
         document.querySelector('.touch1').classList.remove('touch1')
         submit()
     }    
 }
+
