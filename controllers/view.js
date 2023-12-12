@@ -1,4 +1,7 @@
 const router = require('express').Router()
+const { Chess, User } = require('../models/index')
+const sequelize = require('../config/connection')
+
 
 router.get('/', async (req, res) => {
     try {
@@ -46,11 +49,24 @@ router.get('/chess/:id', async (req, res) => {
     }
 })
 
-router.get('/chess/game/:id', async (req, res) => {
-    try{      
-        res.render('chess', {
-            loggedIn: req.session.loggedIn
-        })
+router.get('/dashboard', async (req, res) => {
+    try{
+        if(!req.session.loggedIn)
+        {
+            res.redirect('/login')
+            return
+        }
+    const games = await Chess.findAll({
+        where: sequelize.or({ player_1: req.session.user_id }, { player_2: req.session.user_id }),
+        include: [{ model: User}]
+    })
+
+    gamesData = games.map((game) => game.get({plain: true}))
+
+    res.render('dashboard', {
+        gamesData,
+        loggedIn: req.session.loggedIn
+    })
 
     } catch (err) {
         console.log(err)

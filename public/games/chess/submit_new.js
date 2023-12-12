@@ -28,7 +28,7 @@ const createGame = async (event) => {
 
         
         if (data.ok) {
-            console.log('Game start successful')
+            alert('Game Start Successful, redirection to game...')
             const response = await data.json()    
             document.location.replace(`/chess/${response.id}`)
         } else {
