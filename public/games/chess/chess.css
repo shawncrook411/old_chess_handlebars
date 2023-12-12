@@ -104,8 +104,6 @@ label{
 
 .clock_card{
     height: 150px;
-    width: 1775px;
-    border: green dashed 5px;
     margin: 20px;
     display: flex;
 }
@@ -158,10 +156,15 @@ img{
     width: 64px;    
 }
 
-#moveslist{
-    
+header{
+    height: fit-content;
 }
 
 .touch1{
     background-color: yellow;
+}
+
+body{
+    display: flex;
+    flex-direction: column;
 }
