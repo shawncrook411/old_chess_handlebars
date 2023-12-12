@@ -20,6 +20,7 @@ class Display{
         this.player_2 = response.player_2
         this.player_1_time = response.player_1_time
         this.player_2_time = response.player_2_time
+        this.activeTimer
         this.moves = response.moves
         this.movelist = response.movelist
         this.width = response.width
@@ -69,15 +70,15 @@ class Display{
     //Returns formatted string for CLOCK
     timerConvert(seconds){
         seconds = seconds 
-        let minutes = `${Math.floor(seconds/ 600)}:`
-        seconds = `${ (seconds%600)}`
+        let minutes = `${Math.floor(seconds / 600)}:`
+        let trueseconds = `${ Math.floor(seconds%600 / 10)}`
+        let deciseconds = seconds % 10
 
-        if (seconds < 10)  seconds = `0${seconds}`
+        if (trueseconds < 10)  trueseconds = `0${trueseconds}`
         if (minutes === 0) minutes = ''
 
-        seconds = seconds.slice(0, 2) + '.' + seconds.slice(-1)
 
-        return ( `${minutes}${seconds}`)
+        return ( `${minutes}${trueseconds}.${deciseconds}`)
     }
 
     displayCLOCKS(){
@@ -85,24 +86,23 @@ class Display{
         let blackClock = document.querySelector("#player2Clock");      
         
         whiteClock.textContent = this.timerConvert( this.player_1_time * 10) 
-        blackClock.textContent = this.timerConvert( this.player_2_time * 10)
+        blackClock.textContent = this.timerConvert( this.player_2_time * 10)        
         
-        let activeTimer
         let activeClock
 
         if(this.turn === 'w') {
-            activeTimer = this.player_1_time * 10
+            this.activeTimer = this.player_1_time * 10
             activeClock = document.querySelector('#player1Clock')}
         if(this.turn === 'b') {
-            activeTimer = this.player_2_time * 10
+            this.activeTimer = this.player_2_time * 10
             activeClock = document.querySelector('#player1Clock')}
 
         if(this.moves > 0){
             const start = setInterval( () => {
-                activeTimer -= 1
-                activeClock.textContent = this.timerConvert( activeTimer )
+                this.activeTimer -= 1
+                activeClock.textContent = this.timerConvert( this.activeTimer )
 
-                if (activeTimer < 1) clearInterval(start)
+                if (this.activeTimer < 1) clearInterval(start)
             }, 100)
         }
 
