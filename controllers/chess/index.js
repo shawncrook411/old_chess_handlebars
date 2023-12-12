@@ -7,12 +7,18 @@ router.get('/:id', (req, res) => {
     res.json({message: 'good'})
 })
 
-router.post('/newGame', async (req, res) => {
-    const newGame = await writeNewGame(req.body)
-
-    const game = new Chess_Game(newGame)
-    game.table()
-    res.json(game)
+router.put('/newGame', async (req, res) => {
+    try {
+        const newGame = await writeNewGame(req.body)
+        
+        const game = new Chess_Game(newGame)
+        game.table()
+        res.json(game).status(200)
+        
+    } catch(err) {
+        console.log(err)
+        res.json(err) 
+    }
 })
 
 router.put('/move', async (req, res) => {

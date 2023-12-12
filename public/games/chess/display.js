@@ -151,7 +151,7 @@ class Display{
         array.forEach((move) => {
             const index = array.indexOf(move)
             if(index % 2){
-                list.lastChild.textContent += ` ${move}`
+                list.lastChild.textContent += `          ${move}`
             }
 
             else{    

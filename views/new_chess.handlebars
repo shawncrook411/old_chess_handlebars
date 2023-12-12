@@ -1,0 +1,39 @@
+<div>
+    <div id="loginDiv">
+        <h2>New Chess Game?</h2>
+    </div>
+    <form id="newgame-form">
+        <div class="labelDiv">
+            <label for="player_1">Player 1 / White</label>
+            <input type="text" id="player_1" name="player_1"><br>
+        </div>
+        <div class="labelDiv">
+            <label for="player_2">Player 2 / Black</label>
+            <input type="text" id="player_2" name="player_2"><br>
+        </div>
+        <div class="labelDiv">
+            <label for="fen">Starting FEN:</label>
+            <input type="fen" id="fen" name="fen"><br>
+        </div>
+        <div class="labelDiv">
+            <label for="variant">Variant:</label>
+            <input type="variant" id="variant" name="variant"><br>
+        </div>
+        <div class="labelDiv">
+            <label for="starting_time">Starting Time:</label>
+            <input type="starting_time" id="starting_time" name="starting_time"><br>
+        </div>
+        <div class="labelDiv">
+            <label for="inc">Increment:</label>
+            <input type="inc" id="inc" name="inc"><br>
+        </div>
+
+
+        <input class="button" type="submit" value="Submit">
+        <br>
+    </form>
+    
+</div>
+
+
+<script src="/games/chess/submit_new.js"></script>

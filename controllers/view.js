@@ -23,6 +23,17 @@ router.get('/login', async (req, res) => {
     }
 })
 
+router.get('/chess', async (req,res) => {
+    try{
+        res.render('new_chess', {
+            loggedIn: req.session.loggedIn
+        })
+    } catch (err) {
+        console.log(err)
+        res.status(500).json(err)
+    }
+})
+
 router.get('/chess/:id', async (req, res) => {
     try {
         res.render('chess', {
