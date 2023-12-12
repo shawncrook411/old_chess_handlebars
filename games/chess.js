@@ -590,6 +590,12 @@ class Chess_Game {
         return success
     }    
 
+    submitBulk(inputArray){
+        inputArray.forEach(input => {
+            this.submit(input)
+        })
+    }
+
     move(move){   
         const start = move.start
         const end = move.end
@@ -667,7 +673,7 @@ class Chess_Game {
             this.turn = 'w'
             this.moves++
             this.draw50++
-            if(this.depth === 0) console.log(this.draw50)
+            if(this.depth === 0){}
         }         
 
         //Adds draw50 support
