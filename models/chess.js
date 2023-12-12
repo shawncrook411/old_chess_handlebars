@@ -37,11 +37,11 @@ Chess.init(
             defaultValue: 1
         },  
         player_1_time: {
-            type: DataTypes.INTEGER,
+            type: DataTypes.DECIMAL,
             defaultValue: 300,
         },
         player_2_time: {
-            type: DataTypes.INTEGER,
+            type: DataTypes.DECIMAL,
             defaultValue: 300,
         },         
         variant: {

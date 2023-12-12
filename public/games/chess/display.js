@@ -18,8 +18,8 @@ class Display{
 
         this.player_1 = response.player_1
         this.player_2 = response.player_2
-        this.player_1_time = response.player_1
-        this.player_2_time = response.player_2
+        this.player_1_time = response.player_1_time
+        this.player_2_time = response.player_2_time
         this.moves = response.moves
         this.movelist = response.movelist
         this.width = response.width
@@ -58,32 +58,54 @@ class Display{
         time_BLACK = this.player_2_time
     }
 
-    timeout(result){
+    timeout(){
         let whiteClock = document.querySelector("#player1Clock");
         let blackClock = document.querySelector("#player2Clock"); 
 
-        if ( result ===  1 ) { blackClock.textContent = "00:00.0" }
-        if ( result === -1 ) { whiteClock.textContent = "00:00.0" }
+        if ( this.result === '1-0' )  blackClock.textContent = "00:00.0"  //Just for cleaning up the clocks, not necessary
+        if ( this.result === '0-1' )  whiteClock.textContent = "00:00.0" 
     }
 
     //Returns formatted string for CLOCK
     timerConvert(seconds){
-        let minutes = `${Math.floor(seconds/ 60)}:`
-        seconds = `${Math.floor( (seconds%600) / 10)}`
+        seconds = seconds 
+        let minutes = `${Math.floor(seconds/ 600)}:`
+        seconds = `${ (seconds%600)}`
 
-        if (seconds < 10){ seconds = `0${seconds}`}
+        if (seconds < 10)  seconds = `0${seconds}`
+        if (minutes === 0) minutes = ''
 
-        if (minutes === 0) {minutes = ''}
+        seconds = seconds.slice(0, 2) + '.' + seconds.slice(-1)
 
-        return ( `${minutes}${seconds}.${seconds%10}`)
+        return ( `${minutes}${seconds}`)
     }
 
     displayCLOCKS(){
         let whiteClock = document.querySelector("#player1Clock");
         let blackClock = document.querySelector("#player2Clock");      
         
-        whiteClock.textContent = this.timerConvert( this.player_1_time )
-        blackClock.textContent = this.timerConvert( this.player_2_time )
+        whiteClock.textContent = this.timerConvert( this.player_1_time * 10) 
+        blackClock.textContent = this.timerConvert( this.player_2_time * 10)
+        
+        let activeTimer
+        let activeClock
+
+        if(this.turn === 'w') {
+            activeTimer = this.player_1_time * 10
+            activeClock = document.querySelector('#player1Clock')}
+        if(this.turn === 'b') {
+            activeTimer = this.player_2_time * 10
+            activeClock = document.querySelector('#player1Clock')}
+
+        if(this.moves > 0){
+            const start = setInterval( () => {
+                activeTimer -= 1
+                activeClock.textContent = this.timerConvert( activeTimer )
+
+                if (activeTimer < 1) clearInterval(start)
+            }, 100)
+        }
+
     }
 
     displayBOARD(){   
@@ -178,7 +200,8 @@ class Display{
     }
 
     displaySTATUS(){
-        if(!this.status){            
+        if(!this.status){  
+            this.timeout()          
             const board = document.querySelector('#board')
             switch(this.termination){
                 case 'Checkmate':
