@@ -1,6 +1,7 @@
 const { Chess_Game, Default } = require ('../../games/chess')
 const { Chess, User } = require ('../../models/index')
 const { readID, writeID, writeNewGame } = require('../../utils/chess/read-write')
+const { saveElo } = require ('../../utils/chess/calculate-elo')
 const router = require('express').Router()
 
 router.get('/:id', (req, res) => {
@@ -31,7 +32,8 @@ router.put('/move', async (req, res) => {
         const game = new Chess_Game(options)
 
         if( (game.turn === 'w' && req.session.user_id === game.player_1) || 
-            (game.turn === 'b' && req.session.user_id === game.player_2)){
+            (game.turn === 'b' && req.session.user_id === game.player_2  ||
+                req.session.admin)){
 
                 game.table()
                 game.submit(req.body.move)   
@@ -40,16 +42,22 @@ router.put('/move', async (req, res) => {
         else{
             res.json("Not your move! Illegal").status(403)
             return
-        }       
+        }
+        
 
         const data = await writeID(game)
-
         if (!data){
             res.json({message: "No game found"}).status(404)
         }        
         else{
             const options = await readID(req.body.id)
             const game = new Chess_Game(options)
+
+            
+            if(!game.status){
+                await saveElo(game.player_1, game.player_2)
+            }
+
             res.json(game).status(200)
         }
 

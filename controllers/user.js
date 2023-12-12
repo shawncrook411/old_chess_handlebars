@@ -60,6 +60,7 @@ router.post('/login', async (req, res) => {
             req.session.loggedIn = true
             req.session.username = username
             req.session.user_id = userData.id
+            if(userData.admin) req.session.admin = true
             res.status(200).json({ message: 'Login successful' })
         })
 

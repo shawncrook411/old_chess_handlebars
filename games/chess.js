@@ -431,7 +431,7 @@ class Chess_Game {
             })
             this.legal = filter 
         }
-        else this.legal = legal 
+        else this.legal = legal        
     }    
 
     search_KNIGHT(start){        

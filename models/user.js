@@ -43,6 +43,26 @@ User.init(
             defaultValue: 40,
             validate: {min: 1, max: 100}
         },
+        chess_win_count: {
+            type: DataTypes.INTEGER,
+            defaultValue: 0,
+        },
+        chess_loss_count: {
+            type: DataTypes.INTEGER,
+            defaultValue: 0,
+        },
+        chess_draw_count: {
+            type: DataTypes.INTEGER,
+            defaultValue: 0,
+        },
+        chess_win_streak: {
+            type: DataTypes.INTEGER,
+            defaultValue: 0,
+        },
+        chess_loss_streak: {
+            type: DataTypes.INTEGER,
+            defaultValue: 0,
+        },
         admin: {
             type: DataTypes.BOOLEAN,    
             defaultValue: false,

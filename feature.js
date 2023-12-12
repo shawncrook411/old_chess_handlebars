@@ -8,13 +8,10 @@ const game = new Chess_Game(options)
 game.submit('Kg1')
 game.submit('Ka1')
 
-console.log(game.movelist)
 
 //Things to do !
 
 //Promotion - need to allow way to pass this.promote from user
-
-//Filter moves to add '#' tag
 
 //Filter moves that are identical : Rb1 Rb1 => Rab1 Rcb1
 
