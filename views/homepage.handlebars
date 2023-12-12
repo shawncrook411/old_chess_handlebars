@@ -1,23 +1,40 @@
         <main class="border">
             <div class="blog">
-                <card><a href="/chess">Chess</a></card>
+                <card></card>
                 {{{body}}}
             </div>
             {{#if loggedIn}}
-                <section class="comment borderSmall">
-                    <form id="newPost">
-                        <h3> New Post</h3>        
-                        <div class="commentDiv">
-                            <label for="commentTitle">Title:</label>
-                            <input type="text" id="postTitle" name="commentTitle"><br>
-                        </div>
-                        <div class="commentDiv">
-                            <label for="commentText">Text:</label>
-                            <textarea type="text" id="postText" name="commentText"></textarea><br>
-                        </div>
-                        <input class="button" type="submit" value="Submit">
-                    </form>
-                    <br>
+                <section class="gameDiv">
+                   <card class="gameCard" id="chessImage">
+                        <a class="cardAnchor" href="/chess">
+                            <h3>Chess</h3>
+                            <img src="/images/chessScreenshot.png">
+                        </a>
+                   </card>
+                   <card class="gameCard" >
+                        <a class="cardAnchor" href="/chess">
+                            <h3>Coming Soon!</h3>
+                        </a>
+                        <img>
+                   </card>
+                   <card class="gameCard" >
+                        <a class="cardAnchor" href="/chess">
+                            <h3>Coming Soon!</h3>
+                        </a>
+                        <img>
+                   </card>
+                   <card class="gameCard" >
+                        <a class="cardAnchor" href="/chess">
+                            <h3>Coming Soon!</h3>
+                        </a>
+                        <img>
+                   </card>
+                   <card class="gameCard" >
+                        <a class="cardAnchor" href="/chess">
+                            <h3>Coming Soon!</h3>
+                        </a>
+                        <img>
+                   </card>
                 </section>
                 <script src="/js/newPost.js"></script>
             {{/if}}

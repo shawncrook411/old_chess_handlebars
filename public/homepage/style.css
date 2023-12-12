@@ -172,8 +172,34 @@ form {
     display: block;
 }
 
-
 h2, h3{
     margin: 0px;
     padding: 0px;
+}
+
+.gameDiv{
+    display:flex;
+}
+
+.cardAnchor{
+    min-height: 350px;
+    min-width: 350px;
+    display: block;
+}
+
+.cardAnchor h3{
+    margin-left: 50px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.cardAnchor img{
+    margin: 5px;
+}
+
+.gameCard{
+    border: 1px solid var(--color4);
+    border-radius: 10px;  
+    margin: 15px;
+
 }

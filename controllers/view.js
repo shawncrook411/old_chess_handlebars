@@ -26,6 +26,14 @@ router.get('/login', async (req, res) => {
     }
 })
 
+router.get('/signup', async (req, res) => {
+    try{
+        res.render('signup', {
+            loggedIn: req.session.loggedIn
+        })
+    } catch(err) {}
+})
+
 router.get('/chess', async (req,res) => {
     try{
         res.render('new_chess', {
@@ -40,7 +48,8 @@ router.get('/chess', async (req,res) => {
 router.get('/chess/:id', async (req, res) => {
     try {
         res.render('chess', {
-            loggedIn: req.session.loggedIn
+            loggedIn: req.session.loggedIn,
+            user_id: req.session.user_id
         })
         
     } catch (err) {
