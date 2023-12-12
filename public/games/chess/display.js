@@ -153,19 +153,27 @@ class Display{
         array.forEach((move) => {
             const index = array.indexOf(move)
             if(index % 2){
-                list.lastChild.textContent += `          ${move}`
+                list.lastChild.textContent += ` ${move}`
             }
-
             else{    
                 const moveItem = document.createElement('li')
-                moveItem.textContent = move
+                moveItem.textContent = `${move}`
                 list.append(moveItem)
             }
         })
 
         if(this.termination === 'Checkmate'){
-            console.log('detected checkmate')
-            console.log(list.lastChild.textContent)
+            //Adds '#' symbol to end of move to denote checkmate            
+            let text = list.lastChild.textContent.slice(0, -1)          
+            text += '#'
+            list.lastChild.textContent = text        
+        }
+
+        if(!this.status){
+            let result = document.createElement('p')
+            result.textContent = this.result
+            result.setAttribute('id', 'resultText')
+            list.append(result)
         }
     }
 
@@ -179,11 +187,8 @@ class Display{
 
                 case 'Stalemate':
                     board.classList.add('stalemate')
-
-
-
+                    break
             }
-
         }
     }
 }

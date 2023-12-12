@@ -39,6 +39,15 @@ header{
 .stalemate{
     border: purple solid 10px !important;
 }
+
+#resultText{
+    font-size: 200%;
+    display: inline;
+    color: gold;
+    position: relative;
+    top: 15px;
+}
+
 .row{
     display: flex;
     flex-direction: row;
