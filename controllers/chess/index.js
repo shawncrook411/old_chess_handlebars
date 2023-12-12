@@ -30,9 +30,17 @@ router.put('/move', async (req, res) => {
         }
         const game = new Chess_Game(options)
 
-        game.table()
-        game.submit(req.body.move)   
-        game.table()
+        if( (game.turn === 'w' && req.session.user_id === game.player_1) || 
+            (game.turn === 'b' && req.session.user_id === game.player_2)){
+
+                game.table()
+                game.submit(req.body.move)   
+                game.table()
+            }
+        else{
+            res.json("Not your move! Illegal").status(403)
+            return
+        }       
 
         const data = await writeID(game)
 
