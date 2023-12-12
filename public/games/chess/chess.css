@@ -146,7 +146,7 @@ label{
     border-radius: 10px;
 }
 
-a{
+.square_anchor{
     height: 64px;
     width: 64px;
 }

@@ -129,6 +129,7 @@ class Display{
 
                     let anchor = document.createElement('a')
                     anchor.setAttribute('square-id', `${square.id}`)
+                    anchor.setAttribute('class', 'square-anchor')
 
                     let image = document.createElement('img')
                     image.setAttribute('square-id', `${square.id}`)
