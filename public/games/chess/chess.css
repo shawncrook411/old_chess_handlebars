@@ -36,6 +36,9 @@ header{
     border: gold solid 10px !important;
 }
 
+.stalemate{
+    border: purple solid 10px !important;
+}
 .row{
     display: flex;
     flex-direction: row;

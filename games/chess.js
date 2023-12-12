@@ -109,6 +109,7 @@ class Chess_Game {
 
         this.initialize()
         if(this.status) this.is_check()
+        // if(this.depth === 0) this.verify() //Doesn't accuratly load new positions and check for checkmate / stalemate
     }       
 
     is_check(){
@@ -122,7 +123,7 @@ class Chess_Game {
         if(this.turn === 'w') this.turn = 'b'
         else if(this.turn === 'b') this.turn = 'w'
 
-        for(let move of this.enemy){
+        if(this.enemy) for(let move of this.enemy){
             if (move.illegal) this.check = true
         }
 

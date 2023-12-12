@@ -28,6 +28,11 @@ const seedDatabase = async() => {
             player_2: 2,
             FEN: 'rnbqkbnr/ppQppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1'
          },
+         {
+            player_1: 1,
+            player_2: 1,
+            FEN: 'rnb1kbnr/pppp1ppp/8/4p3/5PPq/8/PPPPP2P/RNBQKBNR w KQkq - 1 3'
+         }
         ])
 
     await Chess.create({

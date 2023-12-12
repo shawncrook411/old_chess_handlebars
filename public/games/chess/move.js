@@ -46,8 +46,9 @@ var touchMove = async (event) => {
         target.classList.add('touch1')
 
         let legal = localStorage.getItem('legal')
-        legal = legal.split(',')
-        
+        legal = legal.split(',')        
+
+        //Adds hover class to the squares your piece COULD move to
         let brokenMoves = []
         legal.forEach( move => {
             if (legal.indexOf(move) % 2 === 0) return
@@ -58,11 +59,9 @@ var touchMove = async (event) => {
             }
             brokenMoves.push(newMove)
         })
-
         brokenMoves.forEach( move => {
             if(move.start === square_id){
                 let hover = document.querySelector(`[square-id=${move.end}]`)
-                console.log(hover)
                 hover.classList.add('hover')
             }
         })

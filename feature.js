@@ -18,17 +18,12 @@ console.log(game.movelist)
 
 //Filter moves that are identical : Rb1 Rb1 => Rab1 Rcb1
 
-//Logging in 
-
-//Protect only players from moving
-
 //Refresh /listen to incoming move
 
 //Implement Timing
 
+//Allow to flip the board if playing as black
+
 //Draws offers
 
 // 3fold - Create table of previous FEN's?
-
-
-

@@ -162,14 +162,26 @@ class Display{
                 list.append(moveItem)
             }
         })
+
+        if(this.termination === 'Checkmate'){
+            console.log('detected checkmate')
+            console.log(list.lastChild.textContent)
+        }
     }
 
     displaySTATUS(){
-        if(!this.status){
-            
-            if(this.termination === 'Checkmate'){
-                const board = document.querySelector('#board')
-                board.classList.add('checkmate')
+        if(!this.status){            
+            const board = document.querySelector('#board')
+            switch(this.termination){
+                case 'Checkmate':
+                    board.classList.add('checkmate')    
+                    break
+
+                case 'Stalemate':
+                    board.classList.add('stalemate')
+
+
+
             }
 
         }
