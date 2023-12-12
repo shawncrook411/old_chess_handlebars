@@ -11,8 +11,11 @@ game.submit('Ka1')
 
 //Things to do !
 
+//Update elo calculations, doesn't take the new file properly need to pass game as parameter
+
 //Promotion - need to allow way to pass this.promote from user
 
+//Allow timeout method to calculate IF winning time CAN win. Maybe use npm..?
 
 //Refresh /listen to incoming move
 

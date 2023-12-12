@@ -32,6 +32,11 @@ const seedDatabase = async() => {
             player_1: 1,
             player_2: 1,
             FEN: 'rnb1kbnr/pppp1ppp/8/4p3/5PPq/8/PPPPP2P/RNBQKBNR w KQkq - 1 3'
+         },
+         {
+            player_1: 1,
+            player_2: 2,
+            player_1_time: 30.1
          }
         ])
 

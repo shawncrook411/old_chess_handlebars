@@ -1,21 +1,4 @@
-
-
-async function fetchResponse() {
-    const FEN = "r1b2rk1/pp1qbppp/5n2/2pPp1B1/1n1P4/2N2N2/PPPQBPPP/R4RK1 w - c6 0 11"
-    object = {fen : FEN}
-
-    const data = await fetch(`/api/newGame/`,    
-    {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(object),
-    })
-
-    const response = await data.json()
-    return response
-}
+var globalDisplay;
 
 async function submitMove(move, id) {
     await fetch(`/api/chess/move`,
@@ -26,7 +9,9 @@ async function submitMove(move, id) {
     }).then(reload())
 }
 
-async function refresh() {
+async function refresh() {  
+    if(window.myInterval) clearInterval(window.myInterval)
+    
     const location = document.location.pathname.split('/')
     let id
     if(location){  id = location[location.length - 1]}
@@ -42,7 +27,7 @@ async function refresh() {
         },
     })
     const response = await data.json()
-    new Display(response)
-    return
+    
+    return new Display(response)
 }
 

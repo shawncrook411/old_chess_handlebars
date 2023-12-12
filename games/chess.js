@@ -112,6 +112,21 @@ class Chess_Game {
         // if(this.depth === 0) this.verify() //Doesn't accuratly load new positions and check for checkmate / stalemate
     }       
 
+    timeout(){
+        this.status = false
+        if(this.turn === 'w') {
+            this.result = '0-1'
+            this.player_1_time = 0
+        }
+
+        if(this.turn === 'b'){
+            this.result = '1-0'
+            this.player_2_time = 0
+        }
+        this.termination = 'Timeout'
+    }
+
+
     is_check(){
         this.check = false
 

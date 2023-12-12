@@ -3,6 +3,7 @@ const DATA = {
     style: 'pixel'
 }
 
+
 class Display{
     constructor(response)
     {
@@ -95,18 +96,21 @@ class Display{
             activeClock = document.querySelector('#player1Clock')}
         if(this.turn === 'b') {
             this.activeTimer = this.player_2_time * 10
-            activeClock = document.querySelector('#player1Clock')}
+            activeClock = document.querySelector('#player2Clock')}
 
         if(this.moves > 0){
-            const start = setInterval( () => {
+            window.myInterval = setInterval( () => {
                 this.activeTimer -= 1
                 activeClock.textContent = this.timerConvert( this.activeTimer )
+                localStorage.setItem('activeTime', this.activeTimer)
 
-                if (this.activeTimer < 1) clearInterval(start)
+                if (this.activeTimer < 1) {
+                    timeout()
+                    clearInterval(this.timer)
+                }
             }, 100)
         }
-
-    }
+    }    
 
     displayBOARD(){   
         let position = document.getElementById("board_border")

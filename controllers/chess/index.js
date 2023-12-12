@@ -29,12 +29,16 @@ router.put('/move', async (req, res) => {
         {
             res.status(404).json("Game doesn't exist")
         }
-        const game = new Chess_Game(options)
-
+        const game = new Chess_Game(options)     
+        
         if(!game.status){ //Prevent old games from being moved unnecessarily
             res.json(200).json(game)
             return
         }
+
+        if(game.turn === 'w') game.player_1_time = req.body.time
+        if(game.turn === 'b') game.player_2_time = req.body.time
+
 
         if( (game.turn === 'w' && req.session.user_id === game.player_1) || 
             (game.turn === 'b' && req.session.user_id === game.player_2  ||
@@ -44,6 +48,7 @@ router.put('/move', async (req, res) => {
                 game.submit(req.body.move)   
                 game.table()
             }
+
         else{
             res.json("Not your move! Illegal").status(403)
             return
@@ -52,11 +57,11 @@ router.put('/move', async (req, res) => {
         const data = await writeID(game)
         if (!data){
             res.json({message: "No game found"}).status(404)
+            return
         }        
         else{
             const options = await readID(req.body.id)
             const game = new Chess_Game(options)
-
             
             if(!game.status){
                 await saveElo(game.player_1, game.player_2)
@@ -68,6 +73,38 @@ router.put('/move', async (req, res) => {
     } catch(err) {
         console.log(err)
         res.json(err)
+    }
+})
+
+router.put('/timeout', async (req, res) => {
+    try{
+        const options = await readID(req.body.id)
+        if(!options)
+        {
+            res.status(404).json("Game doesn't exist")
+        }
+        const game = new Chess_Game(options)
+        game.timeout()   
+
+        const data = await writeID(game)
+        if (!data){
+            res.json({message: "No game found"}).status(404)
+            return
+        }        
+        else{
+            const options = await readID(req.body.id)
+            const game = new Chess_Game(options)
+            
+            if(!game.status){
+                await saveElo(game.player_1, game.player_2)
+            }
+
+            res.json(game).status(200)
+        }        
+
+    } catch(err) {
+        console.log(err)
+        res.json(err).status(500)
     }
 })
 

@@ -21,7 +21,7 @@ var submit = async (event) => {
     }
 
     const ID = localStorage.getItem('id')    
-    object = { id: ID, move: move}
+    object = { id: ID, move: move, time: (localStorage.getItem('activeTime') / 10)}
 
     const response = await fetch(`/api/chess/move/`,
     {
