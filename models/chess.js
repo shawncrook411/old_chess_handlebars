@@ -133,7 +133,7 @@ Chess.init(
     {
         sequelize,
         underscored: false,
-        timestamps: false,
+        timestamps: true,
         freezeTableName: true,
         underscored: true,
         modelName: 'chess',

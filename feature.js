@@ -13,7 +13,6 @@ game.submit('Ka1')
 
 //Promotion - need to allow way to pass this.promote from user
 
-//Filter moves that are identical : Rb1 Rb1 => Rab1 Rcb1
 
 //Refresh /listen to incoming move
 

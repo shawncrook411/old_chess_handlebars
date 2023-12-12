@@ -31,6 +31,11 @@ router.put('/move', async (req, res) => {
         }
         const game = new Chess_Game(options)
 
+        if(!game.status){ //Prevent old games from being moved unnecessarily
+            res.json(200).json(game)
+            return
+        }
+
         if( (game.turn === 'w' && req.session.user_id === game.player_1) || 
             (game.turn === 'b' && req.session.user_id === game.player_2  ||
                 req.session.admin)){
@@ -42,8 +47,7 @@ router.put('/move', async (req, res) => {
         else{
             res.json("Not your move! Illegal").status(403)
             return
-        }
-        
+        }        
 
         const data = await writeID(game)
         if (!data){
