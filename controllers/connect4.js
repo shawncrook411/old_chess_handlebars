@@ -1,8 +1,8 @@
 const router = require('express').Router();
 const { connect4Weights } = require('../utils/random')
 
-router.get('/connect4', (req, res) => {
-    res.render('connect4', {
+router.get('/', (req, res) => {
+    res.render('layouts/games/connect4', {
         layout: 'main',
         currentUser: req.session.username,
     });

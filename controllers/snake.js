@@ -1,8 +1,8 @@
 const router = require("express").Router();
 const { snakeWeights } = require('../utils/random')
 
-router.get('/snake', (req, res) => {
-  res.render('snake', {
+router.get('/', (req, res) => {
+  res.render('layouts/games/snake', {
       layout: 'main',
       currentUser: req.session.loggedIn,
   });
