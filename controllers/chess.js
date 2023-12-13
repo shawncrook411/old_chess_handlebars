@@ -1,12 +1,35 @@
-const { Chess_Game, Default } = require ('../../games/chess')
-const { Chess, User } = require ('../../models/index')
-const { readID, writeID, writeNewGame } = require('../../utils/chess/read-write')
-const { saveElo } = require ('../../utils/chess/calculate-elo')
+const { Chess_Game, Default } = require ('../games/chess')
+const { Chess, User } = require ('../models/index')
+const { readID, writeID, writeNewGame } = require('../utils/chess/read-write')
+const { saveElo } = require ('../utils/chess/calculate-elo')
 const router = require('express').Router()
 
-router.get('/:id', (req, res) => {
-    res.json({message: 'good'})
+
+
+router.get('/', async (req,res) => {
+    try{
+        res.render('layouts/games/new_chess', {
+            loggedIn: req.session.loggedIn
+        })
+    } catch (err) {
+        console.log(err)
+        res.status(500).json(err)
+    }
 })
+
+router.get('/:id', async (req, res) => {
+    try {
+        res.render('layouts/games/chess', {
+            loggedIn: req.session.loggedIn,
+            user_id: req.session.user_id
+        })
+        
+    } catch (err) {
+        console.log(err)
+        res.status(500).json(err)
+    }
+})
+
 
 router.put('/newGame', async (req, res) => {
     try {

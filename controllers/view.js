@@ -2,10 +2,9 @@ const router = require('express').Router()
 const { Chess, User } = require('../models/index')
 const sequelize = require('../config/connection')
 
-
 router.get('/', async (req, res) => {
     try {
-        res.render('homepage', {
+        res.render('layouts/homepage', {
             loggedIn: req.session.loggedIn
         })
     }
@@ -17,7 +16,7 @@ router.get('/', async (req, res) => {
 
 router.get('/login', async (req, res) => {
     try{
-        res.render('login', {
+        res.render('layouts/login', {
             loggedIn: req.session.loggedIn,
         })
     } catch(err) {
@@ -28,34 +27,10 @@ router.get('/login', async (req, res) => {
 
 router.get('/signup', async (req, res) => {
     try{
-        res.render('signup', {
+        res.render('layouts/signup', {
             loggedIn: req.session.loggedIn
         })
     } catch(err) {}
-})
-
-router.get('/chess', async (req,res) => {
-    try{
-        res.render('new_chess', {
-            loggedIn: req.session.loggedIn
-        })
-    } catch (err) {
-        console.log(err)
-        res.status(500).json(err)
-    }
-})
-
-router.get('/chess/:id', async (req, res) => {
-    try {
-        res.render('chess', {
-            loggedIn: req.session.loggedIn,
-            user_id: req.session.user_id
-        })
-        
-    } catch (err) {
-        console.log(err)
-        res.status(500).json(err)
-    }
 })
 
 router.get('/dashboard', async (req, res) => {
@@ -72,7 +47,7 @@ router.get('/dashboard', async (req, res) => {
 
     gamesData = games.map((game) => game.get({plain: true}))
 
-    res.render('dashboard', {
+    res.render('layouts/dashboard', {
         gamesData,
         loggedIn: req.session.loggedIn
     })
@@ -81,6 +56,6 @@ router.get('/dashboard', async (req, res) => {
         console.log(err)
         res.status(500).json(err)
     }
-})
+}) 
 
 module.exports = router
