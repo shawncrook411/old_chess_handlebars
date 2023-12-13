@@ -20,8 +20,11 @@ var submit = async (event) => {
         return
     }
 
-    const ID = localStorage.getItem('id')    
-    object = { id: ID, move: move, time: (localStorage.getItem('activeTime') / 10)}
+    const ID = localStorage.getItem('id')  
+    const time = localStorage.getItem('activeTime') / 10  
+    object = { id: ID, move: move, time: time}
+    
+    localStorage.removeItem('activeTime')
 
     const response = await fetch(`/api/chess/move/`,
     {
@@ -70,6 +73,10 @@ var touchMove = async (event) => {
     else{
         localStorage.setItem('touch2', square_id)
         document.querySelector('.touch1').classList.remove('touch1')
+        let hovers = document.querySelectorAll('.hover')
+        if(hovers){
+            hovers.forEach(el => el.classList.remove('hover'))
+        }
         submit()
     }    
 }

@@ -98,17 +98,23 @@ class Display{
             this.activeTimer = this.player_2_time * 10
             activeClock = document.querySelector('#player2Clock')}
 
-        if(this.moves > 0){
-            window.myInterval = setInterval( () => {
-                this.activeTimer -= 1
-                activeClock.textContent = this.timerConvert( this.activeTimer )
-                localStorage.setItem('activeTime', this.activeTimer)
+        if(this.id === localStorage.getItem('id')){
+            const time = localStorage.getItem('activeTime')
+            if(time) this.activeTimer = time
+        }
 
-                if (this.activeTimer < 1) {
-                    timeout()
-                    clearInterval(this.timer)
-                }
-            }, 100)
+        if(this.moves > 1){
+            // window.myInterval = setInterval( () => {
+            //     this.activeTimer -= 1
+            //     activeClock.textContent = this.timerConvert( this.activeTimer )
+            //     localStorage.setItem('activeTime', this.activeTimer)
+
+            //     if (this.activeTimer < 1) {
+            //         timeout()
+            //         clearInterval(window.myInterval)
+            //         alert('You lost on Time!')
+            //     }
+            // }, 100)
         }
     }    
 
@@ -212,7 +218,7 @@ class Display{
                     board.classList.add('checkmate')    
                     break
 
-                case 'Stalemate':
+                case 'Stalemate', 'Draw50', 'Insufficient Material':
                     board.classList.add('stalemate')
                     break
             }

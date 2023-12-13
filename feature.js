@@ -19,7 +19,7 @@ game.submit('Ka1')
 
 //Refresh /listen to incoming move
 
-//Implement Timing
+//Implement Timing based on the updated_at column instead of stored in the browser
 
 //Allow to flip the board if playing as black
 
