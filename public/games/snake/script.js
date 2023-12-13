@@ -28,11 +28,13 @@ document.onkeydown = function(e) {
       return;
   }
 };
+
 //sets controller index to null on disconnect
 window.addEventListener("gamepaddisconnected", (event) => {
   console.log("disconnected");
   controllerIndex = null;
 });
+
 //listens for controller input in intervals
 window.addEventListener("gamepadconnected", (event) => {
   controllerIndex = event.gamepad.index;
@@ -72,8 +74,8 @@ const startGame = async function(event) {
   const reset = function(score) {
     direction = 2
     startSnakeButton.innerHTML = "Replay?";
-    let board = document.getElementById("snakeDisplay");
-    while (board.firstChild) board.removeChild(board.firstChild);
+    // let board = document.getElementById("snakeDisplay");
+    // while (board.firstChild) board.removeChild(board.firstChild);
     startDiv.append(startSnakeButton);
     sendResult(score);
     clearInterval(start);

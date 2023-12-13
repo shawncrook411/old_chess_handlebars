@@ -20,4 +20,17 @@ router.put("/newApple", (req, res) => {
   }
 });
 
-    module.exports = router;
+router.put('/record', (req, res) => {
+  try{
+    const score = req.body.snake_score
+
+    //IMPLEMENT SCOREBOARD
+
+    res.json({message: 'Record is not setup yet'})
+  } catch(err) {
+    console.log(err)
+    res.status(500).json(err)
+  }
+})
+
+module.exports = router;

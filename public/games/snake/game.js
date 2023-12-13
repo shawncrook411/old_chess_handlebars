@@ -32,9 +32,6 @@ class Snake {
   terminate(cause) {
     this.active = false;
     this.termination = cause;
-    console.log("FINAL POSITION");
-
-    this.table();
     return this.respond();
   }
 
@@ -53,8 +50,6 @@ class Snake {
     this.position[0][0].status = this.size;
 
     if (!this.options.dev) this.seed();
-    console.log("INITIAL POSITION");
-    this.table();
   }
 
   //Creates a response object for the GET requests to display the board state:
@@ -94,7 +89,6 @@ class Snake {
       this.direction = direction;
     } else {
       this.previousDirection = this.direction;
-      console.log(`Continued moving ${this.direction}`);
     }
 
     let matrix;
@@ -160,7 +154,6 @@ class Snake {
 
         //Sets the square that the head is moving to the current size
         if (place.x == next.x && place.y == next.y) {
-          console.log(`Successfully moved to: ${check.x - 1}, ${check.y - 1}`);
           place.snake_direction = [this.direction, this.previousDirection];
           place.status = this.size;
         }
