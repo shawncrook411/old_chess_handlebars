@@ -178,7 +178,8 @@ h2, h3{
 }
 
 .gameDiv{
-    display:flex;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .cardAnchor{
