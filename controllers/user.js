@@ -25,6 +25,19 @@ router.post('/createAccount', async (req, res) => {
             password: newPassword,
             email: newEmail
         })
+
+        if(newUser){
+            req.session.save( () => {
+                req.session.loggedIn = true
+                req.session.username = newUserName
+                req.session.user_id = newUser.id
+                if(newUser.admin) req.session.admin = true
+            })
+        }
+        else{
+            res.status(500).json('Couldnt create new user')
+            return
+        }
         
         res.status(200).json(`New User Created with ID: ${newUser.id} and Username: ${newUser.username} `)       
 

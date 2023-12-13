@@ -28,12 +28,13 @@ const signUp = async (event) => {
 
     const username = document.querySelector('#username').value.trim()
     const password = document.querySelector('#password').value.trim()
+    const email = document.querySelector('#email').value.trim()
     const confirm = document.querySelector('#confirm').value.trim()
 
     if (username && password.length >=8 && password === confirm) {
         const response = await fetch('/user/createAccount', {
             method: 'POST',
-            body: JSON.stringify({ username, password }),
+            body: JSON.stringify({ username, password, email }),
             headers: { 'Content-Type': 'application/json'}
         })
     
