@@ -74,8 +74,8 @@ const startGame = async function(event) {
   const reset = function(score) {
     direction = 2
     startSnakeButton.innerHTML = "Replay?";
-    // let board = document.getElementById("snakeDisplay");
-    // while (board.firstChild) board.removeChild(board.firstChild);
+    let board = document.getElementById("snakeDisplay");
+    while (board.firstChild) board.removeChild(board.firstChild);
     startDiv.append(startSnakeButton);
     sendResult(score);
     clearInterval(start);
